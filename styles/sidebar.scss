@@ -1,0 +1,25 @@
+.sideBar {
+  background-color: #2e2b29;
+  color: white;
+  position: fixed;
+  top: 70px;
+  width: 15%;
+  height: 500px;
+  z-index: 1000;
+  margin-left: 15px;
+  border-radius: 25px;
+  border: 1px solid #413d3b;
+}
+
+.siderBar .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list p {
+  text-align: center;
+  padding: 1em;
+  font-size: 18px;
+}

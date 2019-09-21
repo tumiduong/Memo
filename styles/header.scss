@@ -1,0 +1,41 @@
+.header {
+  position: fixed;
+  background-color: #2e2b29;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #413d3b;
+
+  #logo {
+    font-size: 24px;
+  }
+
+  .form {
+    width: 45%
+  }
+
+  #textBar {
+    background-color: #51514F;
+    border: 1px solid #51514F;
+    width: 100%;
+    border-radius: 20px;
+    resize: none;
+    color: #221F1E;
+    padding: 7px;
+    padding-left: 15px;
+    margin-top: 5px;
+    outline: none;
+  }
+
+  #profileIcon {
+    height: 25px;
+    width: 25px;
+    border-radius: 50px;
+    background-color: rgb(36, 34, 34);
+    border: 1px solid darkgray;
+  }
+}
