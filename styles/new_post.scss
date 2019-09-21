@@ -1,0 +1,29 @@
+form.new-post {
+  width: 55%;
+  margin: auto;
+  margin-top: 70px;
+  background-color: #2e2b29;
+  border-radius: 25px;
+  padding: 2.5em;
+  border: 1px solid #413d3b;
+
+  input {
+    background-color: rgb(189, 189, 188);
+    border: rgb(189, 189, 188);
+  }
+
+  textarea {
+    background-color: rgb(189, 189, 188);
+    border: rgb(189, 189, 188);
+    resize: none;
+  }
+
+  button {
+    background-color: #007F7F;
+    border: #007F7F;
+  }
+
+  h2 {
+    margin-bottom: 15px;
+  }
+}
