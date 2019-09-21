@@ -1,14 +1,14 @@
-INSERT INTO users (username, password, email, biography, url) 
+INSERT INTO users (username, password, email, biography, icon)
 VALUES ('alex_jones', '12345', 'alexjones@gmail.com', 'I am a med student at the McGill University', 'https://image.flaticon.com/icons/svg/145/145846.svg');
-INSERT INTO users (username, password, email, biography, url) 
+INSERT INTO users (username, password, email, biography, icon)
 VALUES ('maria_ferdinand', '12345', 'mariaferdinand@gmail.com', 'I am a software developer for Google', 'https://image.flaticon.com/icons/svg/145/145844.svg');
-INSERT INTO users (username, password, email, biography, url) 
+INSERT INTO users (username, password, email, biography, icon)
 VALUES ('robert123', '12345', 'robertalcalaz@gmail.com', 'I am a passionate photographer', 'https://image.flaticon.com/icons/svg/145/145843.svg');
-INSERT INTO users (username, password, email, biography, url) 
+INSERT INTO users (username, password, email, biography, icon)
 VALUES ('Beatrix', '12345', 'beatrix.dj@gmail.com', 'I am a DJ on the side', 'https://image.flaticon.com/icons/svg/145/145847.svg');
-INSERT INTO users (username, password, email, biography, url) 
+INSERT INTO users (username, password, email, biography, icon)
 VALUES ('Francis Bourgouin', '12345', 'francisBourgouin@gmail.com', 'I am LIT', 'https://image.flaticon.com/icons/svg/145/145848.svg');
-INSERT INTO users (username, password, email, biography, url) 
+INSERT INTO users (username, password, email, biography, icon)
 VALUES ('Labber', '12345', 'labberlabber@gmail.com', 'I am a student at Lighthouse Labs', 'https://image.flaticon.com/icons/svg/273/273581.svg');
 
 INSERT INTO collections (owner_id, title, description)
@@ -35,24 +35,23 @@ INSERT INTO collections (owner_id, title, description)
 VALUES (5, 'LIT', 'We getting LIT in Stockholm');
 
 INSERT INTO posts (user_id, collection_id, title, url, description)
-VALUES (1, 1, 'Saving lives with medical CPR', 'http://blogs.biomedcentral.com/on-medicine/2019/09/16/world-heart-day-saving-lives-with-cpr/', 
-'Cardiopulmonary resuscitation (CPR) is a life-saving medical procedure given to patients in cardiac arrest. 
-It involves pressing down rhythmically on the chest (compressions) to help pump blood around the body and giving a series of rescue breaths.');
+VALUES (1, 1, 'Saving lives with medical CPR', 'http://blogs.biomedcentral.com/on-medicine/2019/09/16/world-heart-day-saving-lives-with-cpr/',
+'Cardiopulmonary resuscitation (CPR) is a life-saving medical procedure given to patients in cardiac arrest. It involves pressing down rhythmically on the chest (compressions) to help pump blood around the body and giving a series of rescue breaths.');
 INSERT INTO posts (user_id, collection_id, title, url)
 VALUES (1, 1, 'Overview of the medical functions of the cerebral cortex', 'https://youtu.be/X-m0JDCw6TE');
 INSERT INTO posts (user_id, collection_id, title, url, description)
-VALUES (1, 1, 'Liver Cancer and medical treatment', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CT_cholangioca.jpg/600px-CT_cholangioca.jpg', 
+VALUES (1, 1, 'Liver Cancer and medical treatment', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CT_cholangioca.jpg/600px-CT_cholangioca.jpg',
 'Liver cancer, also known as hepatic cancer and primary hepatic cancer, is cancer that starts in the liver.[1] Cancer which has spread from elsewhere to the liver,
 known as liver metastasis, is more common than that which starts in the liver.[3] Symptoms of liver cancer may include a lump or pain in the right side below the rib cage,
 swelling of the abdomen, yellowish skin, easy bruising, weight loss and weakness.[1]');
 INSERT INTO posts (user_id, collection_id, title, url, description)
-VALUES (1, 1, 'medical review: Kidneys and Renal System', 'https://magoosh.com/mcat/mcat-review-topic-kidneys-and-renal-system/', 
+VALUES (1, 1, 'medical review: Kidneys and Renal System', 'https://magoosh.com/mcat/mcat-review-topic-kidneys-and-renal-system/',
 'The renal system, also known as the urinary system, consists of the kidneys, ureters, bladder, and the urethra.
 Its purposes are to eliminate wastes from the body, regulate blood volume and blood pressure, control levels of electrolytes and metabolites,
 and regulate blood pH.');
 
 INSERT INTO posts (user_id, collection_id, title, url, description)
-VALUES (3, 5, 'photography tutorial', 'https://www.youtube.com/watch?v=5b6gVjLWJSA', 
+VALUES (3, 5, 'photography tutorial', 'https://www.youtube.com/watch?v=5b6gVjLWJSA',
 'Tips and tricks to help you make your photos more vibrant');
 INSERT INTO posts (user_id, collection_id, title, url, description)
 VALUES (3, 5, 'Yosemite landscape photography', 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
@@ -60,19 +59,19 @@ VALUES (3, 5, 'Yosemite landscape photography', 'https://images.unsplash.com/pho
 INSERT INTO posts (user_id, collection_id, title, url)
 VALUES (3, 5, 'landscape photography: Pragser Wildsee, Italy', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80');
 INSERT INTO posts (user_id, collection_id, title, url, description)
-VALUES (3, 5, 'How to make good instagrams photos', 'https://blog.hootsuite.com/how-to-take-good-instagram-photos/', 
-'Learning how to take good photos on your phone requires understanding some basic principles of composition and lighting, and honing your own instincts as a photographer. 
+VALUES (3, 5, 'How to make good instagrams photos', 'https://blog.hootsuite.com/how-to-take-good-instagram-photos/',
+'Learning how to take good photos on your phone requires understanding some basic principles of composition and lighting, and honing your own instincts as a photographer.
 You just need to follow a few simple rules. Lighting is the foundation of a good photo. Understanding how to use light is the first and most important rule of getting great photos using only your phone.
 Avoid using your flash in favor of natural light, which creates photos that are richer and brighter.
 A flash can flatten out your photo and wash out your subject. If you can’t shoot outdoors,  take photos near windows or in well-lit rooms. Even at night, it’s preferable to find sources of ambient light, like street lamps and store windows.');
 INSERT INTO posts (user_id, collection_id, title, url)
 VALUES (3, 5, 'How to Give Your Photos the Cyberpunk Look in Photoshop', 'https://www.youtube.com/watch?v=Kq93yph7wek');
 INSERT INTO posts (user_id, collection_id, title, url, description)
-VALUES (3, 5, 'photos from the desert', 'https://images.unsplash.com/photo-1544882466-01f34974bf25?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80', 
+VALUES (3, 5, 'photos from the desert', 'https://images.unsplash.com/photo-1544882466-01f34974bf25?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80',
 'Photos from my trip in Morocco');
 
 INSERT INTO posts (user_id, collection_id, title, url, description)
-VALUES (5, 11, 'little chiken is LIT', 'https://www.youtube.com/watch?v=VMENQ2tbQSw', 
+VALUES (5, 11, 'little chiken is LIT', 'https://www.youtube.com/watch?v=VMENQ2tbQSw',
 'Just a video of chicken little');
 
 
