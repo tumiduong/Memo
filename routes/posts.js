@@ -10,18 +10,17 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT posts.* FROM posts
-    LEFT JOIN users ON users.id = posts.user_id
+    db.query(`SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, COUNT(DISTINCT comments) AS nbComments, COUNT(DISTINCT ratings) AS nbRratings, (SELECT ROUND(AVG(value), 1) FROM ratings WHERE posts.id = post_id) AS avgRating
+    FROM posts
     LEFT JOIN comments ON posts.id = comments.post_id
     LEFT JOIN ratings ON posts.id = ratings.post_id
-    LEFT JOIN likes ON posts.id = likes.post_id
-    LEFT JOIN collections ON collections.id = posts.collection_id
     GROUP BY posts.id
-    ORDER BY posts.posted_at DESC
-    LIMIT 10;`)
+    ORDER BY posts.posted_at;`)
       .then(data => {
-        console.log(data.rows);
-        res.render("index");
+        const posts = data.rows;
+        const templateVars = { posts };
+        console.log(templateVars);
+        res.render("index", templateVars);
       })
       .catch(err => {
         res
@@ -31,18 +30,7 @@ module.exports = (db) => {
   });
 
   router.get("/new", (req, res) => {
-    db.query(` SELECT name FROM users
-    JOIN posts ON users.id = posts.user_id
-    `)
-      .then(data => {
-        console.log(data.rows);
-        res.render("new_post");
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    res.render("new_post");
   });
 
   // router.get("/:params", (req, res) => {
@@ -64,7 +52,8 @@ module.exports = (db) => {
   // });
 
   router.post("/", (req, res) => {
-    db.query(`INSERT INTO posts ()`)
+    db.query(`INSERT INTO posts (user_id, collection_id, title, url, description)
+    VALUES ()`)
       .then(data => {
         console.log(data.rows);
         res.redirect(`/posts/${post_id}`);
@@ -77,19 +66,20 @@ module.exports = (db) => {
   });
 
   router.get("/:post_id", (req, res) => {
-    const queryString = `SELECT * FROM posts
-    JOIN users ON users.id = posts_user_id
-    JOIN comments ON posts.id = comments.post_id
-    JOIN ratings ON posts.id = ratings.post_id
-    JOIN likes ON posts.id = likes.post_id
-    WHERE posts.pd = $1
+    const queryString = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at,
+    COUNT(DISTINCT comments) AS nbComments, COUNT(DISTINCT ratings) AS nbRratings,
+    (SELECT ROUND(AVG(value), 1) FROM ratings WHERE posts.id = post_id) AS avgRating
+    FROM posts
+    LEFT JOIN comments ON posts.id = comments.post_id
+    LEFT JOIN ratings ON posts.id = ratings.post_id
+    WHERE posts.id = $1
+    GROUP BY posts.id
     `;
     const values = [req.params.post_id];
     db.query(queryString, values)
       .then(data => {
-        const posts = data.rows;
-        const templateVars = { posts }
-        res.render("show_post", templateVars);
+        console.log(data.rows);
+        res.render("show_post");
       })
       .catch(err => {
         res
@@ -118,13 +108,7 @@ module.exports = (db) => {
   });
 
   router.post("/:post_id", (req, res) => {
-    db.query(`SELECT * FROM posts
-    JOIN users ON users.id = posts_user_id
-    JOIN comments ON posts.id = comments.post_id
-    JOIN ratings ON posts.id = ratings.post_id
-    JOIN likes ON posts.id = likes.post_id
-    WHERE posts.pd = :post_id
-    `)
+    db.query(``)
       .then(data => {
         console.log(data.rows);
         res.redirect("/:post_id");
@@ -143,6 +127,11 @@ module.exports = (db) => {
         console.log(data.rows);
         res.redirect("/posts");
       })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
   return router;
