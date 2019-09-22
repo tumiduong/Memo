@@ -24,10 +24,10 @@
     <% include ./partials/_sidebar %>
 
   <header>
-    <img id="profilePic" src='https://image.flaticon.com/icons/svg/236/236831.svg'></img>
+    <img id="profilePic" src='<%= icon %>'</img>
     <div id="profileDiv">
       <p>User</p>
-      <h2 id="username">robert123</h2>
+      <h2 id="username"><%= username %></h2>
       <button> ... </button>
     </div>
   </header>
@@ -45,7 +45,7 @@
           <img src='https://image.flaticon.com/icons/svg/273/273504.svg'>
           <div class="card-content">
             <p>Collections</p>
-            <h2>5</h2>
+            <h2><%= nbcollections %></h2>
           </div>
         </div>
         <div class="card-footer">
@@ -58,7 +58,7 @@
           <img src='https://image.flaticon.com/icons/svg/273/273531.svg'>
           <div class="card-content">
             <p>Liked posts</p>
-            <h2>123</h2>
+            <h2><%= nblikes %></h2>
           </div>
          </div>
          <div class="card-footer">
@@ -71,7 +71,7 @@
           <img src='https://image.flaticon.com/icons/svg/1055/1055661.svg'>
           <div class="card-content">
             <p>Your Posts</p>
-            <h2>13</h2>
+            <h2><%= nbposts %></h2>
           </div>
         </div>
         <div class="card-footer">
@@ -84,7 +84,7 @@
           <img src='https://image.flaticon.com/icons/svg/134/134914.svg'>
           <div class="card-content">
             <p>Comments</p>
-            <h2>6</h2>
+            <h2><%= nbcomments %></h2>
           </div>
         </div>
         <div class="card-footer">

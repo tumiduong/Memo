@@ -2,22 +2,47 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
-  router.get('/:id', (req, res) => {
+  router.get('/api/:id', (req, res) => {
     const queryString = `
-    SELECT *
+    SELECT users.id, users.username, users.biography, users.icon, COUNT(DISTINCT comments) as nbComments, COUNT(DISTINCT collections) AS nbCollections, COUNT(DISTINCT posts) AS nbPosts, COUNT(DISTINCT likes) AS nbLikes
     FROM users
     LEFT JOIN collections ON collections.owner_id = users.id
     LEFT JOIN posts ON posts.user_id = users.id
+    LEFT JOIN comments ON comments.user_id = users.id
+    LEFT JOIN likes ON likes.user_id = users.id
     WHERE users.id = $1
-    GROUP BY users.id, collections.id, posts.id`;
+    GROUP BY users.id`;
 
     const queryParams = [req.params.id]
 
     db.query(queryString, queryParams)
       .then(data => {
         console.log(data.rows)
-        info = data.rows
-        res.json({ info })
+        info = data.rows[0]
+        res.json(info)
+      })
+      .catch(err => {
+        console.log(err.stack)
+      })
+  })
+
+  router.get('/:id', (req, res) => {
+    const queryString = `
+    SELECT users.id, users.username, users.biography, users.icon, COUNT(DISTINCT comments) as nbComments, COUNT(DISTINCT collections) AS nbCollections, COUNT(DISTINCT posts) AS nbPosts, COUNT(DISTINCT likes) AS nbLikes
+    FROM users
+    LEFT JOIN collections ON collections.owner_id = users.id
+    LEFT JOIN posts ON posts.user_id = users.id
+    LEFT JOIN comments ON comments.user_id = users.id
+    LEFT JOIN likes ON likes.user_id = users.id
+    WHERE users.id = $1
+    GROUP BY users.id`;
+
+    const queryParams = [req.params.id]
+
+    db.query(queryString, queryParams)
+      .then(data => {
+        templateVars = data.rows[0];
+        res.render('profile', templateVars)
       })
       .catch(err => {
         console.log(err.stack)
