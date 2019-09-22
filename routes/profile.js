@@ -4,11 +4,12 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/:id', (req, res) => {
     const queryString = `
-    SELECT users.*, COUNT(collections.*) as collection_count
+    SELECT *
     FROM users
-    JOIN collections ON collections.owner_id = users.id
+    LEFT JOIN collections ON collections.owner_id = users.id
+    LEFT JOIN posts ON posts.user_id = users.id
     WHERE users.id = $1
-    GROUP BY users.id`;
+    GROUP BY users.id, collections.id, posts.id`;
 
     const queryParams = [req.params.id]
 
