@@ -34,21 +34,25 @@ main {
   justify-content: space-between;
   width: 70%;
   padding-left: 5%;
+  margin-bottom: 0.5em;
   button {
     background-color: rgb(36, 34, 34);
     border: none;
     color: darkgrey;
     outline: none;
+    border-bottom: 2px solid rgb(36, 34, 34);
   }
   button:hover {
     color:white;
   }
-  button:active {
-    color: rgb(153, 182, 205);
+
+  button:focus-within {
+    color: white;
+    border-bottom: 2px solid steelblue;
   }
 }
 
-.card-container {
+#card-container {
   width: 90%;
   display: flex;
   justify-content: space-between;
@@ -57,7 +61,7 @@ main {
 
   .cards {
     margin-top: 30px;
-    width: 45%;
+    width: 47%;
     background-color: darkgrey;
     height: 175px;
   }

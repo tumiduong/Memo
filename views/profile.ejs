@@ -15,6 +15,7 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="../scripts/profile.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
   </head>
@@ -26,19 +27,19 @@
     <img id="profilePic" src='https://image.flaticon.com/icons/svg/236/236831.svg'></img>
     <div id="profileDiv">
       <p>User</p>
-      <h2>Theo Malaper</h2>
+      <h2 id="username">robert123</h2>
       <button> ... </button>
     </div>
   </header>
   <main>
     <div id="mainBar">
       <button>OVERVIEW</button>
-      <button>PUBLIC COLLECTIONS</button>
+      <button id="collection-access">PUBLIC COLLECTIONS</button>
       <button>POSTS</button>
       <button>LIKES</button>
       <button>MORE...</button>
     </div>
-    <div class="card-container">
+    <div id="card-container">
       <div class="cards">
         <div class="card-body">
           <img src='https://image.flaticon.com/icons/svg/273/273504.svg'>
@@ -91,6 +92,10 @@
           <button>List</button>
         </div>
       </div>
+    </div>
+
+    <div id="collection-container">
+
     </div>
   </main>
 
