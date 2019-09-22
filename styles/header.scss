@@ -31,10 +31,20 @@
     outline: none;
   }
 
+  #textBar:focus {
+    border: 1px solid rgb(236, 185, 44);
+  }
+
   #profileIcon {
     height: 25px;
     width: 25px;
     border-radius: 60px;
     border: 1px solid darkgray;
+  }
+
+  div.no-login {
+    border-radius: 50px;
+    margin-right: 5px;
+    display: none;
   }
 }
