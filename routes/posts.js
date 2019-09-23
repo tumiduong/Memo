@@ -39,7 +39,7 @@ module.exports = (db) => {
     const queryString = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
     LEFT JOIN ratings ON posts.id = ratings.post_id
-    WHERE title LIKE $1
+    WHERE LOWER(title) LIKE LOWER($1)
     GROUP BY posts.id
     ORDER BY posts.posted_at DESC;`
     const keyword = ['%' + req.params.keyword + '%'];
