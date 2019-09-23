@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get('/api/:id', (req, res) => {
-    const queryString = `
+    const overviewQuery = `
     SELECT users.id, users.username, users.biography, users.icon, COUNT(DISTINCT comments) as nbComments, COUNT(DISTINCT collections) AS nbCollections, COUNT(DISTINCT posts) AS nbPosts, COUNT(DISTINCT likes) AS nbLikes
     FROM users
     LEFT JOIN collections ON collections.owner_id = users.id
@@ -13,13 +13,47 @@ module.exports = (db) => {
     WHERE users.id = $1
     GROUP BY users.id`;
 
+    const collectionQuery= `
+    SELECT collections.title, collections.description, collections.created_at
+    FROM collections
+    WHERE owner_id = $1
+    GROUP BY collections.id;`
+
+    const postQuery = `
+    SELECT posts.title, posts.description, posts.posted_at
+    FROM posts
+    WHERE user_id = $1
+    GROUP BY posts.id;`
+
+    const likeQuery = `
+    SELECT posts.title, posts.description, posts.posted_at
+    FROM likes
+    JOIN posts ON post_id = posts.id
+    WHERE likes.user_id = $1
+    GROUP BY posts.id;`
+
+    const commentQuery = `
+    SELECT post_id, content, posted_at
+    FROM comments
+    WHERE user_id = $1;`
+
     const queryParams = [req.params.id]
 
-    db.query(queryString, queryParams)
-      .then(data => {
-        console.log(data.rows)
-        info = data.rows[0]
-        res.json(info)
+    const overview = db.query(overviewQuery, queryParams)
+    const collections = db.query(collectionQuery, queryParams)
+    const posts = db.query(postQuery, queryParams)
+    const likes = db.query(likeQuery, queryParams)
+    const comments = db.query(commentQuery, queryParams)
+    Promise.all([overview, collections, posts, likes, comments])
+      .then(values => {
+        let overall = {
+          overview: values[0].rows[0],
+          collections: values[1].rows,
+          posts: values[2].rows,
+          likes: values[3].rows,
+          comments: values[4].rows
+        }
+        res.json(overall)
       })
       .catch(err => {
         console.log(err.stack)
@@ -27,7 +61,7 @@ module.exports = (db) => {
   })
 
   router.get('/:id', (req, res) => {
-    const queryString = `
+    const overviewQuery = `
     SELECT users.id, users.username, users.biography, users.icon, COUNT(DISTINCT comments) as nbComments, COUNT(DISTINCT collections) AS nbCollections, COUNT(DISTINCT posts) AS nbPosts, COUNT(DISTINCT likes) AS nbLikes
     FROM users
     LEFT JOIN collections ON collections.owner_id = users.id
@@ -37,12 +71,47 @@ module.exports = (db) => {
     WHERE users.id = $1
     GROUP BY users.id`;
 
+    const collectionQuery= `
+    SELECT collections.title, collections.description, collections.created_at
+    FROM collections
+    WHERE owner_id = $1
+    GROUP BY collections.id;`
+
+    const postQuery = `
+    SELECT posts.title, posts.description, posts.posted_at
+    FROM posts
+    WHERE user_id = $1
+    GROUP BY posts.id;`
+
+    const likeQuery = `
+    SELECT posts.title, posts.description, posts.posted_at
+    FROM likes
+    JOIN posts ON post_id = posts.id
+    WHERE likes.user_id = $1
+    GROUP BY posts.id;`
+
+    const commentQuery = `
+    SELECT post_id, content, posted_at
+    FROM comments
+    WHERE user_id = $1;`
+
     const queryParams = [req.params.id]
 
-    db.query(queryString, queryParams)
-      .then(data => {
-        templateVars = data.rows[0];
-        res.render('profile', templateVars)
+    const overview = db.query(overviewQuery, queryParams)
+    const collections = db.query(collectionQuery, queryParams)
+    const posts = db.query(postQuery, queryParams)
+    const likes = db.query(likeQuery, queryParams)
+    const comments = db.query(commentQuery, queryParams)
+    Promise.all([overview, collections, posts, likes, comments])
+      .then(values => {
+        let overall = {
+          overview: values[0].rows[0],
+          collections: values[1].rows,
+          posts: values[2].rows,
+          likes: values[3].rows,
+          comments: values[4].rows
+        }
+        res.render('show_profile', overall)
       })
       .catch(err => {
         console.log(err.stack)

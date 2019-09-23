@@ -1,0 +1,147 @@
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 55%;
+  margin-top: 90px;
+  margin-bottom: 15px;
+  p {
+    color: darkgrey;
+    margin-bottom: 13px;
+  }
+}
+
+#collectionPic {
+  height: 100px;
+  width: 100px;
+  margin-right: 1em;
+}
+
+#description {
+  font-size: 12px;
+}
+
+.top span {
+  color: white;
+}
+
+.top span:hover {
+  border-bottom: 1px solid white;
+}
+
+.top button {
+  height: 35px;
+  width: 35px;
+  border-radius: 50px;
+  background-color: rgb(36, 34, 34);
+  border: 1px solid darkgray;
+  color: white;
+  outline: none;
+  margin-right: 1em;
+}
+
+.top button:hover {
+  border: 1px solid white;
+}
+
+#titleDiv {
+  width: 75%;
+  div {
+    display: flex;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+#specialBtn {
+  height: 35px;
+  width: 100px;
+  border-radius: 25px;
+  background-color: rgb(213, 160, 26);
+  color: white;
+  outline: none;
+  border: none;
+  margin-right: 1em;
+  font-size: 12px;
+}
+
+#specialBtn:hover {
+  background-color: rgb(235, 177, 29);
+  border: none;
+}
+
+.top footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  #filterBar {
+    background-color:#221F1E;
+    border: none;
+    width: 65%;
+    margin-right: 1em;
+    color: darkgrey;
+    font-size: 14px;
+  }
+  #filterBar:hover {
+    color: white;
+  }
+  #filterBar:focus {
+    outline: none;
+    background-color: rgb(60, 55, 54);
+    border-radius: 5px;
+  }
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.collection-post {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  border-top: 1px solid rgb(60, 55, 54);
+  img {
+    height: 30px;
+    width: 30px;
+  }
+  button {
+    width: 25px;
+    height: 25px;
+    background-color: #221F1E;
+    border: none;
+    color: darkgrey;
+    display: flex;
+    justify-content: center;
+    outline: none;
+  }
+  button:hover {
+    color:white;
+  }
+}
+
+.collection-post:hover {
+  background-color: rgb(60, 55, 54);
+  button {
+    background-color: rgb(60, 55, 54);
+  }
+}
+
+.column-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: darkgrey;
+  img {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.column-title p:hover {
+  color: white;
+}
+
+

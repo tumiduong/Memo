@@ -54,6 +54,14 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get('/collection', (req, res) => {
+  res.render('show_collection')
+})
+
+app.get('/post', (req, res) => {
+  res.render('show_post')
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

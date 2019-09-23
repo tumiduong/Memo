@@ -1,5 +1,5 @@
 const createCollectionElement = function(collectionData) {
-
+  console.log('collection')
   let $collection = $('<article>').addClass('collection');
 
   //creates and appends maain content div and text

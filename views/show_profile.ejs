@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="/styles/test1.css " type="text/css" />
     <link rel="stylesheet" href="/styles/header.css " type="text/css" />
     <link rel="stylesheet" href="/styles/sidebar.css " type="text/css" />
-    <link rel="stylesheet" href = "/styles/profile.css" type="text/css" />
+    <link rel="stylesheet" href = "/styles/show_profile.css" type="text/css" />
 
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="../scripts/profile.js"></script>
+    <script type="text/javascript" src="/scripts/profile.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
   </head>
@@ -24,10 +25,10 @@
     <% include ./partials/_sidebar %>
 
   <header>
-    <img id="profilePic" src='<%= icon %>'</img>
+    <img id="profilePic" src='<%= overview.icon %>'>
     <div id="profileDiv">
       <p>User</p>
-      <h2 id="username"><%= username %></h2>
+      <h2 id="username"><%= overview.username %></h2>
       <button> ... </button>
     </div>
   </header>
@@ -45,7 +46,7 @@
           <img src='https://image.flaticon.com/icons/svg/273/273504.svg'>
           <div class="card-content">
             <p>Collections</p>
-            <h2><%= nbcollections %></h2>
+            <h2><%= overview.nbcollections %></h2>
           </div>
         </div>
         <div class="card-footer">
@@ -58,7 +59,7 @@
           <img src='https://image.flaticon.com/icons/svg/273/273531.svg'>
           <div class="card-content">
             <p>Liked posts</p>
-            <h2><%= nblikes %></h2>
+            <h2><%= overview.nblikes %></h2>
           </div>
          </div>
          <div class="card-footer">
@@ -71,7 +72,7 @@
           <img src='https://image.flaticon.com/icons/svg/1055/1055661.svg'>
           <div class="card-content">
             <p>Your Posts</p>
-            <h2><%= nbposts %></h2>
+            <h2><%= overview.nbposts %></h2>
           </div>
         </div>
         <div class="card-footer">
@@ -84,7 +85,7 @@
           <img src='https://image.flaticon.com/icons/svg/134/134914.svg'>
           <div class="card-content">
             <p>Comments</p>
-            <h2><%= nbcomments %></h2>
+            <h2><%= overview.nbcomments %></h2>
           </div>
         </div>
         <div class="card-footer">
