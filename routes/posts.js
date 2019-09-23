@@ -71,7 +71,7 @@ module.exports = (db) => {
       });
   });
 
-  // Show a specific post
+  // Show a specific post and all its comments
   router.get("/:post_id", (req, res) => {
     const queryStringPost = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
