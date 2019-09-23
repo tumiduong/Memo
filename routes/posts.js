@@ -134,20 +134,20 @@ module.exports = (db) => {
   //     });
   // });
 
-  // Delete a post = AJAX?
-  router.post("/:post_id/delete", (req, res) => {
-    db.query(`DELETE FROM posts
-    WHERE posts.id = :post_id`)
-      .then(data => {
-        console.log(data.rows);
-        res.redirect("/posts");
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+  // Delete a post = STRETCH
+  // router.post("/:post_id/delete", (req, res) => {
+  //   db.query(`DELETE FROM posts
+  //   WHERE posts.id = :post_id`)
+  //     .then(data => {
+  //       console.log(data.rows);
+  //       res.redirect("/posts");
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
 
   return router;
 };
