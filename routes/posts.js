@@ -12,9 +12,8 @@ module.exports = (db) => {
 
   // Show all the posts
   router.get("/", (req, res) => {
-    db.query(`SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, COUNT(DISTINCT comments) AS nbComments, COUNT(DISTINCT ratings) AS nbRratings, (SELECT ROUND(AVG(value), 1) FROM ratings WHERE posts.id = post_id) AS avgRating
+    db.query(`SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
-    LEFT JOIN comments ON posts.id = comments.post_id
     LEFT JOIN ratings ON posts.id = ratings.post_id
     GROUP BY posts.id
     ORDER BY posts.posted_at DESC;`)
@@ -74,20 +73,27 @@ module.exports = (db) => {
 
   // Show a specific post
   router.get("/:post_id", (req, res) => {
-    const queryString = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at,
-    COUNT(DISTINCT comments) AS nbComments, COUNT(DISTINCT ratings) AS nbRratings,
-    (SELECT ROUND(AVG(value), 1) FROM ratings WHERE posts.id = post_id) AS avgRating
+    const queryStringPost = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
-    LEFT JOIN comments ON posts.id = comments.post_id
     LEFT JOIN ratings ON posts.id = ratings.post_id
     WHERE posts.id = $1
     GROUP BY posts.id
     `;
     const values = [req.params.post_id];
-    db.query(queryString, values)
+    const queryStringComments = `SELECT comments.id, comments.content, comments.posted_at
+    FROM comments
+    WHERE post_id = $1;`
+
+    const promisePost = db.query(queryStringPost, values);
+    const promiseComments = db.query(queryStringComments, values);
+
+    Promise.all([promisePost, promiseComments])
       .then(data => {
-        console.log(data.rows);
-        res.render("show_post");
+        const templateVars = {
+          post: data[0].rows,
+          comments: data[1].rows
+        };
+        res.render("show_post", templateVars);
       })
       .catch(err => {
         res
