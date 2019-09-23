@@ -25,6 +25,7 @@ module.exports = (db) => {
         let overall = {
           collection: values[0].rows[0],
           posts: values[1].rows,
+          user: req.session.id,
         }
         res.render('show_collection', overall)
       })

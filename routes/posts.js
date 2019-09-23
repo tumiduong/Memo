@@ -12,16 +12,16 @@ module.exports = (db) => {
 
   // Show all the posts
   router.get("/", (req, res) => {
-    db.query(`SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, COUNT(DISTINCT comments) AS nbComments, COUNT(DISTINCT ratings) AS nbRratings, (SELECT ROUND(AVG(value), 1) FROM ratings WHERE posts.id = post_id) AS avgRating
+    db.query(`SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
-    LEFT JOIN comments ON posts.id = comments.post_id
     LEFT JOIN ratings ON posts.id = ratings.post_id
     GROUP BY posts.id
     ORDER BY posts.posted_at DESC;`)
       .then(data => {
-        const posts = data.rows;
-        const templateVars = { posts };
-        console.log(templateVars);
+        const templateVars = {
+          posts: data.rows,
+          user: req.session.id
+        };
         res.render("index", templateVars);
       })
       .catch(err => {
@@ -35,25 +35,30 @@ module.exports = (db) => {
     res.render("new_post");
   });
 
-  // SEARCH FOR THE POSTS WITH KEYWORD = AJAX?
-  // router.get("/:keyword", (req, res) => {
-  //   const queryString = `SELECT * FROM posts
-  //   WHERE title LIKE $1
-  //   ORDER BY posted_at DESC`;
-  //   const keyword = [req.params.keyword];
-  //   db.query(queryString, keyword)
-  //     .then(data => {
-  //       const posts = data.rows;
-  //       const templateVars = { posts };
-  //       console.log(templateVars);
-  //       res.render("index", templateVars);
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
+  // Search for the posts with the keyword in the title (shouldn't it be ajax?)
+  router.get("/search/:keyword", (req, res) => {
+    console.log("YOU MADE IT!");
+    const queryString = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
+    FROM posts
+    LEFT JOIN ratings ON posts.id = ratings.post_id
+    WHERE LOWER(title) LIKE LOWER($1)
+    GROUP BY posts.id
+    ORDER BY posts.posted_at DESC;`
+    const keyword = ['%' + req.params.keyword + '%'];
+    db.query(queryString, keyword)
+      .then(data => {
+        const templateVars = {
+          posts: data.rows,
+          user: req.session.id
+        };
+        res.render("index", templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
   // Create a new post
   router.post("/", (req, res) => {
@@ -72,22 +77,30 @@ module.exports = (db) => {
       });
   });
 
-  // Show a specific post
+  // Show a specific post and all its comments
   router.get("/:post_id", (req, res) => {
-    const queryString = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at,
-    COUNT(DISTINCT comments) AS nbComments, COUNT(DISTINCT ratings) AS nbRratings,
-    (SELECT ROUND(AVG(value), 1) FROM ratings WHERE posts.id = post_id) AS avgRating
+    const queryStringPost = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
-    LEFT JOIN comments ON posts.id = comments.post_id
     LEFT JOIN ratings ON posts.id = ratings.post_id
     WHERE posts.id = $1
     GROUP BY posts.id
     `;
     const values = [req.params.post_id];
-    db.query(queryString, values)
+    const queryStringComments = `SELECT comments.id, comments.content, comments.posted_at
+    FROM comments
+    WHERE post_id = $1;`
+
+    const promisePost = db.query(queryStringPost, values);
+    const promiseComments = db.query(queryStringComments, values);
+
+    Promise.all([promisePost, promiseComments])
       .then(data => {
-        console.log(data.rows);
-        res.render("show_post");
+        const templateVars = {
+          post: data[0].rows,
+          comments: data[1].rows,
+          user: req.session.id
+        };
+        res.render("show_post", templateVars);
       })
       .catch(err => {
         res
@@ -126,20 +139,20 @@ module.exports = (db) => {
   //     });
   // });
 
-  // Delete a post = AJAX?
-  router.post("/:post_id/delete", (req, res) => {
-    db.query(`DELETE FROM posts
-    WHERE posts.id = :post_id`)
-      .then(data => {
-        console.log(data.rows);
-        res.redirect("/posts");
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+  // Delete a post = STRETCH
+  // router.post("/:post_id/delete", (req, res) => {
+  //   db.query(`DELETE FROM posts
+  //   WHERE posts.id = :post_id`)
+  //     .then(data => {
+  //       console.log(data.rows);
+  //       res.redirect("/posts");
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
 
   return router;
 };

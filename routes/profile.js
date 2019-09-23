@@ -109,7 +109,8 @@ module.exports = (db) => {
           collections: values[1].rows,
           posts: values[2].rows,
           likes: values[3].rows,
-          comments: values[4].rows
+          comments: values[4].rows,
+          user: req.session.id
         }
         res.render('show_profile', overall)
       })
