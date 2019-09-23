@@ -25,15 +25,12 @@
   }
 
   div.rating {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
+    font-size: 17px;
   }
 
-  header img {
-    width: 20px;
-    height: auto;
-    margin-left: 2px;
+  span.star {
+    font-size: 20px;
+    color: rgb(236, 185, 44);
   }
 
   p {
@@ -64,10 +61,20 @@
     color: rgb(236, 185, 44);
   }
 
-  .rate-post img {
-    width: 25px;
-    height: auto;
-    margin-right: 2px;
+  .rate-post {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+  }
+  .rate-post > span {
+    display: inline-block;
+    position: relative;
+    font-size: 25px;
+  }
+  .rate-post > span:hover:before,
+  .rate-post > span:hover ~ span:before {
+     content: '★';
+     color: rgb(236, 185, 44);
+     position: absolute;
   }
 
   .user {
