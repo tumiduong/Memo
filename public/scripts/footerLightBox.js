@@ -3,8 +3,8 @@ $(() => {
   $('#form').hide();
 
   $('#lightBoxBtn').on('click', () => {
-    $('#lightbox-background').show()
-    $('#form').show(1000)
+    $('#lightbox-background').show(400, 'swing')
+    $('#form').show()
   });
 
   $('#form').on('click', (event) => {
