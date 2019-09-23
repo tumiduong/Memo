@@ -34,25 +34,27 @@ module.exports = (db) => {
     res.render("new_post");
   });
 
-  // SEARCH FOR THE POSTS WITH KEYWORD = AJAX?
-  // router.get("/:keyword", (req, res) => {
-  //   const queryString = `SELECT * FROM posts
-  //   WHERE title LIKE $1
-  //   ORDER BY posted_at DESC`;
-  //   const keyword = [req.params.keyword];
-  //   db.query(queryString, keyword)
-  //     .then(data => {
-  //       const posts = data.rows;
-  //       const templateVars = { posts };
-  //       console.log(templateVars);
-  //       res.render("index", templateVars);
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
+  // Search for the posts with the keyword in the title (shouldn't it be ajax?)
+  router.get("/search/:keyword", (req, res) => {
+    const queryString = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
+    FROM posts
+    LEFT JOIN ratings ON posts.id = ratings.post_id
+    WHERE title LIKE $1
+    GROUP BY posts.id
+    ORDER BY posts.posted_at DESC;`
+    const keyword = ['%' + req.params.keyword + '%'];
+    db.query(queryString, keyword)
+      .then(data => {
+        const posts = data.rows;
+        const templateVars = { posts };
+        res.render("index", templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
   // Create a new post
   router.post("/", (req, res) => {
