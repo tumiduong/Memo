@@ -21,6 +21,12 @@ form.new-post {
   button {
     background-color: #007F7F;
     border: #007F7F;
+    border-radius: 35px;
+    width: 100px;
+  }
+
+  button:hover {
+    background-color: rgb(2, 182, 182);
   }
 
   h2 {
