@@ -5,7 +5,8 @@ const router  = express.Router();
 module.exports = () => {
 
   router.get('/', (req, res) => {
-    req.session.user_id = 1;
+    console.log("hello");
+    req.session.id = 1;
     res.redirect('/posts');
   });
 
