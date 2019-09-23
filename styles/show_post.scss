@@ -65,11 +65,13 @@
     unicode-bidi: bidi-override;
     direction: rtl;
   }
+  
   .rate-post > span {
     display: inline-block;
     position: relative;
     font-size: 25px;
   }
+
   .rate-post > span:hover:before,
   .rate-post > span:hover ~ span:before {
      content: '★';
