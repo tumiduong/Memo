@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/styles/header.css " type="text/css" />
     <link rel="stylesheet" href="/styles/sidebar.css " type="text/css" />
     <link rel="stylesheet" href = "/styles/show_profile.css" type="text/css" />
+    <link rel="stylesheet" href = "/styles/show_collection.css" type="text/css" />
+    <link rel="stylesheet" href = "/styles/index.css" type="text/css" />
 
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -34,11 +36,11 @@
   </header>
   <main>
     <div id="mainBar">
-      <button>OVERVIEW</button>
+      <button id="overview-access">OVERVIEW</button>
       <button id="collection-access">PUBLIC COLLECTIONS</button>
-      <button>POSTS</button>
-      <button>LIKES</button>
-      <button>MORE...</button>
+      <button id="post-access">POSTS</button>
+      <button id="like-access">LIKES</button>
+      <button id="comment-access">MORE...</button>
     </div>
     <div id="card-container">
       <div class="cards">
@@ -96,7 +98,47 @@
     </div>
 
     <div id="collection-container">
-
+      <div class='column-title'>
+        <div></div>
+        <p>title</p>
+        <p>description</p>
+        <img src='https://image.flaticon.com/icons/svg/251/251974.svg'>
+      </div>
+      <% for (let collection of collections) { %>
+        <div class='collection-post'>
+          <button>♡</button>
+          <p><%= collection.title %></p>
+          <p><%= collection.description %></p>
+           <p><%= collection.created_at %></p>
+        </div>
+      <% } %>
+    </div>
+    <div id="post-container">
+      <% for (let post of posts) { %>
+        <div class='post'>
+          <p><%= post.title %></p>
+          <p><%= post.description %></p>
+          <p><%= post.created_at %></p>
+        </div>
+      <% } %>
+    </div>
+    <div id="like-container">
+        <% for (let like of likes) { %>
+          <div class='post'>
+            <p><%= like.title %></p>
+            <p><%= like.description %></p>
+            <p><%= like.created_at %></p>
+          </div>
+        <% } %>
+    </div>
+    <div id="comment-container">
+        <% for (let comment of comments) { %>
+          <div class='post'>
+            <p><%= comment.post_id %></p>
+            <p><%= comment.content %></p>
+            <p><%= comment.posted_at %></p>
+          </div>
+        <% } %>
     </div>
   </main>
 
