@@ -9,13 +9,15 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+
+  // Show all the posts
   router.get("/", (req, res) => {
     db.query(`SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, COUNT(DISTINCT comments) AS nbComments, COUNT(DISTINCT ratings) AS nbRratings, (SELECT ROUND(AVG(value), 1) FROM ratings WHERE posts.id = post_id) AS avgRating
     FROM posts
     LEFT JOIN comments ON posts.id = comments.post_id
     LEFT JOIN ratings ON posts.id = ratings.post_id
     GROUP BY posts.id
-    ORDER BY posts.posted_at;`)
+    ORDER BY posts.posted_at DESC;`)
       .then(data => {
         const posts = data.rows;
         const templateVars = { posts };
@@ -33,16 +35,18 @@ module.exports = (db) => {
     res.render("new_post");
   });
 
-  // router.get("/:params", (req, res) => {
+  // SEARCH FOR THE POSTS WITH KEYWORD = AJAX?
+  // router.get("/:keyword", (req, res) => {
   //   const queryString = `SELECT * FROM posts
   //   WHERE title LIKE $1
-  //   ORDER BY created_at DESC
-  //   LIMIT 10`;
-  //   const values = [':params'];
-  //   db.query(queryString, values)
+  //   ORDER BY posted_at DESC`;
+  //   const keyword = [req.params.keyword];
+  //   db.query(queryString, keyword)
   //     .then(data => {
-  //       console.log(data.rows);
-  //       res.render("posts");
+  //       const posts = data.rows;
+  //       const templateVars = { posts };
+  //       console.log(templateVars);
+  //       res.render("index", templateVars);
   //     })
   //     .catch(err => {
   //       res
@@ -51,12 +55,15 @@ module.exports = (db) => {
   //     });
   // });
 
+  // Create a new post
   router.post("/", (req, res) => {
-    db.query(`INSERT INTO posts (user_id, collection_id, title, url, description)
-    VALUES ()`)
+    const queryString = `INSERT INTO posts (title, url, description)
+    VALUES ($1, $2, $3);`;
+    const formInput = [req.body.title, req.body.url, req.body.description];
+    db.query(queryString, formInput)
       .then(data => {
         console.log(data.rows);
-        res.redirect(`/posts/${post_id}`);
+        res.redirect(`/posts`); // How to redirect it to /posts/:post_id?
       })
       .catch(err => {
         res
@@ -65,6 +72,7 @@ module.exports = (db) => {
       });
   });
 
+  // Show a specific post
   router.get("/:post_id", (req, res) => {
     const queryString = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at,
     COUNT(DISTINCT comments) AS nbComments, COUNT(DISTINCT ratings) AS nbRratings,
@@ -88,38 +96,37 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/:post_id/edit", (req, res) => {
-    db.query(`SELECT * FROM posts
-    JOIN users ON users.id = posts_user_id
-    JOIN comments ON posts.id = comments.post_id
-    JOIN ratings ON posts.id = ratings.post_id
-    JOIN likes ON posts.id = likes.post_id
-    WHERE posts.pd = :post_id
-    `)
-      .then(data => {
-        console.log(data.rows);
-        res.render("new_post");
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+  // SHOW PAGE TO EDIT A POST = STRETCH
+  // router.get("/:post_id/edit", (req, res) => {
+  //   db.query(`SELECT posts.title, posts.url, posts.description FROM posts
+  //   WHERE posts.pd = :post_id
+  //   `)
+  //     .then(data => {
+  //       console.log(data.rows);
+  //       res.render("new_post");
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
 
-  router.post("/:post_id", (req, res) => {
-    db.query(``)
-      .then(data => {
-        console.log(data.rows);
-        res.redirect("/:post_id");
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+  // EDIT A POST = STRETCH
+  // router.post("/:post_id", (req, res) => {
+  //   db.query(``)
+  //     .then(data => {
+  //       console.log(data.rows);
+  //       res.redirect("/:post_id");
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
 
+  // Delete a post = AJAX?
   router.post("/:post_id/delete", (req, res) => {
     db.query(`DELETE FROM posts
     WHERE posts.id = :post_id`)
