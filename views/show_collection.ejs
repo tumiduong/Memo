@@ -27,9 +27,9 @@
     <img id="collectionPic" src='https://image.flaticon.com/icons/svg/787/787159.svg'>
     <div id="titleDiv">
       <p>collection</p>
-      <h2 id="collectionName">Collection Name</h2>
-      <p id="description">description</p>
-      <p>created by <span>username</span> - 10 posts</p>
+      <h2 id="collectionName"><%= collection.title %></h2>
+      <p id="description"><%= collection.description %></p>
+      <p>created by <span><%= collection.owner %></span> - <%= collection.post_count %> posts</p>
     </div>
     <footer>
         <input class="glow" id='filterBar' name="text" placeholder=" 🔍Filter">
@@ -45,78 +45,16 @@
       <p>description</p>
       <img src='https://image.flaticon.com/icons/svg/251/251974.svg'>
     </div>
-    <div class='collection-post'>
-      <button>♡</button>
-      <p>title</p>
-      <p>description</p>
-      <p>created_at</p>
-    </div>
-    <div class='collection-post'>
-      <button>♡</button>
-      <p>title</p>
-      <p>description</p>
-      <p>created_at</p>
-    </div>
-    <div class='collection-post'>
-      <button>♡</button>
-      <p>title</p>
-      <p>description</p>
-      <p>created_at</p>
-    </div>
-    <div class='collection-post'>
-      <button>♡</button>
-      <p>title</p>
-      <p>description</p>
-      <p>created_at</p>
-    </div>
-    <div class='collection-post'>
-      <button>♡</button>
-      <p>title</p>
-      <p>description</p>
-      <p>created_at</p>
-    </div>
-    <div class='collection-post'>
-      <button>♡</button>
-      <p>title</p>
-      <p>description</p>
-      <p>created_at</p>
-    </div>
-    <div class='collection-post'>
-        <button>♡</button>
-        <p>title</p>
-        <p>description</p>
-        <p>created_at</p>
-      </div>
-      <div class='collection-post'>
-        <button>♡</button>
-        <p>title</p>
-        <p>description</p>
-        <p>created_at</p>
-      </div>
-      <div class='collection-post'>
-        <button>♡</button>
-        <p>title</p>
-        <p>description</p>
-        <p>created_at</p>
-      </div>
-      <div class='collection-post'>
-        <button>♡</button>
-        <p>title</p>
-        <p>description</p>
-        <p>created_at</p>
-      </div>
-      <div class='collection-post'>
-        <button>♡</button>
-        <p>title</p>
-        <p>description</p>
-        <p>created_at</p>
-      </div>
-      <div class='collection-post'>
-        <button>♡</button>
-        <p>title</p>
-        <p>description</p>
-        <p>created_at</p>
-      </div>
+    <% if (posts.length > 0) { %>
+      <% for (let post of posts) { %>
+        <div class='collection-post'>
+          <button>♡</button>
+          <p><%= post.title %> </p>
+          <p><%= post.description %></p>
+          <p><%= post.posted_at %></p>
+        </div>
+       <% } %>
+    <% } %>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
