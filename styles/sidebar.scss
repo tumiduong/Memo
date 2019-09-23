@@ -28,14 +28,14 @@
   text-decoration: none;
 }
 
-.sideBar button {
+.list button {
   width: 150px;
   border-radius: 35px;
   background-color: #007F7F;
   border: none;
 }
 
-.sideBar button:hover {
+.list button:hover {
   background-color: rgb(2, 182, 182);
 }
 
@@ -81,3 +81,13 @@
   align-items: center;
   font-size: 15px;
 }
+
+.collections button {
+  width: 190px;
+  border: none;
+  background-color: #2e2b29;
+  color: white;
+  outline: none;
+}
+
+
