@@ -1,7 +1,7 @@
 <nav class='sideBar'>
   <div class='list'>
     <p class='hvr-grow'><a href="/"><img src='https://i.imgur.com/VZBqZiB.png'> Home</a></p>
-    <p class='hvr-grow'><a href="/profile/:id"><img src='https://i.imgur.com/bES5NFI.png'> Profile</a></p>
+    <p class='hvr-grow'><a href="/profile/<%= user %>"><img src='https://i.imgur.com/bES5NFI.png'> Profile</a></p>
     <p class='hvr-grow'><a href="/"><img src='https://i.imgur.com/wRV0a7x.png'> Settings</a></p>
     <p><button type="submit" class="btn btn-secondary">Post</button></p>
   </div>
@@ -30,6 +30,7 @@
       <p>collection</p>
       <p>collection</p>
     </div>
-    <p class='hvr-grow'><img src='https://i.imgur.com/Lj3tgYF.png'> Add New Collection</p>
+    <button id="lightBoxBtn" class='hvr-grow'><img src='https://i.imgur.com/Lj3tgYF.png'> Add New Collection</button>
   </div>
 </nav>
+

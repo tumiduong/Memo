@@ -72,14 +72,21 @@
 div.rating {
   font-size: 17px;
 }
+.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
 
 span.star {
   font-size: 20px;
   color: rgb(236, 185, 44);
 }
+<<<<<<< HEAD
 
 .like:hover {
   content: url("https://i.imgur.com/diEl516.png");
   width: 30px;
   height: auto;
 }
+=======
+>>>>>>> master

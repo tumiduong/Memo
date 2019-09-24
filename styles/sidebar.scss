@@ -26,25 +26,18 @@
     background-color: #007F7F;
     border: none;
   }
+}
 
-  button:hover {
-    background-color: rgb(2, 182, 182);
-  }
+.list button {
+  width: 150px;
+  border-radius: 35px;
+  background-color: #007F7F;
+  border: none;
+}
 
-  .hvr-grow {
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-  }
-  .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
+.list button:hover {
+  background-color: rgb(2, 182, 182);
+}
 
   .list {
     border-bottom: 1px solid #413d3b;
@@ -74,10 +67,29 @@
     }
   }
 
-  .collection-list {
-    margin: 15px;
-    overflow: auto;
-    height: 50vh;
-    font-size: 13px;
-  }
+.collections h5 {
+  font-size: 15px;
+  opacity: 0.5;
+  font-weight: bold;
+}
+
+.sideBar .collection-list {
+  margin: 15px;
+  overflow: auto;
+  height: 300px;
+  font-size: 13px;
+}
+
+.collections p {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.collections button {
+  width: 190px;
+  border: none;
+  background-color: #2e2b29;
+  color: white;
+  outline: none;
 }

@@ -1,0 +1,143 @@
+header {
+  display: flex;
+  margin: auto;
+  width: 55%;
+  margin-top: 90px;
+}
+
+#profilePic {
+  height: 125px;
+  width: 125px;
+  border-radius: 65px;
+  border: 2px solid darkgray;
+  margin-right: 20px;
+}
+
+header button {
+  height: 35px;
+  width: 35px;
+  border-radius: 50px;
+  background-color: rgb(36, 34, 34);
+  border: 1px solid darkgray;
+  color: white;
+  outline: none;
+  font-size: 13px;
+}
+
+main {
+  margin: auto;
+  width: 60%;
+  margin-top: 35px;
+}
+
+#mainBar {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  padding-left: 5%;
+  margin-bottom: 0.5em;
+  button {
+    background-color: rgb(36, 34, 34);
+    border: none;
+    color: darkgrey;
+    outline: none;
+    border-bottom: 2px solid rgb(36, 34, 34);
+  }
+  button:hover {
+    color:white;
+  }
+
+  button:focus-within {
+    color: white;
+    border-bottom: 2px solid steelblue;
+  }
+}
+
+#card-container {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-left: 5%;
+
+  .cards {
+    margin-top: 30px;
+    width: 47%;
+    background-color: darkgrey;
+    height: 175px;
+  }
+
+  .cards:hover {
+    border: 1px solid rgb(106, 106, 106);
+  }
+
+  .card-body{
+    background-color: #353230;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(101, 101, 101);
+    height: 70%;
+    img{
+      height: 70px;
+      width: 70px;
+    }
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 1em;
+    p {
+      color: darkgrey;
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    background-color: #353230;
+    height: 30%;
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 1em;
+    }
+    button {
+      color: darkgrey;
+      background-color:#353230;
+      font-size: 15px;
+      border: none;
+      outline: none;
+    }
+    button:hover {
+      color: white;
+    }
+
+    button:active {
+      color: rgb(153, 182, 205);
+    }
+  }
+}
+
+#collection-container {
+  margin-top: 30px;
+}
+
+#post-container {
+  margin: auto;
+  width: 80%;
+  margin-top: 40px;
+}
+
+#like-container {
+  margin: auto;
+  width: 80%;
+  margin-top: 40px;
+}
+
+#comment-container {
+  margin: auto;
+  width: 80%;
+  margin-top: 40px;
+}
+

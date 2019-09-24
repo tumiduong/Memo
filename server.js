@@ -38,6 +38,8 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
+const collectionRoutes = require("./routes/collection");
+const profileRoutes = require("./routes/profile");
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const postsRoutes = require("./routes/posts");
@@ -46,6 +48,8 @@ const logoutRoutes = require("./routes/logout");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+app.use("/collection", collectionRoutes(db))
+app.use("/profile", profileRoutes(db));
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/posts", postsRoutes(db));
@@ -60,6 +64,14 @@ app.use("/logout", logoutRoutes());
 app.get("/", (req, res) => {
   res.redirect("/posts");
 });
+
+app.get('/collection', (req, res) => {
+  res.render('show_collection')
+})
+
+app.get('/post', (req, res) => {
+  res.render('show_post')
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
