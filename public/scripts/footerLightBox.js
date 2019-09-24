@@ -1,3 +1,17 @@
+const loadPage = url => {
+  $.ajx({url, method: 'GET'})
+}
+
+const submitCollection = (url, method, collection) => {
+  $.ajax({url, method, data: { text: collection } })
+    .then(() => {
+      loadPage('/whateverPage');
+    })
+    .fail(err => {
+      console.log(err);
+    });
+};
+
 $(() => {
   $('#lightbox-background').hide();
   $('#form').hide();
@@ -15,4 +29,9 @@ $(() => {
     $('#lightbox-background').hide()
     $('#form').hide()
   });
+
+  $('#submitCollectionBtn').on('click', () => {
+    let collection = $('#form').val();
+    submitCollection('/collection', 'POST', collection)
+  })
 })
