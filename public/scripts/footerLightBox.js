@@ -1,11 +1,29 @@
-const loadPage = url => {
-  $.ajx({url, method: 'GET'})
+const createCollectionElement = function(collectionData) {
+  console.log('collection')
+  let $collection = $('<article>').addClass('collection');
+
+  $('<a>')
+    .text(collectionData["title"])
+    .attr('href', `/collection/${collectionData["id"]}`)
+    .appendTo($collection);
+
+  $("#collection-list").append($collection);
+};
+
+const loadLastCollection = url => {
+  $.ajax({url, method: 'GET'})
+     .then(collections => {
+       renderCollections(collections)
+     })
+     .fail(err => {
+       console.log(err)
+     })
 }
 
 const submitCollection = (url, method, collection) => {
   $.ajax({url, method, data: { text: collection } })
     .then(() => {
-      loadPage('/whateverPage');
+      loadLastCollection('/whateverPage');
     })
     .fail(err => {
       console.log(err);
