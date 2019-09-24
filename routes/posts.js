@@ -164,6 +164,23 @@ module.exports = (db) => {
       });
   });
 
+  router.post('/:post_id', (req, res) => {
+    const updatePostQuery = `
+    UPDATE posts
+    SET collection_id = $1
+    WHERE posts.id = $2;`
+
+    const queryParams = [req.body.collection_id, req.body.post_id]
+
+    db.query(updatePostQuery, queryParams)
+      .then(data => {
+        res.status(200).send()
+      })
+      .catch(err => {
+        console.log(err.stack)
+      })
+  })
+
   // SHOW PAGE TO EDIT A POST = STRETCH
   // router.get("/:post_id/edit", (req, res) => {
   //   db.query(`SELECT posts.title, posts.url, posts.description FROM posts
