@@ -35,12 +35,18 @@
   border: none;
 }
 
+.list form {
+  display: flex;
+  justify-content: center;
+}
+
 .list button:hover {
   background-color: rgb(2, 182, 182);
 }
 
   .list {
     border-bottom: 1px solid #413d3b;
+    padding-bottom: 15px;
 
     p {
       padding: 5px;

@@ -66,6 +66,12 @@
   .bottom-post input {
     width: 30px;
     height: auto;
+    margin-right: 15px;
+  }
+
+  div.bottom-post {
+    display: flex;
+    justify-content: flex-start;
   }
 }
 
@@ -78,8 +84,8 @@ span.star {
   color: rgb(236, 185, 44);
 }
 
-.like:hover {
+.like:active, .like:hover {
   content: url("https://i.imgur.com/diEl516.png");
   width: 30px;
-  height: auto;
+  height: 30px;
 }
