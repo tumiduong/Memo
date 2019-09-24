@@ -38,7 +38,7 @@
   .post-link:link {
     color: #007F7F;
   }
-  
+
   .post-link:visited {
     color: rgb(236, 185, 44);
   }
@@ -95,4 +95,20 @@ span.star {
   width: 30px;
   height: 30px;
   margin-right: 25px;
+}
+
+.addPostButton {
+  input {
+    outline: none;
+  }
+}
+
+.collectionDropDown {
+  select {
+    background-color:#2e2b2a;
+    color: darkgrey;
+    font-size: 14px;
+    outline: none;
+    height: 30px;
+  }
 }
