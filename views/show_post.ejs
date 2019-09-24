@@ -40,7 +40,7 @@
           <% } %>
         </header>
         <% if ((post[0].url).includes("youtube")) { %>
-          <iframe src="<%= post[0].url.slice(0, 24) + 'embed/' + post[0].url.slice(32) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+          <iframe src="<%= post[0].url.slice(0, 24) + 'embed/' + post[0].url.slice(32) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <% } else if ((post[0].url).includes("image") || (post[0].url).includes("jpg")) { %>
           <img class="post-photo" src="<%= post[0].url %>">
         <% } %>
