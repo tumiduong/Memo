@@ -120,7 +120,36 @@ main {
 }
 
 #collection-container {
-  margin-top: 30px;
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+  .column-title {
+    display: flex;
+    justify-content: space-between;
+    span {
+      width: 25px;
+    }
+    div {
+      width: 25%;
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+  .collection-post {
+    display: flex;
+    justify-content: space-between;
+    div {
+      width: 25%;
+      display: flex;
+      justify-content: flex-start
+    }
+    p {
+      max-width: 200px;
+      overflow: hidden;
+      white-space: nowrap; /* Don't forget this one */
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 #post-container {
