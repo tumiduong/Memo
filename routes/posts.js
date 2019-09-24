@@ -32,7 +32,8 @@ module.exports = (db) => {
   });
 
   router.get("/new", (req, res) => {
-    res.render("new_post");
+    const templateVars = { user: req.session.id }
+    res.render("new_post", templateVars);
   });
 
   // Search for the posts with the keyword in the title (shouldn't it be ajax?)

@@ -100,17 +100,29 @@
 
     <div id="collection-container">
       <div class='column-title'>
-        <div></div>
-        <p>title</p>
-        <p>description</p>
-        <img src='https://image.flaticon.com/icons/svg/251/251974.svg'>
+        <span></span>
+        <div>
+          <p>title</p>
+        </div>
+        <div>
+          <p>description</p>
+        </div>
+        <div>
+          <img src='https://image.flaticon.com/icons/svg/251/251974.svg'>
+        </div>
       </div>
       <% for (let collection of collections) { %>
         <div class='collection-post'>
           <button>♡</button>
-          <p><%= collection.title %></p>
-          <p><%= collection.description %></p>
-           <p><%= collection.created_at %></p>
+          <div>
+            <p><%= collection.title %></p>
+          </div>
+          <div>
+            <p><%= collection.description %></p>
+          </div>
+          <div>
+            <p><%= collection.created_at.toDateString() %></p>
+          </div>
         </div>
       <% } %>
     </div>
