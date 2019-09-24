@@ -35,8 +35,8 @@ $(() => {
   $('#form').hide();
 
   $('#lightBoxBtn').on('click', () => {
-    $('#lightbox-background').show(400, 'swing')
-    $('#form').show()
+    $('#lightbox-background').fadeIn()
+    $('#form').slideDown()
   });
 
   $('#form form').on('click', (event) => {
@@ -44,15 +44,15 @@ $(() => {
   });
 
   $('#lightbox-background').on('click', () => {
-    $('#lightbox-background').hide()
-    $('#form').hide()
+    $('#lightbox-background').fadeOut()
+    $('#form').slideUp()
   });
 
   $('#submitCollectionBtn').on('click', (event) => {
     event.preventDefault()
     let collection = {
-      title: $('#title').val(),
-      description: $('#description').val()
+      title: $('#collectionTitle').val(),
+      description: $('#collectionDescription').val()
     }
     console.log(collection)
     // submitCollection('/collection', 'POST', collection)
