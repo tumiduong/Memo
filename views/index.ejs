@@ -29,80 +29,91 @@
         <% if (!post.url) { %>
           <div class='post'>
             <header>
-              <div>
-                <img src="https://i.imgur.com/bES5NFI.png">
-                <h4><%= post.title %></h4>
+              <div class="top-post-bar">
+                <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+                  <% if (post.avgRating) { %>
+                <div class="rating"><%= post.avgRating %> <span class='star'>★</span></div>
+                  <% } %>
               </div>
             </header>
               <p>
               <%= post.description %>    
               </p>
-            <footer>
-                <div></div>
-                <div></div>
-                <div></div>
-            </footer>
-          </div>
+              <footer>
+                  <div class="bottom-post">
+                      <span><form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form></span>
+                      <span class="like"><form method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/ay6oIRr.png"></form></span>
+                    </div>
+              </footer>
+            </div>
 
         <% } else if ((post.url).includes("youtube")) { %>
           <div class='post'>
-            <header>
-              <div>
-                <img src="https://i.imgur.com/bES5NFI.png">
-                <h4><%= post.title %></h4>
+              <header>
+              <div class="top-post-bar">
+                  <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+                  <% if (post.avgRating) { %>
+                <div class="rating"><%= post.avgRating %> <span class='star'>★</span></div>
+                  <% } %>
               </div>
-              <a href="<%= post.url %>"><%= post.url %></a>
+              <a class="post-link" href="<%= post.url %>"><%= post.url %></a>
             </header>
-              <p class="video">
-                <iframe width="90%" height="400px" src="<%= post.url.slice(0, 24) + 'embed/' + post.url.slice(32) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </p>
+            <body>
+              <iframe src="<%= post.url.slice(0, 24) + 'embed/' + post.url.slice(32) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <p>
                 <%= post.description %>  
               </p>
+            </body>
               <footer>
-                <div></div>
-                <div></div>
-                <div></div>
-              </footer>
+                  <div class="bottom-post">
+                      <span><form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form></span>
+                      <span class="like"><form method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/ay6oIRr.png"></form></span></div>
+                  </footer>
             </div>
+
             <% } else if ((post.url).includes("image") ||(post.url).includes("jpg")) { %>
               <div class='post'>
                   <header>
-                    <div>
-                      <img src="https://i.imgur.com/bES5NFI.png">
-                      <h4><%= post.title %></h4>
+                  <div class="top-post-bar">
+                      <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+                      <% if (post.avgRating) { %>
+                    <div class="rating"><%= post.avgRating %> <span class='star'>★</span></div>
+                      <% } %>
                     </div>
-                    <a href="<%= post.url %>"><%= post.url %></a>
+                    <a class="post-link" href="<%= post.url %>"><%= post.url %></a>
                   </header>
-                    <img src="<%= post.url %>">
+                  <body>
+                    <img class="post-photo" src="<%= post.url %>">
                     <p>
                       <%= post.description %>  
                     </p>
+                  </body>
                     <footer>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                    </footer>
+                        <div class="bottom-post">
+                            <span><form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form></span>
+                            <span class="like"><form method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/ay6oIRr.png"></form></span></div>
+                        </footer>
                   </div>
         
-            <% } else { %>
+        <% } else { %>
           <div class='post'>
             <header>
-              <div>
-                <img src="https://i.imgur.com/bES5NFI.png">
-                <h4><%= post.title %></h4>
+            <div class="top-post-bar">
+                <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+                <% if (post.avgRating) { %>
+              <div class="rating"><%= post.avgRating %> <span class='star'>★</span></div>
+                <% } %>
               </div>
-              <a href="<%= post.url %>"><%= post.url %></a>
+              <a class="post-link" href="<%= post.url %>"><%= post.url %></a>
             </header>
-              <p>
-              <%= post.description %>    
-              </p>
+            <p><%= post.description %></p>
             <footer>
-              <div></div>
-              <div></div>
-              <div></div>
-            </footer>
-               </div>
+              <div class="bottom-post">
+                <span><form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form></span>
+                <span class="like"><form method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/ay6oIRr.png"></form></span>
+            </div>
+              </footer>
+            </div>
           <% } %>
         <% } %>
       </main>
