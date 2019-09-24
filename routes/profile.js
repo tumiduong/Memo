@@ -71,7 +71,7 @@ module.exports = (db) => {
     WHERE users.id = $1
     GROUP BY users.id`;
 
-    const collectionQuery= `
+    const collectionQuery = `
     SELECT collections.id, collections.title, collections.description, collections.created_at
     FROM collections
     WHERE owner_id = $1
@@ -105,7 +105,7 @@ module.exports = (db) => {
     const comments = db.query(commentQuery, queryParams)
     Promise.all([overview, collections, posts, likes, comments])
       .then(values => {
-        let overall = {
+        const overall = {
           overview: values[0].rows[0],
           collections: values[1].rows,
           posts: values[2].rows,
@@ -113,7 +113,11 @@ module.exports = (db) => {
           comments: values[4].rows,
           user: req.session.id
         }
-        res.render('show_profile', overall)
+        if (overall.user === parseInt(req.params.id)) {
+          res.render('show_profile', overall);
+        } else {
+          res.redirect("/posts");
+        }
       })
       .catch(err => {
         console.log(err.stack)
@@ -136,9 +140,14 @@ module.exports = (db) => {
            password: obj.password,
            email: obj.email,
            biography: obj.biograpgy,
-           icon: obj.icon
+           icon: obj.icon,
+           user: req.session.id
           }
-         res.json({ obj });
+          if (templateVars.user === parseInt(req.params.id)) {
+            res.json(templateVars);
+          } else {
+            res.redirect("/posts");
+          }
        })
        .catch(err => {
          console.log(err.stack);
