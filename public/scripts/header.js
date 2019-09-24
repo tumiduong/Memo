@@ -1,10 +1,7 @@
+// The search bar redirects to the appropriate path/url depending of the input
 $(() => {
   $("#search-form").submit(function(e) {
     e.preventDefault();
-    alert()
-    // location = "http://localhost:8080/posts/search";
+    location = "http://localhost:8080/posts/search/" + $('#search-bar').val();
   });
-    // const action = 'http://localhost:8080/posts' + document.getElementsByName("keyword")[0].value;
-    // const form = document.getElementById('formSearch');
-    // form.action = action;
 });
