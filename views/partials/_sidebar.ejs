@@ -3,7 +3,9 @@
     <p class='hvr-grow'><a href="/"><img src='https://i.imgur.com/VZBqZiB.png'> Home</a></p>
     <p class='hvr-grow'><a href="/profile/<%= user %>"><img src='https://i.imgur.com/bES5NFI.png'> Profile</a></p>
     <p class='hvr-grow'><a href="/"><img src='https://i.imgur.com/wRV0a7x.png'> Settings</a></p>
-    <p><button type="submit" class="btn btn-secondary"><a href='/posts/new'>Post</a></button></p>
+    <form method="GET" action="/posts/new">
+      <p><button type="submit" class="btn btn-secondary">Post</button></p>
+    </form>
   </div>
 
   <div class='collections'>
