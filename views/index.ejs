@@ -40,9 +40,9 @@
               <a class="post-link" href="<%= post.url %>"><%= post.url %></a>
             <% } %>
           </header>
-          <% if ((post.url).includes("youtube")) { %>
+          <% if (post.url && (post.url).includes("youtube")) { %>
             <iframe src="<%= post.url.slice(0, 24) + 'embed/' + post.url.slice(32) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <% } else if ((post.url).includes("image") || (post.url).includes("jpg")) { %>
+          <% } else if (post.url && ((post.url).includes("image") || (post.url).includes("jpg"))) { %>
             <img class="post-photo" src="<%= post.url %>">
           <% } %>
             <p>

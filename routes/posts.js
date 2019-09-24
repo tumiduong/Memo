@@ -58,7 +58,11 @@ module.exports = (db) => {
           collections: data.rows,
           user: req.session.id
         };
-        res.render("new_post", templateVars);
+        if (templateVars.user) {
+          res.render("new_post", templateVars);
+        } else {
+          res.redirect("/");
+        }
       })
       .catch(err => {
         res
@@ -69,7 +73,6 @@ module.exports = (db) => {
 
   // Search for the posts with the keyword in the title (shouldn't it be ajax?)
   router.get("/search/:keyword", (req, res) => {
-    console.log("YOU MADE IT!");
     const queryStringPosts = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
     LEFT JOIN ratings ON posts.id = ratings.post_id
