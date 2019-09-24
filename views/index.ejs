@@ -50,9 +50,9 @@
             </p>
           <footer>
             <div class="bottom-post">
-              <form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form>
-              <form class="like" method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/ay6oIRr.png"></form>
-              <form method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/S8HBBf2.png"></form>
+              <form class="comments" method="GET" action="/posts/<%= post.id %>"><button><img src="https://i.imgur.com/GEZvSaQ.png"></button><a class="comments" href="/posts/<%= post.id %>"><%= post.nbcomments %></a></form>
+              <form  method="GET" action="/posts/"><button type="submit"><img class="like" src="https://i.imgur.com/ay6oIRr.png"></button></form>
+              <form method="GET" action="posts/"><button><img src="https://i.imgur.com/S8HBBf2.png"></button></form>
             </div>
           </footer>
         </div>

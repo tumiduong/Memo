@@ -69,16 +69,31 @@
     padding-top: 10px;
   }
 
-  .bottom-post input {
-    width: 30px;
-    height: auto;
-    margin-right: 25px;
+  .bottom-post button {
+    background-color: #2e2b29;
+    border: none;
+    outline: none;
+    width: 80px;
   }
 
   div.bottom-post {
     display: flex;
     justify-content: flex-start;
+    width: 45%;
+    justify-content: space-between;
   }
+}
+
+.comments {
+  color: white;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+}
+
+a.comments:hover {
+  text-decoration: none;
+  color: rgb(236, 185, 44);
 }
 
 div.rating {
@@ -92,7 +107,6 @@ span.star {
 
 .like:active, .like:hover {
   content: url("https://i.imgur.com/diEl516.png");
-  width: 30px;
-  height: 30px;
-  margin-right: 25px;
+  width: 68px;
+  height: 68px;
 }
