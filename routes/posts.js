@@ -109,7 +109,7 @@ module.exports = (db) => {
           collections: data[2].rows,
           user: req.session.id
         };
-        res.json(templateVars);
+        res.render("show_post", templateVars);
       })
       .catch(err => {
         res
