@@ -13,7 +13,7 @@ const createCollectionElement = function(collectionData) {
 const loadLastCollection = url => {
   $.ajax({url, method: 'GET'})
      .then(collections => {
-       renderCollections(collections)
+       createCollectionElement(collections[collections.length - 1])
      })
      .fail(err => {
        console.log(err)
@@ -39,7 +39,7 @@ $(() => {
     $('#form').show()
   });
 
-  $('#form').on('click', (event) => {
+  $('#form form').on('click', (event) => {
     event.stopPropagation()
   });
 
@@ -48,8 +48,13 @@ $(() => {
     $('#form').hide()
   });
 
-  $('#submitCollectionBtn').on('click', () => {
-    let collection = $('#form').val();
-    submitCollection('/collection', 'POST', collection)
+  $('#submitCollectionBtn').on('click', (event) => {
+    event.preventDefault()
+    let collection = {
+      title: $('#title').val(),
+      description: $('#description').val()
+    }
+    console.log(collection)
+    // submitCollection('/collection', 'POST', collection)
   })
 })

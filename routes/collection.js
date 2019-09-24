@@ -102,7 +102,7 @@ module.exports = (db) => {
 
   router.get('/sidebar/api/:id', (req, res) => {
     const collectionQuery = `
-    SELECT owner_id, title
+    SELECT id, title
     FROM collections
     WHERE owner_id = $1;`
 
