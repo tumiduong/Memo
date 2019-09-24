@@ -11,7 +11,7 @@
       <div class='collection-list'>
       <% if (user) { %>
         <% for (let collection of collections) { %>
-          <p><%= collection.title %></p>
+          <a href="/collection/<%= collection.id %>"><%= collection.title %></a>
         <% } %>
       <% } %>
     </div>
