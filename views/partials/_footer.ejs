@@ -1,18 +1,18 @@
 
 <div id="lightbox-background">
   <div id="form">
-      <form class="new-collection" action="/posts" method="POST">
+      <form class="new-collection" action="/collection" method="POST">
         <h6>Create Collection</h6>
         <div class="form-group">
           <p>Title</p>
-          <input id="title" name="title" class="form-control form-control-lg" type="text" placeholder="My collection 123">
+          <input id="collectionTitle" name="title" class="form-control form-control-lg" type="text" placeholder="My collection 123">
         </div>
         <div class="form-group">
           <p>Description</p>
-          <textarea id="description" name="description" class="form-control" rows="5" placeholder="I need coffee... a lot of coffee..."></textarea>
+          <textarea id="collectionDescription" name="description" class="form-control" rows="5" placeholder="I need coffee... a lot of coffee..."></textarea>
         </div>
         <footer>
-          <button type="submit" class="btn btn-secondary hvr-grow">Create</button>
+          <button type="submit" class="btn btn-secondary hvr-grow" id="submitCollectionBtn">Create</button>
         </footer>
       </form>
   </div>
