@@ -58,16 +58,13 @@ module.exports = (db) => {
           collections: data.rows,
           user: req.session.id
         };
-        res.render("index", templateVars);
+        res.render("new_post", templateVars);
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
-
-    const templateVars = { user: req.session.id }
-    res.render("new_post", templateVars);
   });
 
   // Search for the posts with the keyword in the title (shouldn't it be ajax?)
