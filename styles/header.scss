@@ -3,15 +3,22 @@
   background-color: #2e2b29;
   color: white;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   z-index: 1000;
   width: 100%;
-  padding: 0.5em;
+  padding: 0 0.5em 0.5em 0.5em;
 
   #logo {
-    font-size: 24px;
+    font-family: 'Baloo', cursive;
+    font-size: 28px;
     color: white;
+
+    img {
+      width: 45px;
+      height: auto;
+      margin: 0 .5em;
+    }
   }
 
   .form {
@@ -24,7 +31,7 @@
     width: 100%;
     border-radius: 20px;
     resize: none;
-    color: #221F1E;
+    color: white;
     padding: 7px;
     padding-left: 15px;
     margin-top: 5px;
@@ -41,11 +48,27 @@
     border-radius: 50px;
     background-color: rgb(36, 34, 34);
     border: 1px solid darkgray;
+    display: none;
   }
 
   div.no-login {
     border-radius: 50px;
-    margin-right: 5px;
-    display: none;
+    margin-right: 2em;
+
+    button {
+      border-radius: 35px;
+      width: 7vw;
+    }
+
+    #btn-login {
+      color: #007F7F;
+      border-color: #007F7F;
+    }
+
+    #btn-login:hover{
+      color: white;
+      background-color: rgb(2, 182, 182);
+      border-color: rgb(2, 182, 182);
+    }
   }
 }

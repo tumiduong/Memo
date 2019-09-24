@@ -18,9 +18,10 @@ module.exports = (db) => {
     GROUP BY posts.id
     ORDER BY posts.posted_at DESC;`)
       .then(data => {
-        const posts = data.rows;
-        const templateVars = { posts };
-        console.log(templateVars);
+        const templateVars = {
+          posts: data.rows,
+          user: req.session.id
+        };
         res.render("index", templateVars);
       })
       .catch(err => {
@@ -36,6 +37,7 @@ module.exports = (db) => {
 
   // Search for the posts with the keyword in the title (shouldn't it be ajax?)
   router.get("/search/:keyword", (req, res) => {
+    console.log("YOU MADE IT!");
     const queryString = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
     LEFT JOIN ratings ON posts.id = ratings.post_id
@@ -45,8 +47,10 @@ module.exports = (db) => {
     const keyword = ['%' + req.params.keyword + '%'];
     db.query(queryString, keyword)
       .then(data => {
-        const posts = data.rows;
-        const templateVars = { posts };
+        const templateVars = {
+          posts: data.rows,
+          user: req.session.id
+        };
         res.render("index", templateVars);
       })
       .catch(err => {
@@ -93,7 +97,8 @@ module.exports = (db) => {
       .then(data => {
         const templateVars = {
           post: data[0].rows,
-          comments: data[1].rows
+          comments: data[1].rows,
+          user: req.session.id
         };
         res.render("show_post", templateVars);
       })

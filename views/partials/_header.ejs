@@ -1,16 +1,27 @@
-<nav class='header'>
-  <span id='logo'><a class="navbar-brand" id="logo" href="/posts">Memo</a></span>
+<link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
 
-  <form class="form" method="GET" action="/posts/">
-    <input class="glow" id="textBar" name="text" placeholder="Search...">
+<script type="text/javascript" src="/scripts/header.js"></script>
+
+<nav class='header'>
+  <span id='logo'><img src="https://image.flaticon.com/icons/svg/889/889648.svg"> <a class="navbar-brand" id="logo" href="/">Memo</a></span>
+
+  <form class="form" id="searchForm" method="GET" onsubmit="search()">
+    <input class="glow" id="textBar" name="keyword" placeholder="Search...">
   </form>
-  
-  <div id="profileIcon"> 
+
+  <div id="profileIcon">
       <div></div>
   </div>
 
   <div class="no-login">
-      <button type="submit" class="btn btn-outline-secondary">Register</button>
-      <button type="submit" class="btn btn-outline-secondary">Login</button>
+    <% if (!user) { %>
+    <form class="btn-login" method="GET" action="/login">
+      <button id="btn-login" type="submit" class="btn btn-outline-secondary">Login</button>
+    </form>
+    <% } else if (user) { %>
+    <form class="btn-logout" method="GET" action="/logout">
+      <button type="submit" class="btn btn-outline-secondary">Logout</button>
+    </form>
+    <% } %>
   </div>
 </nav>
