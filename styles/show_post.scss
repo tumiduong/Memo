@@ -1,9 +1,13 @@
-.post {
-  width: 55%;
+.container {
   margin: auto;
+  width: 55%;
   margin-top: 90px;
+}
+
+.post {
   background-color: #2e2b29;
   border-radius: 25px;
+  margin-bottom: 1em;
   padding: 2.5em;
   border: 1px solid #413d3b;
 
@@ -89,8 +93,6 @@
 }
 
 .comment-box {
-  width: 55%;
-  margin: auto;
   margin-top: 20px;
   background-color: #2e2b29;
   border-radius: 25px;
@@ -109,7 +111,6 @@
 }
 
 .comments {
-  width: 55%;
   margin: auto;
   margin-bottom: 20px;
   background-color: #2e2b29;

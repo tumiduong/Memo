@@ -32,8 +32,8 @@
           <header>
             <div class="top-post-bar">
               <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
-              <% if (post.avgRating) { %>
-                <div class="rating"><%= post.avgRating %> <span class='star'>★</span></div>
+              <% if (post.avgrating) { %>
+                <div class="rating"><%= post.avgrating %> <span class='star'>★</span></div>
               <% } %>
             </div>
             <% if (post.url) { %>
@@ -50,8 +50,9 @@
             </p>
           <footer>
             <div class="bottom-post">
-              <span><form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form></span>
-              <span class="like"><form method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/ay6oIRr.png"></form></span>
+              <form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form>
+              <form class="like" method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/ay6oIRr.png"></form>
+              <form method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/S8HBBf2.png"></form>
             </div>
           </footer>
         </div>
