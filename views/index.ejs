@@ -26,53 +26,38 @@
     <% include ./partials/_header %>
     <% include ./partials/_sidebar %>
 
-        <main class='container'>
-          <div class='post'>
-            <header>
-              <div>
-                <span id='postIcon'></span>
-                <h4>Example</h4>
-              </div>
-              <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a>
-            </header>
-            <p class="video"><iframe width="90%" height="400px" src="https://www.youtube.com/embed/prHARc5vhpo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+    <main class='container'>
+      <% for (const post of posts) { %>        
+        <div class='post'>
+          <header>
+            <div class="top-post-bar">
+              <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+              <% if (post.avgRating) { %>
+                <div class="rating"><%= post.avgRating %> <span class='star'>★</span></div>
+              <% } %>
+            </div>
+            <% if (post.url) { %>
+              <a class="post-link" href="<%= post.url %>"><%= post.url %></a>
+            <% } %>
+          </header>
+          <% if ((post.url).includes("youtube")) { %>
+            <iframe src="<%= post.url.slice(0, 24) + 'embed/' + post.url.slice(32) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+          <% } else if ((post.url).includes("image") || (post.url).includes("jpg")) { %>
+            <img class="post-photo" src="<%= post.url %>">
+          <% } %>
             <p>
-              This is just an example Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quo quibusdam asperiores deleniti, molestias iusto suscipit sit eveniet sequi harum nihil nulla aperiam, animi, nam hic cum illo quos facere?
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusantium exercitationem dolor deleniti, iste explicabo? Esse, libero voluptate! Blanditiis rerum magni possimus magnam optio a culpa quia quo placeat quaerat.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptatibus vero ratione, quisquam soluta sunt ducimus mollitia tempore temporibus incidunt ipsa minima labore numquam praesentium. Non laudantium similique assumenda ipsa.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptatibus vero ratione, quisquam soluta sunt ducimus mollitia tempore temporibus incidunt ipsa minima labore numquam praesentium. Non laudantium similique assumenda ipsa.
+              <%= post.description %>
             </p>
-            <footer>
-              <div></div>
-              <div></div>
-              <div></div>
-            </footer>
-          </div>
-          <div class='post'>
-            <header>
-                <div>
-                  <span id='postIcon'></span>
-                  <h4>Example</h4>
-                </div>
-                <a>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a>
-            </header>
-            <p>
-                This is just an example Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quo quibusdam asperiores deleniti, molestias iusto suscipit sit eveniet sequi harum nihil nulla aperiam, animi, nam hic cum illo quos facere?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusantium exercitationem dolor deleniti, iste explicabo? Esse, libero voluptate! Blanditiis rerum magni possimus magnam optio a culpa quia quo placeat quaerat.
-                Lorem ipsum dolor suck my toessssss sit amet consectetur adipisicing elit. Quasi voluptatibus vero ratione, quisquam soluta sunt ducimus mollitia tempore temporibus incidunt ipsa minima labore numquam praesentium. Non laudantium similique assumenda ipsa.
-            </p>
-            <footer>
-                <div></div>
-                <div></div>
-                <div></div>
-            </footer>
-          </div>
-          <div class='post'></div>
-          <div class='post'></div>
-          <div class='post'></div>
-        </main>
-      <% include ./partials/_footer %>
-
+          <footer>
+            <div class="bottom-post">
+              <span><form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form></span>
+              <span class="like"><form method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/ay6oIRr.png"></form></span>
+            </div>
+          </footer>
+        </div>
+        <% } %>
+      </main>
+    <% include ./partials/_footer %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

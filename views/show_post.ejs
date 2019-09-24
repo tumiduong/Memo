@@ -29,16 +29,22 @@
       <div class='post'>
         <header>
           <div class="top-post-bar">
-          <h2>Example</h2>
-            <div class="rating">4.5 <span class='star'>★</span></div>
+          <h2><%= post[0].title %></h2>
+          <% if (post[0].avgRating) { %>
+            <div class="rating"><%= post[0].avgRating %> <span class='star'>★</span></div>
+            <% } %>
           </div>
-          <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a>
+          <% if (post[0].url) { %>
+          <a href="<%= post[0].url %>"><%= post[0].url %></a>
+          <% } %>
         </header>
+        <% if ((post[0].url).includes("youtube")) { %>
+          <iframe src="<%= post[0].url.slice(0, 24) + 'embed/' + post[0].url.slice(32) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+        <% } else if ((post[0].url).includes("image") || (post[0].url).includes("jpg")) { %>
+          <img class="post-photo" src="<%= post[0].url %>">
+        <% } %>
           <p>
-            This is just an example Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quo quibusdam asperiores deleniti, molestias iusto suscipit sit eveniet sequi harum nihil nulla aperiam, animi, nam hic cum illo quos facere?
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusantium exercitationem dolor deleniti, iste explicabo? Esse, libero voluptate! Blanditiis rerum magni possimus magnam optio a culpa quia quo placeat quaerat.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptatibus vero ratione, quisquam soluta sunt ducimus mollitia tempore temporibus incidunt ipsa minima labore numquam praesentium. Non laudantium similique assumenda ipsa.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptatibus vero ratione, quisquam soluta sunt ducimus mollitia tempore temporibus incidunt ipsa minima labore numquam praesentium. Non laudantium similique assumenda ipsa.
+          <%= post[0].description %>
           </p>
         <footer>
           <div class="rate-post">
@@ -47,7 +53,6 @@
             <span>☆</span>
             <span>☆</span>
             <span>☆</span></div>
-          <div class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username</div>
         </footer>
       </div>
 
@@ -58,21 +63,16 @@
         </form>
       </div>
 
+      <% if (comments[0]) { %>
+        <% for (const comment of comments) { %>
       <div class='comments'>
           <p class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username</p>
-          <p class='user-comment'>Heyo. This is a comment! Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusantium exercitationem dolor deleniti, iste explicabo? Esse, libero voluptate! Blanditiis rerum magni possimus magnam optio a culpa quia quo placeat quaerat.</p>
+          <p class='user-comment'><%= comment.content %></p>
       </div>
-      <div class='comments'>
-          <p class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username</p>
-          <p class='user-comment'>Heyo. This is a comment! Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusantium exercitationem dolor deleniti, iste explicabo? Esse, libero voluptate! Blanditiis rerum magni possimus magnam optio a culpa quia quo placeat quaerat.</p>
-      </div>
-      <div class='comments'>
-          <p class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username</p>
-          <p class='user-comment'>Heyo. This is a comment! Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusantium exercitationem dolor deleniti, iste explicabo? Esse, libero voluptate! Blanditiis rerum magni possimus magnam optio a culpa quia quo placeat quaerat.</p>
-      </div>
+      <% } %>
+      <% } %>
 
-      <% include ./partials/_footer %>
-
+    <% include ./partials/_footer %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
