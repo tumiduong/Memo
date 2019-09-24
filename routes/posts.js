@@ -58,7 +58,11 @@ module.exports = (db) => {
           collections: data.rows,
           user: req.session.id
         };
-        res.render("new_post", templateVars);
+        if (templateVars.user) {
+          res.render("new_post", templateVars);
+        } else {
+          res.redirect("/");
+        }
       })
       .catch(err => {
         res
