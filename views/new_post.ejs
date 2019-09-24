@@ -25,17 +25,23 @@
     <% include ./partials/_sidebar %>
 
   <form class="new-post" action="/posts" method="POST">
-    <h2>Add a new post:</h2>
+    <h5>ADD NEW POST</h5>
     <div class="form-group">
-      <input id="title" name="title" class="form-control form-control-lg" type="text" placeholder="Title...">
+      <p>Title</p>
+      <input id="title" name="title" class="form-control form-control-lg" type="text" placeholder="The name is very important">
     </div>
     <div class="form-group">
-        <input id="url" class="form-control" type="text" name="url" placeholder="URL (optional)">
+      <p>URL (optional)</p>
+      <input id="url" class="form-control" type="text" name="url" placeholder="www.youtube...">
     </div>
     <div class="form-group">
-      <textarea id="description" name="description" class="form-control" rows="5" placeholder="Description..."></textarea>
+      <p>Description</p>
+      <textarea id="description" name="description" class="form-control" rows="5" placeholder="Shrek: Donkey, two things, okay? Shut..up"></textarea>
     </div>
-    <button type="submit" class="btn btn-secondary">Post</button>
+    <footer>
+      <button type="submit" class="btn btn-secondary">Post</button>
+      <div><img src='https://image.flaticon.com/icons/svg/1980/1980599.svg'></div>
+    </footer>
   </form>
 
   <% include ./partials/_footer %>

@@ -7,9 +7,25 @@ form.new-post {
   padding: 2.5em;
   border: 1px solid #413d3b;
 
+  h5 {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 14px;
+    color: darkgrey;
+    margin-bottom: 5px;
+  }
+
   input {
-    background-color: #ffffff;
     border: rgb(189, 189, 188);
+    height: 35px;
+  }
+
+  ::-webkit-input-placeholder {
+    font-size: 13px;
+    color: rgb(157, 157, 157);
   }
 
   textarea {
@@ -19,17 +35,22 @@ form.new-post {
   }
 
   button {
-    background-color: #007F7F;
-    border: #007F7F;
+    background-color: rgb(3, 189, 19);
+    border: none;
     border-radius: 35px;
     width: 100px;
   }
 
   button:hover {
-    background-color: rgb(2, 182, 182);
+    background-color: rgb(3, 205, 20);
   }
 
-  h2 {
-    margin-bottom: 15px;
+  footer div {
+    display: flex;
+    justify-content: center;
+    img {
+      height: 70px;
+      width: 70px;
+    }
   }
 }
