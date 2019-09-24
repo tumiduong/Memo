@@ -9,26 +9,11 @@
   <div class='collections'>
     <h5>COLLECTIONS</h5>
       <div class='collection-list'>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
-      <p>collection</p>
+      <% if (user) { %>
+        <% for (let collection of collections) { %>
+          <p><%= collection.title %></p>
+        <% } %>
+      <% } %>
     </div>
     <button id="lightBoxBtn" class='hvr-grow'><img src='https://i.imgur.com/Lj3tgYF.png'> Add New Collection</button>
   </div>

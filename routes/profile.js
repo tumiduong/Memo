@@ -14,7 +14,7 @@ module.exports = (db) => {
     GROUP BY users.id`;
 
     const collectionQuery= `
-    SELECT collections.title, collections.description, collections.created_at
+    SELECT collections.id, collections.title, collections.description, collections.created_at
     FROM collections
     WHERE owner_id = $1
     GROUP BY collections.id;`
@@ -37,7 +37,7 @@ module.exports = (db) => {
     FROM comments
     WHERE user_id = $1;`
 
-    const queryParams = [req.params.id]
+    const queryParams = [req.session.id]
 
     const overview = db.query(overviewQuery, queryParams)
     const collections = db.query(collectionQuery, queryParams)
@@ -72,10 +72,11 @@ module.exports = (db) => {
     GROUP BY users.id`;
 
     const collectionQuery= `
-    SELECT collections.title, collections.description, collections.created_at
+    SELECT collections.id, collections.title, collections.description, collections.created_at
     FROM collections
     WHERE owner_id = $1
-    GROUP BY collections.id;`
+    GROUP BY collections.id
+    ORDER BY collections.title;`
 
     const postQuery = `
     SELECT posts.title, posts.description, posts.posted_at
@@ -95,7 +96,7 @@ module.exports = (db) => {
     FROM comments
     WHERE user_id = $1;`
 
-    const queryParams = [req.params.id]
+    const queryParams = [req.session.id]
 
     const overview = db.query(overviewQuery, queryParams)
     const collections = db.query(collectionQuery, queryParams)
