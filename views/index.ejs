@@ -32,8 +32,8 @@
           <header>
             <div class="top-post-bar">
               <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
-              <% if (post.avgRating) { %>
-                <div class="rating"><%= post.avgRating %> <span class='star'>★</span></div>
+              <% if (post.avgrating) { %>
+                <div class="rating"><%= post.avgrating %> <span class='star'>★</span></div>
               <% } %>
             </div>
             <% if (post.url) { %>
