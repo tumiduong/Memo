@@ -12,14 +12,27 @@ module.exports = (db) => {
 
   // Show all the posts
   router.get("/", (req, res) => {
-    db.query(`SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
+    const queryStringPosts = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
     LEFT JOIN ratings ON posts.id = ratings.post_id
     GROUP BY posts.id
-    ORDER BY posts.posted_at DESC;`)
+    ORDER BY posts.posted_at DESC;`;
+
+    const queryStringCollections = `SELECT collections.id, collections.title
+    FROM collections
+    JOIN users ON owner_id = users.id
+    WHERE owner_id = $1
+    ORDER BY collections.title`
+    const userId = [req.session.id];
+
+    const promisePosts = db.query(queryStringPosts);
+    const promiseCollections = db.query(queryStringCollections, userId);
+
+    Promise.all([promisePosts, promiseCollections])
       .then(data => {
         const templateVars = {
-          posts: data.rows,
+          posts: data[0].rows,
+          collections: data[1].rows,
           user: req.session.id
         };
         res.render("index", templateVars);
@@ -32,6 +45,27 @@ module.exports = (db) => {
   });
 
   router.get("/new", (req, res) => {
+    const queryStringCollections = `SELECT collections.id, collections.title
+    FROM collections
+    JOIN users ON owner_id = users.id
+    WHERE owner_id = $1
+    ORDER BY collections.title;`
+    const userId = [req.session.id];
+
+    db.query(queryStringCollections, userId)
+      .then(data => {
+        const templateVars = {
+          collections: data.rows,
+          user: req.session.id
+        };
+        res.render("index", templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
     const templateVars = { user: req.session.id }
     res.render("new_post", templateVars);
   });
@@ -39,17 +73,29 @@ module.exports = (db) => {
   // Search for the posts with the keyword in the title (shouldn't it be ajax?)
   router.get("/search/:keyword", (req, res) => {
     console.log("YOU MADE IT!");
-    const queryString = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
+    const queryStringPosts = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
     FROM posts
     LEFT JOIN ratings ON posts.id = ratings.post_id
     WHERE LOWER(title) LIKE LOWER($1)
     GROUP BY posts.id
     ORDER BY posts.posted_at DESC;`
     const keyword = ['%' + req.params.keyword + '%'];
-    db.query(queryString, keyword)
+
+    const queryStringCollections = `SELECT collections.id, collections.title
+    FROM collections
+    JOIN users ON owner_id = users.id
+    WHERE owner_id = $1
+    ORDER BY collections.title;`
+    const userId = [req.session.id];
+
+    const promisePosts = db.query(queryStringPosts, keyword);
+    const promiseCollections = db.query(queryStringCollections, userId);
+
+    Promise.all([promisePosts, promiseCollections])
       .then(data => {
         const templateVars = {
-          posts: data.rows,
+          posts: data[0].rows,
+          collections: data[1].rows,
           user: req.session.id
         };
         res.render("index", templateVars);
