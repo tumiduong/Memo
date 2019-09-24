@@ -90,17 +90,25 @@ module.exports = (db) => {
     FROM comments
     WHERE post_id = $1;`
 
+    const queryStringCollections = `SELECT collections.id, collections.title
+    FROM collections
+    JOIN users ON owner_id = users.id
+    WHERE owner_id = $1`
+    const userId = [req.session.id];
+
     const promisePost = db.query(queryStringPost, values);
     const promiseComments = db.query(queryStringComments, values);
+    const promiseCollections = db.query(queryStringCollections, userId);
 
-    Promise.all([promisePost, promiseComments])
+    Promise.all([promisePost, promiseComments, promiseCollections])
       .then(data => {
         const templateVars = {
           post: data[0].rows,
           comments: data[1].rows,
+          collections: data[2].rows,
           user: req.session.id
         };
-        res.render("show_post", templateVars);
+        res.json(templateVars);
       })
       .catch(err => {
         res
