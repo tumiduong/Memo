@@ -32,6 +32,17 @@ module.exports = (db) => {
     });
   });
 
+  router.get("/like/api/:post_id", (req, res) => {
+    const queryString = `SELECT * FROM Likes
+    WHERE user_id = $1 AND post_id = $2;`
+    const values = [req.session.id, req.params.post_id];
+    db.query(queryString, values)
+      .then (data => {
+        const likes = data.rows
+        res.json(likes)
+      })
+  })
+
   router.post("/rating/:post_id", (req, res) => {
     const queryString = `INSERT INTO ratings (user_id, post_id, value)
     VALUES ($1, $2, $3);`;
