@@ -1,3 +1,13 @@
+const deleteCollection = (url, method, collection_id) => {
+  $.ajax({url, method, data: collection_id})
+    .then(data => {
+       res.status(200).send();
+    })
+    .catch(err => {
+       console.log(err.stack);
+    })
+}
+
 $(() => {
   $('#collection-container').hide();
   $('#post-container').hide();
@@ -43,4 +53,10 @@ $(() => {
     $('#like-container').hide();
     $('#comment-container').show();
   });
+
+  $('.deleteBtn').on('click', (e) => {
+    e.preventDefault()
+    const collection_id = $('.deleteCollection').attr('action')
+    deleteCollection(`/collection/delete/${collection_id}`, 'POST', collection_id)
+  })
 })

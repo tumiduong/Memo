@@ -100,6 +100,22 @@ module.exports = (db) => {
        })
   })
 
+  router.post('/delete/:id', (req, res) => {
+    const deleteCollectionQuery = `
+    DELETE FROM collections
+    WHERE id = $1;`
+
+    const queryParams = [req.params.id]
+
+    db.query(deleteCollectionQuery, queryParams)
+       .then(data => {
+         res.status(200).send();
+       })
+       .catch(err => {
+         console.log(err.stack);
+       })
+  })
+
   router.get('/sidebar/api/:id', (req, res) => {
     const collectionQuery = `
     SELECT id, title

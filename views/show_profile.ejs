@@ -31,8 +31,15 @@
     <img id="profilePic" src='<%= overview.icon %>'>
     <div id="profileDiv">
       <p>User</p>
-      <h2 id="username"><%= overview.username %></h2>
-      <button> ••• </button>
+      <article>
+        <h2 id="username"><%= overview.username %></h2>
+        <div class='hvr-grow'>
+          <a href='/profile/edit/<%= user %>'><img src='https://i.imgur.com/8PkzcNZ.png'></a>
+        </div>
+      </article>
+      <footer>
+        <p><%= overview.biography %></p>
+      </footer>
     </div>
   </header>
   <main>
@@ -122,6 +129,11 @@
           </div>
           <div>
             <p><%= collection.created_at.toDateString() %></p>
+          </div>
+          <div>
+            <form class="deleteCollection" method="POST" action="<%= collection.id %>">
+              <button class="deleteBtn" type="submit"><img src='https://i.imgur.com/dpwdUdp.png'></button>
+            </form>
           </div>
         </div>
       <% } %>
