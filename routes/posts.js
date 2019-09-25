@@ -115,9 +115,9 @@ module.exports = (db) => {
 
   // Create a new post
   router.post("/", (req, res) => {
-    const queryString = `INSERT INTO posts (title, url, description)
-    VALUES ($1, $2, $3);`;
-    const formInput = [req.body.title, req.body.url, req.body.description];
+    const queryString = `INSERT INTO posts (user_id, title, url, description)
+    VALUES ($1, $2, $3, $4);`;
+    const formInput = [req.session.id, req.body.title, req.body.url, req.body.description];
     db.query(queryString, formInput)
       .then(() => {
         res.redirect('/posts');
