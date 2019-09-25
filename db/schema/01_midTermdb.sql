@@ -77,6 +77,7 @@ GRANT ALL PRIVILEGES ON TABLE likes TO labber;
 GRANT ALL PRIVILEGES ON TABLE ratings TO labber;
 
 GRANT USAGE, SELECT ON SEQUENCE posts_id_seq TO labber;
+GRANT USAGE, SELECT ON SEQUENCE collections_id_seq TO labber;
 GRANT USAGE, SELECT ON SEQUENCE likes_id_seq TO labber;
 GRANT USAGE, SELECT ON SEQUENCE comments_id_seq TO labber;
 GRANT USAGE, SELECT ON SEQUENCE ratings_id_seq TO labber;
