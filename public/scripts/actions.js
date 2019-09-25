@@ -1,3 +1,4 @@
+//comments AJAX
 //only text in comments
 const escape =  function(str) {
   let div = document.createElement('div');
@@ -43,4 +44,7 @@ $( () => {
       .fail (error => console.log(error))
     })
 })
+
+
+//likes AJAX
 
