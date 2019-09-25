@@ -20,7 +20,7 @@ module.exports = (db) => {
     GROUP BY collections.id;`
 
     const postQuery = `
-    SELECT posts.title, posts.description, posts.posted_at
+    SELECT posts.title, posts.url, posts.description, posts.posted_at
     FROM posts
     WHERE user_id = $1
     GROUP BY posts.id;`
@@ -33,9 +33,11 @@ module.exports = (db) => {
     GROUP BY posts.id;`
 
     const commentQuery = `
-    SELECT post_id, content, posted_at
+    SELECT commentS.id, posts.title, users.username, comments.content, comments.posted_at
     FROM comments
-    WHERE user_id = $1;`
+    JOIN posts on posts.id = comments.post_id
+    JOIN users on posts.user_id = users.id
+    WHERE comments.user_id = $1;`
 
     const queryParams = [req.session.id]
 
@@ -79,22 +81,24 @@ module.exports = (db) => {
     ORDER BY collections.title;`
 
     const postQuery = `
-    SELECT posts.title, posts.description, posts.posted_at
+    SELECT posts.title, posts.url, posts.description, posts.posted_at
     FROM posts
     WHERE user_id = $1
     GROUP BY posts.id;`
 
     const likeQuery = `
-    SELECT posts.title, posts.description, posts.posted_at
+    SELECT posts.title, posts.url, posts.description, posts.posted_at
     FROM likes
     JOIN posts ON post_id = posts.id
     WHERE likes.user_id = $1
     GROUP BY posts.id;`
 
     const commentQuery = `
-    SELECT post_id, content, posted_at
+    SELECT commentS.id, posts.title, users.username, comments.content, comments.posted_at
     FROM comments
-    WHERE user_id = $1;`
+    JOIN posts on posts.id = comments.post_id
+    JOIN users on posts.user_id = users.id
+    WHERE comments.user_id = $1;`
 
     const queryParams = [req.session.id]
 
