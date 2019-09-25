@@ -147,7 +147,8 @@ module.exports = (db) => {
 
     const queryStringComments = `SELECT comments.id, comments.content, comments.posted_at
     FROM comments
-    WHERE post_id = $1;`
+    WHERE post_id = $1
+    ORDER BY comments.id DESC;`
     const valuesComments = [req.params.post_id];
 
     const queryStringCollections = `SELECT collections.id, collections.title
