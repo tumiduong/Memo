@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/test1.css " type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css " type="text/css" />
     <link rel="stylesheet" href="/styles/header.css " type="text/css" />
     <link rel="stylesheet" href="/styles/sidebar.css " type="text/css" />
     <link rel="stylesheet" href="/styles/show_profile.css" type="text/css" />
@@ -128,28 +128,52 @@
     </div>
     <div id="post-container">
       <% for (let post of posts) { %>
-        <div class='post'>
-          <p><%= post.title %></p>
-          <p><%= post.description %></p>
-          <p><%= post.created_at %></p>
+        <div class='profilePost'>
+          <header>
+            <p><%= post.title %></p>
+            <p><%= post.posted_at.toDateString() %></p>
+          </header>
+          <div>
+              <a href='<%= post.url %>'><%= post.url %></a>
+          </div>
+          <footer>
+            <p><%= post.description %></p>
+            <img src='https://image.flaticon.com/icons/svg/2128/2128338.svg'>
+          </footer>
         </div>
       <% } %>
     </div>
     <div id="like-container">
         <% for (let like of likes) { %>
-          <div class='post'>
-            <p><%= like.title %></p>
-            <p><%= like.description %></p>
-            <p><%= like.created_at %></p>
+          <div class='likedPost'>
+            <header>
+              <p><%= like.title %></p>
+              <p><%= like.posted_at.toDateString() %></p>
+            </header>
+            <div>
+              <a href='<%= like.url %>'><%= like.url %></a>
+            </div>
+            <footer>
+              <p><%= like.description %></p>
+              <img src='https://image.flaticon.com/icons/svg/1182/1182721.svg'>
+            </footer>
           </div>
         <% } %>
     </div>
     <div id="comment-container">
         <% for (let comment of comments) { %>
-          <div class='post'>
-            <p><%= comment.post_id %></p>
-            <p><%= comment.content %></p>
-            <p><%= comment.posted_at %></p>
+          <div class='commentPost'>
+            <header>
+              <p>comment ID: <%= comment.id %></p>
+              <p><%= comment.posted_at.toDateString() %></p>
+            </header>
+            <div>
+              <p><%= comment.content %></p>
+            </div>
+            <footer>
+              <p>written on <span><%= comment.username %></span>'s post "<%= comment.title %></p>
+              <img src='https://image.flaticon.com/icons/svg/134/134921.svg'>
+            </footer>
           </div>
         <% } %>
     </div>

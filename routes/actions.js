@@ -47,5 +47,35 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/comment/api/:post_id", (req, res) => {
+    const queryString = `INSERT INTO comments (user_id, post_id, content)
+    VALUES ($1, $2, $3);`;
+    const values = [req.session.id, req.params.post_id, req.body.content];
+    db.query(queryString, values)
+      .then(data => {
+        res.status(200).send();
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  router.get('/comment/api/:post_id', (req, res) => {
+    const queryString = `SELECT * FROM comments
+    WHERE post_id = $1;`
+    const values = [req.params.post_id]
+    db.query(queryString, values)
+      .then(data => {
+        const comments = data.rows
+        res.json(comments);
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ error: err.message});
+      });
+  });
   return router;
 };
