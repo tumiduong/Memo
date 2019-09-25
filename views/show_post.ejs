@@ -17,6 +17,8 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/footerLightBox.js"></script>
+    <script type="text/javascript" src="/scripts/actions.js"></script>
+
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
   </head>
@@ -58,9 +60,10 @@
       </div>
 
       <div class='comment-box'>
-        <form class="new-comment" method="POST" action="/comment">
+        <form class="new-comment" method="POST" action="/actions/comment/<%= post[0].id %>">
+          <input type="hidden" name="post_id" value="<%= post[0].id %>">
           <textarea id="comment" name="content" class="form-control" rows="3" placeholder="Leave a comment..."></textarea>
-          <button type="submit" class="btn btn-secondary">Comment</button>
+          <button id="comment-button" type="submit" class="btn btn-secondary">Comment</button>
         </form>
       </div>
 

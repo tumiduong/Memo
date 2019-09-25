@@ -6,30 +6,41 @@ const escape =  function(str) {
 }  
 
 //create comment
-const createComment = (comment) => {
+const createComment = comment => {
   let $comment =
-  `<p class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username</p>
-  <p class='user-comment'>${escape(comment.content)}</p>`;
-  $('.all-comments').append($comment);
+  `<div class='comments'>
+  <p class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username</p>
+  <p class='user-comment'>${escape(comment.content)}</p></div>`;
+  return $comment;
 }
 
-//load comment
-const loadNewComment = (method, url) => {
-  $.ajax({
-    method,
-    url
-  })
-  .then(response => { createComment(response[response.length - 1]) })
-  .fail(error => console.log(error))
+//render comment
+const renderNewComment = comment => {
+  const $comment = createComment(comment);
+  $('.all-comments').prepend($comment);
 }
 
-//post a comment
-$('.new-comment').on("submit", (event) => {
-  event.preventDefault();
-
+//comment load
+const commentLoad = (method, url, cb) => {
   $.ajax({
-    method,
     url,
-    data: comment
+    method
   })
+    .then(comments => { cb(comments[comments.length - 1]) })
+    .fail (error => console.log(error))
+}
+
+$( () => {
+  $('.new-comment').on("submit", (event) => {
+    event.preventDefault();
+    const post_id = $(event.target).find('input[name="post_id"]').val();
+    $.ajax({
+      method: 'POST',
+      url: `/actions/comment/api/${post_id}`,
+      data: { content: $('#comment').val() }
+    })
+      .then(response => { commentLoad('GET', `/actions/comment/api/${post_id}`, renderNewComment) })
+      .fail (error => console.log(error))
+    })
 })
+
