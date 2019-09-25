@@ -48,12 +48,19 @@
           <%= post[0].description %>
           </p>
         <footer>
+          <% if (post[0].rated) { %>
+            Your rating: <%= post[0].rated %> <span class='star'>★</span>
+            <% } else { %>
           <div class="rate-post">
-            <span>☆</span>
-            <span>☆</span>
-            <span>☆</span>
-            <span>☆</span>
-            <span>☆</span></div>
+            <form method="POST" action="/actions/rating/<%= post[0].id %>">
+              <button type="submit" name="rating" value="5">☆</button>
+              <button type="submit" name="rating" value="4">☆</button>
+              <button type="submit" name="rating" value="3">☆</button>
+              <button type="submit" name="rating" value="2">☆</button>
+              <button type="submit" name="rating" value="1">☆</button>
+            </form>
+          <% } %>
+          </div>
         </footer>
       </div>
 

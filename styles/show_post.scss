@@ -62,13 +62,16 @@
     padding-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+
+    span {
+      margin-left: .2em;
+    }
   }
 
   a:link {
     color: #007F7F;
   }
-  
+
   a:visited {
     color: rgb(236, 185, 44);
   }
@@ -77,19 +80,36 @@
     unicode-bidi: bidi-override;
     direction: rtl;
   }
-  
-  .rate-post > span {
+
+  .rate-post > form > button {
     display: inline-block;
     position: relative;
+    background: none;
+    border: none;
+    padding: 1px 0px;
     font-size: 25px;
+    color: white;
   }
 
-  .rate-post > span:hover:before,
-  .rate-post > span:hover ~ span:before {
+  .rate-post > form > button:hover:before,
+  .rate-post > form >button:hover ~ button:before {
      content: '★';
      color: rgb(236, 185, 44);
      position: absolute;
   }
+
+  // .rate-post > span {
+  //   display: inline-block;
+  //   position: relative;
+  //   font-size: 25px;
+  // }
+
+  // .rate-post > span:hover:before,
+  // .rate-post > span:hover ~ span:before {
+  //    content: '★';
+  //    color: rgb(236, 185, 44);
+  //    position: absolute;
+  // }
 }
 
 .comment-box {
