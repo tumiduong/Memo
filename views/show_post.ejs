@@ -58,12 +58,13 @@
       </div>
 
       <div class='comment-box'>
-        <form class="new-comment" method="POST" action="">
-          <textarea id="comment" class="form-control" rows="3" placeholder="Leave a comment..."></textarea>
+        <form class="new-comment" method="POST" action="/comment">
+          <textarea id="comment" name="content" class="form-control" rows="3" placeholder="Leave a comment..."></textarea>
           <button type="submit" class="btn btn-secondary">Comment</button>
         </form>
       </div>
 
+      <div class='all-comments'>
       <% if (comments[0]) { %>
         <% for (const comment of comments) { %>
       <div class='comments'>
@@ -72,6 +73,7 @@
       </div>
         <% } %>
       <% } %>
+    </div>
     </main>
 
     <% include ./partials/_footer %>
