@@ -65,6 +65,11 @@
 
     span {
       margin-left: .2em;
+      font-size: 25px;
+    }
+
+    .star {
+      font-size: 25px;
     }
   }
 
@@ -89,6 +94,7 @@
     padding: 1px 0px;
     font-size: 25px;
     color: white;
+    outline: none;
   }
 
   .rate-post > form > button:hover:before,
@@ -97,19 +103,6 @@
      color: rgb(236, 185, 44);
      position: absolute;
   }
-
-  // .rate-post > span {
-  //   display: inline-block;
-  //   position: relative;
-  //   font-size: 25px;
-  // }
-
-  // .rate-post > span:hover:before,
-  // .rate-post > span:hover ~ span:before {
-  //    content: '★';
-  //    color: rgb(236, 185, 44);
-  //    position: absolute;
-  // }
 }
 
 .comment-box {
