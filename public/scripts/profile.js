@@ -1,7 +1,7 @@
 const deleteCollection = (url, method, collection_id) => {
   $.ajax({url, method, data: collection_id})
-    .then(data => {
-       res.status(200).send();
+    .then(collection_id => {
+       $(`.${collection_id}`).remove();
     })
     .catch(err => {
        console.log(err.stack);
@@ -58,6 +58,5 @@ $(() => {
     e.preventDefault()
     const collection_id = $(e.target).closest('.deleteCollection').attr('action')
     deleteCollection(`/collection/delete/${collection_id}`, 'POST', collection_id)
-
   })
 })
