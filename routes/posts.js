@@ -119,9 +119,8 @@ module.exports = (db) => {
     VALUES ($1, $2, $3);`;
     const formInput = [req.body.title, req.body.url, req.body.description];
     db.query(queryString, formInput)
-      .then(data => {
-        console.log(data.rows);
-        res.redirect(`/posts`); // How to redirect it to /posts/:post_id?
+      .then(() => {
+        res.redirect('/posts');
       })
       .catch(err => {
         res
