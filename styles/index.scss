@@ -38,7 +38,7 @@
   .post-link:link {
     color: #007F7F;
   }
-  
+
   .post-link:visited {
     color: rgb(236, 185, 44);
   }
@@ -78,21 +78,36 @@
   div.bottom-post {
     display: flex;
     justify-content: flex-start;
+
+    div.rating {
+      font-size: 17px;
+    }
+
+    span.star {
+      font-size: 20px;
+      color: rgb(236, 185, 44);
+    }
+
+    button.like-btn {
+      background: none;
+      border: none;
+      margin-right: 25px;
+    }
+
+    .like-img {
+      width: 35px;
+      height: 35px;
+      padding: 0;
+    }
+
+    .like-img:hover {
+      content: url("https://i.imgur.com/diEl516.png");
+    }
+
+    .liked-img {
+      width: 35px;
+      height: 35px;
+      padding: 0;
+    }
   }
-}
-
-div.rating {
-  font-size: 17px;
-}
-
-span.star {
-  font-size: 20px;
-  color: rgb(236, 185, 44);
-}
-
-.like:active, .like:hover {
-  content: url("https://i.imgur.com/diEl516.png");
-  width: 30px;
-  height: 30px;
-  margin-right: 25px;
 }
