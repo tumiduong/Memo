@@ -84,16 +84,16 @@ module.exports = (db) => {
       })
   })
 
-  router.post('/collection', (req, res) => {
+  router.post('/', (req, res) => {
     const addCollectionQuery = `
     INSERT INTO collections (owner_id, title, description)
     VALUES ($1, $2, $3)`
 
-    const queryParams = [req.session.id, req.body.text]
+    const queryParams = [req.session.id, req.body.title, req.body.description]
 
     db.query(addCollectionQuery, queryParams)
        .then(data => {
-         res.status(201).send();
+         res.json(req.session.id);
        })
        .catch(err => {
          console.log(err.stack);

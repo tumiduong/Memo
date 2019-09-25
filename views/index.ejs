@@ -17,6 +17,7 @@
     <script type="text/javascript" src="/vendor/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/footerLightBox.js"></script>
+    <script type="text/javascript" src="/scripts/addPostBox.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
   </head>
@@ -50,9 +51,25 @@
             </p>
           <footer>
             <div class="bottom-post">
-              <form class="comments" method="GET" action="/posts/<%= post.id %>"><button><img src="https://i.imgur.com/GEZvSaQ.png"></button><a class="comments" href="/posts/<%= post.id %>"><%= post.nbcomments %></a></form>
-              <form method="GET" action="/posts/"><button type="submit"><img class="like" src="https://i.imgur.com/ay6oIRr.png"></button></form>
-              <form method="GET" action="/posts/"><button><img src="https://i.imgur.com/S8HBBf2.png"></button></form>
+              <form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form>
+              <form class="like" method="POST" action="/actions/like/<%= post.id %>">
+                <button class="like-btn" type="submit">
+                  <% if (post.liked) { %>
+                    <img class="liked-img" src="https://i.imgur.com/diEl516.png">
+                  <% } else { %>
+                  <img class="like-img" src="https://i.imgur.com/ay6oIRr.png">
+                <% } %>
+                </button>
+              </form>
+              <form class="addPostButton" method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/S8HBBf2.png"></form>
+              <div class='collectionDropDown'>
+                  <select class="dropDown" data-post_id="<%= post.id %>">
+                      <option value="collections">collections</option>
+                    <% for (let collection of collections) { %>
+                      <option value="<%= collection.id %>"><%= collection.title %></option>
+                    <% } %>
+                  </select>
+              </div>
             </div>
           </footer>
         </div>

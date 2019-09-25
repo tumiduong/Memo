@@ -12,9 +12,15 @@ module.exports = (db) => {
 
   // Show all the posts
   router.get("/", (req, res) => {
-    const queryStringPosts = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
+    const queryStringPosts = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at,
+    (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings,
+    ROUND(AVG(value), 1) AS avgRating,
+    (SELECT value FROM ratings WHERE user_id = $1 AND posts.id = post_id) AS rated,
+    (SELECT id FROM likes WHERE user_id = $1 AND posts.id = post_id) AS liked
     FROM posts
     LEFT JOIN ratings ON posts.id = ratings.post_id
+    LEFT JOIN likes ON posts.id = likes.user_id
+    LEFT JOIN users ON users.id = posts.user_id
     GROUP BY posts.id
     ORDER BY posts.posted_at DESC;`;
 
@@ -25,7 +31,7 @@ module.exports = (db) => {
     ORDER BY collections.title`
     const userId = [req.session.id];
 
-    const promisePosts = db.query(queryStringPosts);
+    const promisePosts = db.query(queryStringPosts, userId);
     const promiseCollections = db.query(queryStringCollections, userId);
 
     Promise.all([promisePosts, promiseCollections])
@@ -113,9 +119,8 @@ module.exports = (db) => {
     VALUES ($1, $2, $3);`;
     const formInput = [req.body.title, req.body.url, req.body.description];
     db.query(queryString, formInput)
-      .then(data => {
-        console.log(data.rows);
-        res.redirect(`/posts`); // How to redirect it to /posts/:post_id?
+      .then(() => {
+        res.redirect('/posts');
       })
       .catch(err => {
         res
@@ -126,16 +131,24 @@ module.exports = (db) => {
 
   // Show a specific post and all its comments
   router.get("/:post_id", (req, res) => {
-    const queryStringPost = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at, (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments, COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating
+    const queryStringPost = `SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at,
+    (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments,
+    COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating,
+    (SELECT value FROM ratings WHERE user_id = $1 AND posts.id = post_id) AS rated,
+    (SELECT id FROM likes WHERE user_id = $1 AND posts.id = post_id) AS liked
     FROM posts
     LEFT JOIN ratings ON posts.id = ratings.post_id
-    WHERE posts.id = $1
+    LEFT JOIN likes ON posts.id = likes.user_id
+    LEFT JOIN users ON users.id = posts.user_id
+    WHERE posts.id = $2
     GROUP BY posts.id
     `;
-    const values = [req.params.post_id];
+    const valuesPost = [req.session.id, req.params.post_id];
+
     const queryStringComments = `SELECT comments.id, comments.content, comments.posted_at
     FROM comments
     WHERE post_id = $1;`
+    const valuesComments = [req.params.post_id];
 
     const queryStringCollections = `SELECT collections.id, collections.title
     FROM collections
@@ -143,8 +156,8 @@ module.exports = (db) => {
     WHERE owner_id = $1`
     const userId = [req.session.id];
 
-    const promisePost = db.query(queryStringPost, values);
-    const promiseComments = db.query(queryStringComments, values);
+    const promisePost = db.query(queryStringPost, valuesPost);
+    const promiseComments = db.query(queryStringComments, valuesComments);
     const promiseCollections = db.query(queryStringCollections, userId);
 
     Promise.all([promisePost, promiseComments, promiseCollections])
@@ -163,6 +176,23 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.post('/:post_id', (req, res) => {
+    const updatePostQuery = `
+    UPDATE posts
+    SET collection_id = $1
+    WHERE posts.id = $2;`
+
+    const queryParams = [req.body.collection_id, req.body.post_id]
+
+    db.query(updatePostQuery, queryParams)
+      .then(data => {
+        res.status(200).send()
+      })
+      .catch(err => {
+        console.log(err.stack)
+      })
+  })
 
   // SHOW PAGE TO EDIT A POST = STRETCH
   // router.get("/:post_id/edit", (req, res) => {

@@ -1,13 +1,10 @@
 const createCollectionElement = function(collectionData) {
-  console.log('collection')
-  let $collection = $('<article>').addClass('collection');
-
-  $('<a>')
+  console.log(collectionData)
+  let $collection = $('<a>')
     .text(collectionData["title"])
     .attr('href', `/collection/${collectionData["id"]}`)
-    .appendTo($collection);
 
-  $("#collection-list").append($collection);
+  $(".collection-list").append($collection);
 };
 
 const loadLastCollection = url => {
@@ -21,9 +18,9 @@ const loadLastCollection = url => {
 }
 
 const submitCollection = (url, method, collection) => {
-  $.ajax({url, method, data: { text: collection } })
-    .then(() => {
-      loadLastCollection('/whateverPage');
+  $.ajax({url, method, data: collection })
+    .then(user_id => {
+      loadLastCollection(`/collection/sidebar/api/${user_id}`);
     })
     .fail(err => {
       console.log(err);
@@ -54,7 +51,8 @@ $(() => {
       title: $('#collectionTitle').val(),
       description: $('#collectionDescription').val()
     }
-    console.log(collection)
-    // submitCollection('/collection', 'POST', collection)
+    submitCollection('/collection', 'POST', collection)
+    $('#lightbox-background').fadeOut()
+    $('#form').slideUp()
   })
 })

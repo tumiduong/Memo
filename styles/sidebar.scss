@@ -14,6 +14,7 @@
 
   a {
     color: white;
+    margin-bottom: 0.8em;
   }
 
   a:hover {
@@ -59,13 +60,13 @@
   .collections {
     padding-left: 30px;
     padding-top: 20px;
-  
+
     h5 {
       font-size: 15px;
       opacity: 0.5;
       font-weight: bold;
     }
-  
+
     a {
       display: flex;
       align-items: center;
