@@ -34,7 +34,7 @@ CREATE TABLE categories (
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  collection_id INTEGER REFERENCES collections(id),
+  collection_id INTEGER REFERENCES collections(id) ON DELETE SET NULL,
   category_id INTEGER REFERENCES categories(id),
   posted_at TIMESTAMP DEFAULT Now(),
   title VARCHAR(255) NOT NULL,

@@ -56,7 +56,8 @@ $(() => {
 
   $('.deleteBtn').on('click', (e) => {
     e.preventDefault()
-    const collection_id = $('.deleteCollection').attr('action')
+    const collection_id = $(e.target).closest('.deleteCollection').attr('action')
     deleteCollection(`/collection/delete/${collection_id}`, 'POST', collection_id)
+
   })
 })
