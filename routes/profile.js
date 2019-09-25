@@ -20,7 +20,7 @@ module.exports = (db) => {
     GROUP BY collections.id;`
 
     const postQuery = `
-    SELECT posts.title, posts.url, posts.description, posts.posted_at
+    SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at
     FROM posts
     WHERE user_id = $1
     GROUP BY posts.id;`
@@ -81,7 +81,7 @@ module.exports = (db) => {
     ORDER BY collections.title;`
 
     const postQuery = `
-    SELECT posts.title, posts.url, posts.description, posts.posted_at
+    SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at
     FROM posts
     WHERE user_id = $1
     GROUP BY posts.id;`
@@ -128,34 +128,59 @@ module.exports = (db) => {
       })
   })
 
-  router.get('/:id/edit', (req, res) => {
-    const queryString = `
+  router.get('/edit/:id', (req, res) => {
+    const userQuery = `
     SELECT *
     FROM users
     WHERE users.id = $1;`
+
+    const collectionsQuery = `
+    SELECT collections.id, collections.title, collections.description, collections.created_at
+    FROM collections
+    WHERE owner_id = $1
+    GROUP BY collections.id
+    ORDER BY collections.title;`
+
     const queryParams = [req.params.id];
 
-    db.query(queryString, queryParams)
-       .then (data => {
-         console.log(data.rows[0]);
-         let obj = data.rows[0]
-         let templateVars = {
-           username: obj.username,
-           password: obj.password,
-           email: obj.email,
-           biography: obj.biograpgy,
-           icon: obj.icon,
-           user: req.session.id
-          }
-          if (templateVars.user === parseInt(req.params.id)) {
-            res.json(templateVars);
-          } else {
-            res.redirect("/posts");
-          }
-       })
-       .catch(err => {
-         console.log(err.stack);
-       })
+    const user = db.query(userQuery, queryParams)
+    const collections = db.query(collectionsQuery, queryParams)
+    Promise.all([user, collections])
+    .then(values => {
+      const overall = {
+         user: values[0].rows[0],
+         collections: values[1].rows,
+         userId: req.session.id
+      }
+      res.render('profile_edit', overall)
+     })
+     .catch(err => {
+       console.log(err.stack);
+      })
+  })
+
+  router.post('/edit/:id', (req, res) => {
+    const userUpdateQuery = `
+    UPDATE users
+    SET username = $2, email = $3, biography = $4, icon = $5
+    WHERE users.id = $1
+    RETURNING users.id;`
+
+    const queryParams = [
+      req.params.id,
+      req.body.username,
+      req.body.email,
+      req.body.biography,
+      req.body.iconURL
+    ];
+
+    db.query(userUpdateQuery, queryParams)
+      .then(data => {
+        res.redirect(`/profile/${req.session.id}`)
+      })
+      .catch(err => {
+        console.log(err.stack);
+      })
   })
 
   router.put('/:id', (req, res) => {
