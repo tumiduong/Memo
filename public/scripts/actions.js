@@ -68,6 +68,7 @@ $( () => {
   $('.new-comment').on("submit", (event) => {
     event.preventDefault();
     const post_id = $(event.target).find('input[name="post_id"]').val();
+    
     $.ajax({
       method: 'POST',
       url: `/actions/comment/api/${post_id}`,
@@ -79,4 +80,56 @@ $( () => {
       })
       .fail(error => res.json({ error: error.message }))
     })
-})
+
+  $('.star-rating').on("click", (event) => {
+    event.preventDefault();
+    const post_id = $('.rate-post').find('input[name="post_id"]').val();
+    const rateValue = parseInt($(event.target).attr("value"));
+
+    $.ajax({
+      method: 'POST',
+      url: `/actions/rating/api/${post_id}`,
+      data: {rating: rateValue}
+    })
+      .then((data) => {console.log(typeof rateValue)
+        if (rateValue === 1) {
+          $('.rate-post').empty();
+          $('.rate-post').append(`<span>☆</span>
+            <span>☆</span>
+            <span>☆</span>
+            <span>☆</span>
+            <span class="star">★</span>`)
+        } else if (rateValue === 2) {
+          $('.rate-post').empty();
+          $('.rate-post').append(`<span>☆</span>
+          <span>☆</span>
+          <span>☆</span>
+          <span class="star">★</span>
+          <span class="star">★</span>`)
+        } else if (rateValue === 3) {
+          $('.rate-post').empty();
+          $('.rate-post').append(`<span>☆</span>
+            <span>☆</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>`)
+        } else if (rateValue === 4) {
+          $('.rate-post').empty();
+          $('.rate-post').append(`<span>☆</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>`)
+        } else if (rateValue === 5) {
+          $('.rate-post').empty();
+          $('.rate-post').append(`<span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>`)
+        }
+      })
+    .fail(error => res.json({ error: error.message }))
+  })
+
+}) //end of doc ready
