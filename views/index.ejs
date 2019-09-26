@@ -57,7 +57,9 @@
 
           <footer>
             <div class="bottom-post">
-              <form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/qiTIHcz.png"></form>
+              <form method="GET" action="/posts/<%= post.id %>">
+                <input class="comment-btn" type="image" src="https://i.imgur.com/vBMEAby.png">
+              </form>
 
               <div class="user-like" data-id="<%= post.id %>">
                   <% if (post.liked) { %>
