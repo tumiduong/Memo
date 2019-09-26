@@ -18,6 +18,7 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/footerLightBox.js"></script>
     <script type="text/javascript" src="/scripts/addPostBox.js"></script>
+    <script type="text/javascript" src="/scripts/actions.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
   </head>
@@ -53,19 +54,13 @@
             <div class="bottom-post">
               <form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form>
 
-              <% if (post.liked) { %>
-              <form class="like" method="POST" action="/actions/like/<%= post.id %>/delete">
-                <button class="like-btn" type="submit">
-                    <img class="liked-img" src="https://i.imgur.com/diEl516.png">
-                </button>
-              </form>
-                  <% } else { %>
-              <form class="like" method="POST" action="/actions/like/<%= post.id %>">
-                <button class="like-btn" type="submit">
-                  <img class="like-img" src="https://i.imgur.com/ay6oIRr.png">
-                </button>
-              </form>
-              <% } %>
+              <div class="user-like" data-id="<%= post.id %>">
+                  <% if (post.liked) { %>
+                        <img class="liked-img" onclick="dislike(this)" src="https://i.imgur.com/diEl516.png">
+                      <% } else { %>
+                      <img class="like-img" onclick="like(this)" src="https://i.imgur.com/ay6oIRr.png" >
+                  <% } %>
+                  </div>
               <form class="addPostButton" method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/S8HBBf2.png"></form>
               <div class='collectionDropDown'>
                   <select class="dropDown" data-post_id="<%= post.id %>">
