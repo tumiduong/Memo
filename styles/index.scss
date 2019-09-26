@@ -6,7 +6,7 @@
 
 .post {
   background-color: #2e2b29;
-  border-radius: 25px;
+  border-radius: 15px;
   margin-bottom: 1em;
   padding: 2.5em;
   border: 1px solid #413d3b;
@@ -27,14 +27,14 @@
     justify-content: space-between;
   }
 
-  h2 a {
+  h4 a {
     text-decoration: none;
     color: white;
   }
 
-  h2 a:hover {
-    color: rgb(193, 253, 253);
-  }
+  // h4 a:hover {
+  //   color: rgb(58, 176, 176);
+  // }
 
   .post-link:link {
     color: #007F7F;
@@ -53,8 +53,13 @@
   }
 
   div.post-body {
-    border-bottom: 1px solid #413d3b;
-    border-top: 1px solid #413d3b;
+    border-bottom: 1px solid rgb(101, 101, 101);
+    border-top: 1px solid rgb(101, 101, 101);
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 14px;
   }
 
   img {
@@ -91,10 +96,16 @@
     display: flex;
     justify-content: flex-start;
     margin-top: 15px;
+    margin-left: 30px;
+
+    form input {
+      height: 22px;
+      width: 22px;
+    }
 
     .like-img {
-      width: 35px;
-      height: 35px;
+      width: 22px;
+      height: 22px;
       padding: 0;
     }
 
@@ -103,16 +114,17 @@
     }
 
     .liked-img {
-      width: 35px;
-      height: 35px;
+      width: 22px;
+      height: 22px;
       padding: 0;
     }
+
 
     .user-like {
       margin-left: 20px;
       margin-right: 20px;
     }
-    
+
     .user-like:hover {
       cursor: pointer;
     }
@@ -122,6 +134,8 @@
 .addPostButton {
   input {
     outline: none;
+    height: 22px;
+    width: 22px;
   }
 }
 
@@ -131,6 +145,22 @@
     color: darkgrey;
     font-size: 14px;
     outline: none;
-    height: 30px;
+    height: 24px;
+    margin-left: 10px;
   }
+}
+
+.hvr-growing {
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-growing:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.06);
+  transform: scale(1.06);
 }

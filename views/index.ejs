@@ -33,7 +33,7 @@
         <div class='post'>
           <header>
             <div class="top-post-bar">
-              <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+              <h4 class='hvr-growing'><a href="/posts/<%= post.id %>"><%= post.title %></a></h4>
               <% if (post.avgrating) { %>
                 <div class="rating"><%= post.avgrating %> <span class='star'>★</span></div>
               <% } %>
