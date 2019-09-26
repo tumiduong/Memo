@@ -18,8 +18,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/footerLightBox.js"></script>
+    <script type="text/javascript" src="/scripts/collection.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:700&display=swap" rel="stylesheet">
   </head>
   <body>
     <% include ./partials/_header %>
@@ -31,7 +33,7 @@
       <p>collection</p>
       <h2 id="collectionName"><%= collection.title %></h2>
       <p id="description"><%= collection.description %></p>
-      <a>created by <span><%= collection.owner %></span> - <%= collection.post_count %> posts</a>
+      <p class='titleDiv-footer'>created by <a href='/profile/<%= collection.owner_id %>'><%= collection.owner %></a> - <%= collection.post_count %> posts</p>
     </div>
     <footer>
         <input class="glow" id='filterBar' name="text" placeholder=" 🔍Filter">
@@ -43,11 +45,11 @@
   <main class='container'>
     <% if (posts.length > 0) { %>
       <% for (let post of posts) { %>
-        <div class='collection-post hvr-growing'>
+        <div class='collection-post hvr-growing' id='<%= post.id %>'>
           <header>
             <div>
               <img src='https://image.flaticon.com/icons/svg/1395/1395832.svg'>
-              <p><%= post.title %></p>
+              <a class='title' href='/posts/<%= post.id %>'><%= post.title %></a>
             </div>
             <p><%= post.posted_at.toDateString() %></p>
           </header>
@@ -56,7 +58,7 @@
           </div>
           <footer>
             <p><%= post.description %></p>
-            <button><img src='https://i.imgur.com/dpwdUdp.png'></button>
+            <button class='delete-post-from-collection'><img src='https://i.imgur.com/dpwdUdp.png'></button>
           </footer>
         </div>
        <% } %>

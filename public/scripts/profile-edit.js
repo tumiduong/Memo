@@ -10,6 +10,7 @@ $(() => {
       $('#edit-profile-icon').attr('src', newURL)
     } else {
       $('#edit-profile-icon').attr('src', originalURL)
+      $('#iconURL').val(originalURL);
     }
   })
 })

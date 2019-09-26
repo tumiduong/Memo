@@ -21,6 +21,7 @@
     <script type="text/javascript" src="/scripts/footerLightBox.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:700&display=swap" rel="stylesheet">
   </head>
   <body>
     <% include ./partials/_header %>
@@ -118,10 +119,10 @@
         <span></span>
       </div>
       <% for (let collection of collections) { %>
-        <div class='collection-post <%= collection.id %>''>
+        <div class='collection-post <%= collection.id %>'>
           <button>♡</button>
           <div>
-            <p><%= collection.title %></p>
+            <a class="hvr-growing" href='/collection/<%= collection.id %>'><%= collection.title %></a>
           </div>
           <div>
             <p><%= collection.description %></p>
@@ -141,7 +142,7 @@
       <% for (let post of posts) { %>
         <div class='profilePost'>
           <header>
-            <p><%= post.title %></p>
+            <a class="post-title" href='/posts/<%= post.id %>'><%= post.title %><img src='https://i.imgur.com/WvRwAat.png'></a>
             <p><%= post.posted_at.toDateString() %></p>
           </header>
           <div>
@@ -158,7 +159,7 @@
         <% for (let like of likes) { %>
           <div class='likedPost'>
             <header>
-              <p><%= like.title %></p>
+              <a href='/posts/<%= like.id %>'><%= like.title %><img src='https://i.imgur.com/WvRwAat.png'></a>
               <p><%= like.posted_at.toDateString() %></p>
             </header>
             <div>
@@ -182,7 +183,7 @@
               <p><%= comment.content %></p>
             </div>
             <footer>
-              <p>written on <span><%= comment.username %></span>'s post "<%= comment.title %></p>
+              <p>written on <%= comment.username %>'s post "<a href='/posts/<%= comment.post_id %>'><%= comment.title %></a>"</p>
               <img src='https://image.flaticon.com/icons/svg/134/134921.svg'>
             </footer>
           </div>
