@@ -79,24 +79,4 @@ $( () => {
       })
       .fail(error => res.json({ error: error.message }))
     })
-
-  // $('.like-img').on('click', (event) => {
-  //   const post_id = $(event.target).data('id');
-  //   $.post(`/actions/like/api/${post_id}`)
-  //   .then((res) => {
-  //     $('.like-img').detach();
-  //     $('.user-like').append($likedimg);
-  //   })
-  //   .fail(error => res.json({ error: error.message }))
-  // })
-
-  // $('.liked-img').on('click', (event) => {
-  //   const post_id = $(event.target).data('id');
-  //   $.post(`/actions/like/api/${post_id}/delete`)
-  //   .then((res) => {
-  //     $('.liked-img').detach();
-  //     $('.user-like').append($likeimg)
-  //   })
-  //   .fail(error => res.json({ error: error.message }))
-  // })
 })

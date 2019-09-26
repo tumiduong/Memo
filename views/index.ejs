@@ -42,14 +42,19 @@
               <a class="post-link" href="<%= post.url %>"><%= post.url %></a>
             <% } %>
           </header>
+
+          <div class="post-body">
           <% if (post.url && (post.url).includes("youtube")) { %>
             <iframe src="<%= post.url.slice(0, 24) + 'embed/' + post.url.slice(32) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <% } else if (post.url && ((post.url).includes("image") || (post.url).includes("jpg"))) { %>
             <img class="post-photo" src="<%= post.url %>">
           <% } %>
-            <p>
-              <%= post.description %>
-            </p>
+
+            <% if (post.description) { %>
+              <p><%= post.description %></p>
+            <% } %>
+          </div>
+
           <footer>
             <div class="bottom-post">
               <form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form>

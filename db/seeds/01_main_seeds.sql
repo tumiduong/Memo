@@ -38,7 +38,7 @@ INSERT INTO posts (user_id, collection_id, title, url, description)
 VALUES (1, 1, 'Saving lives with medical CPR', 'http://blogs.biomedcentral.com/on-medicine/2019/09/16/world-heart-day-saving-lives-with-cpr/',
 'Cardiopulmonary resuscitation (CPR) is a life-saving medical procedure given to patients in cardiac arrest. It involves pressing down rhythmically on the chest (compressions) to help pump blood around the body and giving a series of rescue breaths.');
 INSERT INTO posts (user_id, collection_id, title, url)
-VALUES (1, 1, 'Overview of the medical functions of the cerebral cortex', 'https://youtu.be/X-m0JDCw6TE');
+VALUES (1, 1, 'Overview of the medical functions of the cerebral cortex', 'https://www.youtube.com/watch?v=X-m0JDCw6TE');
 INSERT INTO posts (user_id, collection_id, title, url, description)
 VALUES (1, 1, 'Liver Cancer and medical treatment', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CT_cholangioca.jpg/600px-CT_cholangioca.jpg',
 'Liver cancer, also known as hepatic cancer and primary hepatic cancer, is cancer that starts in the liver.[1] Cancer which has spread from elsewhere to the liver,
