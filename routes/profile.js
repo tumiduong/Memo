@@ -26,14 +26,14 @@ module.exports = (db) => {
     GROUP BY posts.id;`
 
     const likeQuery = `
-    SELECT posts.title, posts.description, posts.posted_at
+    SELECT posts.id, posts.title, posts.description, posts.posted_at
     FROM likes
     JOIN posts ON post_id = posts.id
     WHERE likes.user_id = $1
     GROUP BY posts.id;`
 
     const commentQuery = `
-    SELECT commentS.id, posts.title, users.username, comments.content, comments.posted_at
+    SELECT commentS.id, comments.post_id as post_id, posts.title, users.username, comments.content, comments.posted_at
     FROM comments
     JOIN posts on posts.id = comments.post_id
     JOIN users on posts.user_id = users.id
@@ -87,14 +87,14 @@ module.exports = (db) => {
     GROUP BY posts.id;`
 
     const likeQuery = `
-    SELECT posts.title, posts.url, posts.description, posts.posted_at
+    SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at
     FROM likes
     JOIN posts ON post_id = posts.id
     WHERE likes.user_id = $1
     GROUP BY posts.id;`
 
     const commentQuery = `
-    SELECT commentS.id, posts.title, users.username, comments.content, comments.posted_at
+    SELECT comments.id, comments.post_id as post_id, posts.title, users.username, comments.content, comments.posted_at
     FROM comments
     JOIN posts on posts.id = comments.post_id
     JOIN users on posts.user_id = users.id
