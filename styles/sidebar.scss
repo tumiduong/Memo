@@ -36,11 +36,6 @@
   border: none;
 }
 
-.list form {
-  display: flex;
-  justify-content: center;
-}
-
 .list button:hover {
   background-color: rgb(2, 182, 182);
 }
@@ -84,7 +79,7 @@
 .sideBar .collection-list {
   margin: 15px;
   overflow: auto;
-  height: 300px;
+  max-height: 300px;
   font-size: 13px;
 }
 
