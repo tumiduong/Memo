@@ -1,4 +1,4 @@
-//comments AJAX
+//comments
 //only text in comments
 const escape =  function(str) {
   let div = document.createElement('div');
@@ -28,9 +28,16 @@ const commentLoad = (method, url, cb) => {
     method
   })
     .then(comments => { cb(comments[comments.length - 1]) })
-    .fail (error => console.log(error))
+    .fail(error => console.log(error))
 }
 
+//likes
+const $likeimg = 
+  `<img class="like-img" src="https://i.imgur.com/ay6oIRr.png" data-id="<%= post.id %>" >`;
+const $likedimg = 
+  `<img class="liked-img" src="https://i.imgur.com/diEl516.png" data-id="<%= post.id %>">`;
+
+//doc.ready
 $( () => {
   $('.new-comment').on("submit", (event) => {
     event.preventDefault();
@@ -40,11 +47,12 @@ $( () => {
       url: `/actions/comment/api/${post_id}`,
       data: { content: $('#comment').val() }
     })
-      .then(response => { commentLoad('GET', `/actions/comment/api/${post_id}`, renderNewComment) })
-      .fail (error => console.log(error))
+      .then(response => {
+        commentLoad('GET', `/actions/comment/api/${post_id}`, renderNewComment);
+        $('.new-comment')[0].reset();
+      })
+      .fail(error => res.json({ error: error.message }))
     })
 })
 
-
-//likes AJAX
-
+//ratings send value in and display the html of spans button.click
