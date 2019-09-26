@@ -1,4 +1,5 @@
 #lightbox-background{
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -12,6 +13,7 @@
 }
 
 #form {
+  display: none;
   width: 45vw;
   height: 45vh;
   background-color: #3a3533;
