@@ -58,9 +58,5 @@ $(() => {
     e.preventDefault()
     const collection_id = $(e.target).closest('.deleteCollection').attr('action')
     deleteCollection(`/collection/delete/${collection_id}`, 'POST', collection_id)
-  })
-
-  $('.post-title').on('mouseover', function () {
-    $(this).toggleClass('be-bold');
   });
 })

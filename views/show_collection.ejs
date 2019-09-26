@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/footerLightBox.js"></script>
+    <script type="text/javascript" src="/scripts/collection.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:700&display=swap" rel="stylesheet">
@@ -44,7 +45,7 @@
   <main class='container'>
     <% if (posts.length > 0) { %>
       <% for (let post of posts) { %>
-        <div class='collection-post hvr-growing'>
+        <div class='collection-post hvr-growing' id='<%= post.id %>'>
           <header>
             <div>
               <img src='https://image.flaticon.com/icons/svg/1395/1395832.svg'>
@@ -57,7 +58,7 @@
           </div>
           <footer>
             <p><%= post.description %></p>
-            <button><img src='https://i.imgur.com/dpwdUdp.png'></button>
+            <button class='delete-post-from-collection'><img src='https://i.imgur.com/dpwdUdp.png'></button>
           </footer>
         </div>
        <% } %>

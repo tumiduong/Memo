@@ -133,5 +133,24 @@ module.exports = (db) => {
          console.log(err.stack);
        })
   })
+
+  router.post('/edit/:id', (req, res) => {
+    const editQuery = `
+    UPDATE posts
+    SET collection_id = NULL
+    WHERE posts.id = $1
+    RETURNING posts.id;`
+
+    const queryParams = [req.params.id]
+
+    db.query(editQuery, queryParams)
+       .then(post_id => {
+         res.json(post_id.rows[0].id);
+       })
+       .catch(err => {
+         console.log(err.stack);
+       })
+  })
+
   return router
 }
