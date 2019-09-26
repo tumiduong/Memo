@@ -48,6 +48,7 @@
         <% } %>
           <p><%= post[0].description %></p>
         <footer>
+
           <% if (post[0].rated) { %>
             <% if (post[0].rated === 1) { %>
               <span class="star">★</span>
@@ -81,7 +82,7 @@
               <span class="star">★</span>
             <% } %>
           <% } else { %>
-          <div class="rate-post">
+            <div class='rate-post'>
             <form class="user-rate" method="POST" action="/actions/rating/<%= post[0].id %>">
               <input type="hidden" name="post_id" value="<%= post[0].id %>">
               <button type="submit" class="star-rating" name="rating" value="5">☆</button>
