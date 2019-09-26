@@ -103,60 +103,60 @@
 
 .collection-post {
   width: 100%;
-    background-color: #221F1E;
-    padding: 1em;
-    border-top: 0.5px solid rgb(101, 101, 101);
-    header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      width: 100%;
-      height: 30px;
-      div {
-        display: flex;
-        align-items: center;
-        p {
-          font-size: 15px;
-          margin-bottom: 0px;
-        }
-        img {
-          height: 20px;
-          width: 20px;
-          margin-right: 8px;
-        }
-      }
-    }
+  background-color: #221F1E;
+  padding: 1em;
+  border-top: 0.5px solid rgb(101, 101, 101);
+  header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    width: 100%;
+    height: 30px;
     div {
-      font-size: 11px;
-      margin-top: 10px;
-      a {
-        display: block;
-        color: rgb(210, 162, 72);
-        white-space: nowrap;
-        width:250px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-    footer {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      margin-top: 5px;
-      font-size: 14px;
       p {
-        margin-bottom: 5px;
+        font-size: 15px;
+        margin-bottom: 0px;
       }
-      button {
-        background-color: #221F1E;
-        border: none;
-        img {
-          margin-top: 10px;
-          width: 0px;
-          height: 0px;
-        }
+      img {
+        height: 20px;
+        width: 20px;
+        margin-right: 8px;
       }
     }
+  }
+  div {
+    font-size: 11px;
+    margin-top: 10px;
+    a {
+      display: block;
+      color: rgb(210, 162, 72);
+      white-space: nowrap;
+      width:250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 14px;
+    p {
+      margin-bottom: 5px;
+    }
+    button {
+      background-color: #221F1E;
+      border: none;
+      img {
+        margin-top: 10px;
+        width: 0px;
+        height: 0px;
+      }
+    }
+  }
 }
 
 .collection-post:hover {
@@ -199,6 +199,6 @@
   transition-property: transform;
 }
 .hvr-growing:hover, .hvr-grow:focus, .hvr-grow:active {
-  -webkit-transform: scale(1.02);
-  transform: scale(1.02);
+  -webkit-transform: scale(1.015);
+  transform: scale(1.015);
 }

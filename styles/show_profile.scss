@@ -134,18 +134,29 @@ main {
   .column-title {
     display: flex;
     justify-content: space-around;
+    border-bottom: 0.5px solid rgb(101, 101, 101);
     div {
-      width: 11%;
+      width: 8%;
       display: flex;
       justify-content: center;
       margin-right: 60px;
+      p {
+        font-size: 14px;
+        color: darkgrey;
+      }
+      img {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
   .collection-post {
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    border-bottom: 0.5px solid rgb(101, 101, 101);
     div {
-      width: 18%;
+      width: 20%;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -155,20 +166,36 @@ main {
       }
     }
     p {
+      font-size: 14px;
       max-width: 200px;
       overflow: hidden;
-      white-space: nowrap; /* Don't forget this one */
+      white-space: nowrap;
       text-overflow: ellipsis;
       margin-bottom: 15px;
       margin-top: 15px;
     }
+    button {
+      background-color: #221F1E;
+      border: none;
+      outline: none;
+      color: darkgrey;
+    }
+    button:hover {
+      color: white;
+    }
   }
+
   .collection-post:hover {
+    background-color:rgb(60, 55, 54);
+    button {
+      background-color: rgb(60, 55, 54);
+    }
     img {
       width: 12px;
       height: 12px;
     }
   }
+
   .collection-post form button:hover {
     img {
       content: url(https://image.flaticon.com/icons/svg/1632/1632708.svg)
