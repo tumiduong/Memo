@@ -13,7 +13,7 @@
       <div class='collection-list'>
       <% if (user) { %>
         <% for (let collection of collections) { %>
-          <a href="/collection/<%= collection.id %>"><%= collection.title %></a>
+          <a class='<%= collection.id %>' href="/collection/<%= collection.id %>"><%= collection.title %></a>
         <% } %>
       <% } %>
     </div>
