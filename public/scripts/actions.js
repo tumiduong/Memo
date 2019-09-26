@@ -4,7 +4,7 @@ const escape =  function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-}  
+}
 
 //create comment
 const createComment = comment => {
@@ -32,10 +32,36 @@ const commentLoad = (method, url, cb) => {
 }
 
 //likes
-const $likeimg = 
-  `<img class="like-img" src="https://i.imgur.com/ay6oIRr.png" data-id="<%= post.id %>" >`;
-const $likedimg = 
-  `<img class="liked-img" src="https://i.imgur.com/diEl516.png" data-id="<%= post.id %>">`;
+const $likeImg =
+  `<img class="like-img" onclick="like(this)" src="https://i.imgur.com/ay6oIRr.png" data-id="<%= post.id %>" >`;
+const $likedImg =
+  `<img class="liked-img" onclick="dislike(this)" src="https://i.imgur.com/diEl516.png" data-id="<%= post.id %>">`;
+
+const like = function(element) {
+  const div = element.closest(".user-like")
+  const post_id = $(event.target).closest(".user-like").data('id');
+  $.post(`/actions/like/api/${post_id}`)
+    .then(() => {
+      div.innerHTML = '';
+      div.innerHTML = $likedImg;
+    })
+    .fail(error => {
+      res.json({ error: error.message })
+    })
+};
+
+const dislike = function(element) {
+  const div = element.closest(".user-like")
+  const post_id = $(event.target).closest(".user-like").data('id');
+  $.post(`/actions/like/api/${post_id}/delete`)
+  .then(() => {
+    div.innerHTML = '';
+    div.innerHTML = $likeImg;
+  })
+  .fail(error => {
+    res.json({ error: error.message })
+  })
+};
 
 //doc.ready
 $( () => {
@@ -54,5 +80,3 @@ $( () => {
       .fail(error => res.json({ error: error.message }))
     })
 })
-
-//ratings send value in and display the html of spans button.click

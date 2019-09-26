@@ -109,7 +109,7 @@ module.exports = (db) => {
 
     db.query(deleteCollectionQuery, queryParams)
        .then(data => {
-         res.status(200).send();
+         res.json(req.params.id);
        })
        .catch(err => {
          console.log(err.stack);
@@ -118,7 +118,7 @@ module.exports = (db) => {
 
   router.get('/sidebar/api/:id', (req, res) => {
     const collectionQuery = `
-    SELECT id, title
+    SELECT id, title, description, created_at
     FROM collections
     WHERE owner_id = $1;`
 

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/styles/header.css " type="text/css" />
     <link rel="stylesheet" href="/styles/sidebar.css " type="text/css" />
     <link rel="stylesheet" href="/styles/show_profile.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/show_collection.css" type="text/css" />
     <link rel="stylesheet" href="/styles/index.css" type="text/css"/>
     <link rel="stylesheet" href="/styles/footer.css " type="text/css"/>
 
@@ -107,7 +106,6 @@
 
     <div id="collection-container">
       <div class='column-title'>
-        <span></span>
         <div>
           <p>title</p>
         </div>
@@ -117,9 +115,10 @@
         <div>
           <img src='https://image.flaticon.com/icons/svg/251/251974.svg'>
         </div>
+        <span></span>
       </div>
       <% for (let collection of collections) { %>
-        <div class='collection-post'>
+        <div class='collection-post <%= collection.id %>''>
           <button>♡</button>
           <div>
             <p><%= collection.title %></p>

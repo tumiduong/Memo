@@ -42,27 +42,31 @@
               <a class="post-link" href="<%= post.url %>"><%= post.url %></a>
             <% } %>
           </header>
+
+          <div class="post-body">
           <% if (post.url && (post.url).includes("youtube")) { %>
             <iframe src="<%= post.url.slice(0, 24) + 'embed/' + post.url.slice(32) %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <% } else if (post.url && ((post.url).includes("image") || (post.url).includes("jpg"))) { %>
             <img class="post-photo" src="<%= post.url %>">
           <% } %>
-            <p>
-              <%= post.description %>
-            </p>
+
+            <% if (post.description) { %>
+              <p><%= post.description %></p>
+            <% } %>
+          </div>
+
           <footer>
             <div class="bottom-post">
               <form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/GEZvSaQ.png"></form>
 
-              <div class="user-like">
-              <% if (post.liked) { %>
-                    <img class="liked-img" src="https://i.imgur.com/diEl516.png" data-id="<%= post.id %>">
-                  <% } else { %>
-                  <img class="like-img" src="https://i.imgur.com/ay6oIRr.png" data-id="<%= post.id %>" >
-              <% } %>
-              </div>
-
-              <form class="addPostButton" method="GET" action="/post/"><input type="image" src="https://i.imgur.com/S8HBBf2.png"></form>
+              <div class="user-like" data-id="<%= post.id %>">
+                  <% if (post.liked) { %>
+                        <img class="liked-img" onclick="dislike(this)" src="https://i.imgur.com/diEl516.png">
+                      <% } else { %>
+                      <img class="like-img" onclick="like(this)" src="https://i.imgur.com/ay6oIRr.png" >
+                  <% } %>
+                  </div>
+              <form class="addPostButton" method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/S8HBBf2.png"></form>
               <div class='collectionDropDown'>
                   <select class="dropDown" data-post_id="<%= post.id %>">
                       <option value="collections">collections</option>

@@ -10,6 +10,8 @@
   margin-bottom: 1em;
   padding: 2.5em;
   border: 1px solid #413d3b;
+  display: flex;
+  flex-direction: column;
 
   header {
     height: 20%;
@@ -17,7 +19,6 @@
     margin-bottom: 5px;
     float: left;
     padding-bottom: 10px;
-    border-bottom: 1px solid #413d3b;
   }
 
   div.top-post-bar {
@@ -49,8 +50,11 @@
 
   p {
     line-height: 20pt;
-    padding: 15px;
+  }
+
+  div.post-body {
     border-bottom: 1px solid #413d3b;
+    border-top: 1px solid #413d3b;
   }
 
   img {
@@ -72,28 +76,21 @@
   .bottom-post input {
     width: 30px;
     height: auto;
-    margin-right: 25px;
+  }
+
+  div.rating {
+    font-size: 17px;
+  }
+
+  span.star {
+    font-size: 20px;
+    color: rgb(236, 185, 44);
   }
 
   div.bottom-post {
     display: flex;
     justify-content: flex-start;
-
-    div.rating {
-      font-size: 17px;
-    }
-
-    span.star {
-      font-size: 20px;
-      color: rgb(236, 185, 44);
-    }
-
-    button.like-btn {
-      background: none;
-      border: none;
-      margin-right: 25px;
-      outline: none;
-    }
+    margin-top: 15px;
 
     .like-img {
       width: 35px;
@@ -109,6 +106,15 @@
       width: 35px;
       height: 35px;
       padding: 0;
+    }
+
+    .user-like {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    
+    .user-like:hover {
+      cursor: pointer;
     }
   }
 }
