@@ -4,7 +4,7 @@ form.new-post {
   margin: auto;
   margin-top: 90px;
   background-color: #2e2b29;
-  border-radius: 25px;
+  border-radius: 15px;
   padding: 2.5em;
   border: 1px solid #413d3b;
 
@@ -36,20 +36,21 @@ form.new-post {
   }
 
   button {
-    background-color: rgb(3, 189, 19);
+    background-color: rgb(220, 151, 4);
     border: none;
     border-radius: 35px;
     width: 100px;
   }
 
   button:hover {
-    background-color: rgb(3, 205, 20);
+    background-color: rgb(255, 175, 4);
   }
 
   footer div {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     img {
+      align-self: center;
       height: 70px;
       width: 70px;
     }
