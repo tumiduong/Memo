@@ -32,7 +32,7 @@
       <div class='post'>
         <header>
           <div class="top-post-bar">
-          <h2><%= post[0].title %></h2>
+          <h5><%= post[0].title %></h5>
           <% if (post[0].avgrating) { %>
             <div class="rating"><%= post[0].avgrating %> <span class='star'>★</span></div>
             <% } %>
@@ -46,9 +46,7 @@
         <% } else if ((post[0].url).includes("image") || (post[0].url).includes("jpg")) { %>
           <img class="post-photo" src="<%= post[0].url %>">
         <% } %>
-          <p>
-          <%= post[0].description %>
-          </p>
+          <p><%= post[0].description %></p>
         <footer>
           <% if (post[0].rated) { %>
             <% if (post[0].rated === 1) { %>

@@ -7,13 +7,12 @@
   align-items: center;
   z-index: 1000;
   width: 100%;
-  padding: 0 0.5em 0.5em 0.5em;
+  padding: 0.2em 0.5em 0.2em 0.5em;
 
   #logo {
     font-family: 'Baloo', cursive;
     font-size: 28px;
     color: white;
-
     img {
       width: 45px;
       height: auto;
@@ -34,7 +33,6 @@
     color: white;
     padding: 7px;
     padding-left: 15px;
-    margin-top: 5px;
     outline: none;
   }
 
