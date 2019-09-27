@@ -68,7 +68,7 @@ $( () => {
   $('.new-comment').on("submit", (event) => {
     event.preventDefault();
     const post_id = $(event.target).find('input[name="post_id"]').val();
-    
+
     if ($('#comment').val().length !== 0) {
       $.ajax({
         method: 'POST',

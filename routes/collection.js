@@ -22,18 +22,26 @@ module.exports = (db) => {
     WHERE owner_id = $1
     ORDER BY collections.title;`
 
+    const userQuery = `
+    SELECT *
+    FROM users
+    WHERE users.id = $1;`
+
     const queryParams = [req.params.id]
     const queryParams2 = [req.session.id]
 
     const collections = db.query(collectionQuery, queryParams)
     const posts = db.query(postQuery, queryParams)
     const sidebarCollections = db.query(queryStringCollections, queryParams2)
-    Promise.all([collections, posts, sidebarCollections])
+    const userInfo = db.query(userQuery, queryParams2)
+
+    Promise.all([collections, posts, sidebarCollections, userInfo])
       .then(values => {
         let overall = {
           collection: values[0].rows[0],
           posts: values[1].rows,
           collections: values[2].rows,
+          userInfo: values[3].rows[0],
           user: req.session.id,
         }
         res.render('show_collection', overall)

@@ -88,21 +88,32 @@
 
   div.bottom-post {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     margin-top: 5px;
     margin-left: 10px;
+
+    .actions-btn {
+      display: flex;
+      justify-content: space-between;
+    }
 
     form input {
       height: 22px;
       width: 22px;
     }
 
+<<<<<<< HEAD
     input {
       width: 30px;
       height: auto;
       outline: none;
     }
+=======
+    // .comment-btn:hover {
+    //   content: url("https://i.imgur.com/vBMEAby.png");
+    // }
+>>>>>>> master
 
     .like-img {
       width: 22px;
@@ -129,6 +140,11 @@
 
     .user-like:hover {
       cursor: pointer;
+    }
+
+    p {
+      margin: 0;
+      font-size: 11px;
     }
   }
 }

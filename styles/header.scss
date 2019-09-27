@@ -49,23 +49,51 @@
   }
 
   div.no-login {
+    display: flex;
+    align-items: center;
+    img {
+      width: 22px;
+      height: 22px;
+    }
+    .picImg {
+      margin-right: 15px;
+      margin-left: 18px;
+      width: 28px;
+      height: 28px;
+      border: 1px solid darkgrey;
+      border-radius: 50px;
+    }
     border-radius: 50px;
     margin-right: 2em;
 
-    button {
-      border-radius: 35px;
-      width: 7vw;
-    }
-
     #btn-login {
-      color: #007F7F;
-      border-color: #007F7F;
+      background-color: #2e2b29;
+      width: 100px;
+      margin-bottom: 3px;
+      padding: 0px;
+      border: none;
+      outline:none;
     }
 
-    #btn-login:hover{
-      color: white;
-      background-color: rgb(2, 182, 182);
-      border-color: rgb(2, 182, 182);
+    #btn-login:hover {
+      img {
+        width: 30px;
+        height: 30px;
+        content: url(https://image.flaticon.com/icons/svg/1177/1177568.svg)
+      }
+    }
+    .btn-logout button {
+      background-color: #2e2b29;
+      border: none;
+      margin-bottom: 3px;
+      padding: 0px;
+      outline: none;
+    }
+
+    .btn-logout button:hover {
+      img {
+        content: url(https://i.imgur.com/bo0mTry.png)
+      }
     }
   }
 }
