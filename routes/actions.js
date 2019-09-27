@@ -2,6 +2,8 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+
+  // Like a specific post
   router.post("/like/api/:post_id", (req, res) => {
     const queryString = `INSERT INTO likes (user_id, post_id)
     VALUES ($1, $2);`;
@@ -17,6 +19,7 @@ module.exports = (db) => {
       });
   });
 
+  // Unlike a specific post
   router.post("/like/api/:post_id/delete", (req, res) => {
     const queryString = `DELETE FROM likes
     WHERE user_id = $1 AND post_id = $2;`;
@@ -32,6 +35,7 @@ module.exports = (db) => {
     });
   });
 
+  // Get api for likes of certain post
   router.get("/like/api/:post_id", (req, res) => {
     const queryString = `SELECT * FROM Likes
     WHERE user_id = $1 AND post_id = $2;`
@@ -48,6 +52,7 @@ module.exports = (db) => {
       });
   })
 
+  // Rate a post
   router.post("/rating/api/:post_id", (req, res) => {
     const queryString = `INSERT INTO ratings (user_id, post_id, value)
     VALUES ($1, $2, $3);`;
@@ -63,6 +68,7 @@ module.exports = (db) => {
       });
   });
 
+  // Comment on a post
   router.post("/comment/api/:post_id", (req, res) => {
     const queryString = `INSERT INTO comments (user_id, post_id, content)
     VALUES ($1, $2, $3);`;
@@ -78,6 +84,7 @@ module.exports = (db) => {
       });
   });
 
+  // Load comments on post
   router.get('/comment/api/:post_id', (req, res) => {
     const queryString = `SELECT comments.id, comments.user_id, users.icon as icon, users.username as username, comments.content, comments.posted_at
     FROM comments
@@ -96,5 +103,6 @@ module.exports = (db) => {
           .json({ error: err.message});
       });
   });
+
   return router;
 };

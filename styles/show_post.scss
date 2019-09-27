@@ -88,7 +88,7 @@
     span {
       padding: 1px 0px;
       font-size: 17px;
-      margin-right: 4px;
+
     }
 
     .star {
@@ -101,14 +101,14 @@
       justify-content: flex-end;
       align-items: center;
 
-
       .user {
-      font-size: 15px;
+        font-size: 15px;
+        margin-right: 4px;
       }
 
       .time-posted {
-      font-size: 12px;
-      color: darkgrey;
+        font-size: 12px;
+        color: darkgrey;
       }
 
       .user img {
@@ -176,18 +176,21 @@
   header {
     display: flex;
     justify-content: space-between;
+
     .option {
       margin-top: 5px;
       height: 0px;
       width: 0px;
     }
   }
+
   .user {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     font-size: 15px;
     margin-right: 5px;
+
     span {
       font-size: 12px;
       color: darkgrey;
@@ -214,10 +217,12 @@
     width: 20%;
     height: 1em;
     padding-top: 0.5em;
+
     p {
       font-size: 13px;
       color: rgb(138, 138, 138);
     }
+    
     img {
       width: 15px;
       height: 15px;

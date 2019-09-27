@@ -12,11 +12,13 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
+
     div {
       display: flex;
       flex-direction: column;
       width: 70%;
     }
+
     img {
       width: 30%;
       height: 125px;
@@ -24,6 +26,7 @@
       border-radius: 65px;
       border: 1px solid darkgray;
     }
+
     input {
       border: rgb(189, 189, 188);
       height: 30px;
@@ -63,9 +66,11 @@
   .form-icon {
     display: flex;
     flex-direction: column;
+
     div {
       display: flex;
       align-items: center;
+
       button {
         display: flex;
         align-items: center;
@@ -75,11 +80,13 @@
         height: 35px;
         width: 35px;
         border-radius: 8px;
+
         img {
           height: 25px;
           width: 25px;
         }
       }
+
       button:hover {
         background-color: #413d3b;
       }
@@ -90,6 +97,7 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+
     button {
       background-color: rgb(3, 139, 181);
       border: none;
@@ -114,6 +122,7 @@
   -webkit-transition-property: transform;
   transition-property: transform;
 }
+
 .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
   -webkit-transform: scale(1.075);
   transform: scale(1.075);

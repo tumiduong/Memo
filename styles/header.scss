@@ -13,7 +13,7 @@
     font-family: 'Baloo', cursive;
     font-size: 28px;
     color: white;
-    
+
     img {
       width: 45px;
       height: auto;
@@ -52,10 +52,14 @@
   div.no-login {
     display: flex;
     align-items: center;
+    border-radius: 50px;
+    margin-right: 2em;
+
     img {
       width: 22px;
       height: 22px;
     }
+
     .picImg {
       margin-right: 15px;
       margin-left: 18px;
@@ -64,9 +68,7 @@
       border: 1px solid darkgrey;
       border-radius: 50px;
     }
-    border-radius: 50px;
-    margin-right: 2em;
-
+    
     #btn-login {
       background-color: #2e2b29;
       width: 100px;
@@ -83,6 +85,7 @@
         content: url(https://image.flaticon.com/icons/svg/1177/1177568.svg)
       }
     }
+
     .btn-logout button {
       background-color: #2e2b29;
       border: none;

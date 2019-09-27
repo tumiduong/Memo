@@ -14,7 +14,7 @@ const createComment = comment => {
       <p class='user'><img class='user-icon' src="${comment.icon}"> ${comment.username} <span> - posted on ${moment(comment.posted_at).format('ddd MMM DD YYYY')} at ${moment(comment.posted_at).format('h:mm:ss')}</span></p>
       <img class='option' src="https://i.imgur.com/uusvo5e.png">
     </header>
-    <p class='user-comment'>${comment.content}</p>
+    <p class='user-comment'>${escape(comment.content)}</p>
     <footer>
       <img src="https://image.flaticon.com/icons/svg/2001/2001592.svg">
       <p>ANSWER</p>
@@ -47,6 +47,7 @@ const $likeImg =
 const $likedImg =
   `<img class="liked-img" onclick="dislike(this)" src="https://i.imgur.com/diEl516.png" data-id="<%= post.id %>">`;
 
+// Liking a post
 const like = function(element) {
   const div = element.closest(".user-like");
   const post_id = $(event.target).closest(".user-like").data('id');
@@ -60,6 +61,7 @@ const like = function(element) {
     });
 };
 
+// Unliking a post
 const dislike = function(element) {
   const div = element.closest(".user-like");
   const post_id = $(event.target).closest(".user-like").data('id');
@@ -75,6 +77,8 @@ const dislike = function(element) {
 
 // Document ready
 $(() => {
+
+  // Posting a comment
   $('.new-comment').on("submit", (event) => {
     event.preventDefault();
     const post_id = $(event.target).find('input[name="post_id"]').val();
@@ -95,6 +99,7 @@ $(() => {
     }
   });
 
+  // Rating a post
   $('.star-rating').on("click", (event) => {
     event.preventDefault();
     const post_id = $('.rate-post').find('input[name="post_id"]').val();

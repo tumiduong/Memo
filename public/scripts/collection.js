@@ -1,3 +1,4 @@
+//shows the post being removed from the collection
 const deletePostFromCollection = (url, method, post_id) => {
   $.ajax({url, method, data: post_id})
     .then(post_id => {

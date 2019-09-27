@@ -1,3 +1,4 @@
+//create collection element to be displayed in the sidebar
 const createCollectionElement = function(collectionData) {
   console.log(collectionData)
   let $collection = $('<a>')
@@ -7,6 +8,7 @@ const createCollectionElement = function(collectionData) {
   $(".collection-list").append($collection);
 };
 
+//load the last collection onto the sidebar
 const loadLastCollection = url => {
   $.ajax({url, method: 'GET'})
      .then(collections => {
@@ -28,6 +30,7 @@ const submitCollection = (url, method, collection) => {
 };
 
 $(() => {
+  //both the background and form are hidden on load
   $('#lightbox-background').hide();
   $('#form').hide();
 
