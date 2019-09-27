@@ -11,7 +11,7 @@ const createComment = comment => {
   let $comment =`
     <div class='comments'>
     <header>
-      <p class='user'><img class='user-icon' src="${comment.icon}"> ${comment.username} <span> - posted on ${comment.posted_at}</span></p>
+      <p class='user'><img class='user-icon' src="${comment.icon}"> ${comment.username} <span> - posted on ${moment(comment.posted_at).format('ddd MMM DD YYYY')} at ${moment(comment.posted_at).format('h:mm:ss')}</span></p>
       <img class='option' src="https://i.imgur.com/uusvo5e.png">
     </header>
     <p class='user-comment'>${comment.content}</p>
@@ -23,7 +23,7 @@ const createComment = comment => {
   return $comment;
 };
 
-// Cender a comment
+// Render a comment
 const renderNewComment = comment => {
   const $comment = createComment(comment);
   $('.all-comments').prepend($comment);
