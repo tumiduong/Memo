@@ -7,7 +7,6 @@
 .post {
   background-color: #2e2b29;
   border-radius: 10px;
-  margin-bottom: 1em;
   padding-left: 1.5em;
   padding-right: 1.5em;
   padding-bottom: 0.5em;
@@ -123,7 +122,7 @@
 .comment-box {
   border-radius: 10px;
   padding: 1em;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   height: 150px;
 
   textarea {
@@ -142,14 +141,32 @@
 
 .comments {
   margin: auto;
-  padding: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 1em;
+  padding-bottom: 1.5em;
   border-top: 1px solid rgb(101, 101, 101);
 
+  header {
+    display: flex;
+    justify-content: space-between;
+    .option {
+      margin-top: 5px;
+      height: 0px;
+      width: 0px;
+    }
+  }
   .user {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     font-size: 15px;
+    margin-right: 5px;
+    span {
+      font-size: 12px;
+      color: darkgrey;
+      margin-left: 3px;
+    }
   }
 
   .user img {
@@ -162,9 +179,36 @@
 
   .user-comment {
     margin-bottom: 2px;
+    font-size: 14px;
+  }
+
+  footer {
+    display: flex;
+    justify-content: flex-start;
+    width: 20%;
+    height: 1em;
+    padding-top: 0.5em;
+    p {
+      font-size: 13px;
+      color: rgb(138, 138, 138);
+    }
+    img {
+      width: 15px;
+      height: 15px;
+      margin-right: 0.8em;
+    }
   }
 }
 
 .comments:hover {
   background-color: #2e2b29;
+  header .option {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.all-comments {
+  border-bottom: 1px solid rgb(101, 101, 101);
+  margin-bottom: 20px;
 }
