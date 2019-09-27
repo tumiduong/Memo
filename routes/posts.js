@@ -29,16 +29,23 @@ module.exports = (db) => {
     JOIN users ON owner_id = users.id
     WHERE owner_id = $1
     ORDER BY collections.title`
+
+    const userQuery = `
+    SELECT *
+    FROM users
+    WHERE users.id = $1;`
     const userId = [req.session.id];
 
     const promisePosts = db.query(queryStringPosts, userId);
     const promiseCollections = db.query(queryStringCollections, userId);
+    const promiseUser = db.query(userQuery, userId)
 
-    Promise.all([promisePosts, promiseCollections])
+    Promise.all([promisePosts, promiseCollections, promiseUser])
       .then(data => {
         const templateVars = {
           posts: data[0].rows,
           collections: data[1].rows,
+          userInfo: data[2].rows[0],
           user: req.session.id
         };
         res.render("index", templateVars);
@@ -56,12 +63,21 @@ module.exports = (db) => {
     JOIN users ON owner_id = users.id
     WHERE owner_id = $1
     ORDER BY collections.title;`
+
+    const userQuery = `
+    SELECT *
+    FROM users
+    WHERE users.id = $1;`
     const userId = [req.session.id];
 
-    db.query(queryStringCollections, userId)
+    const promiseCollections = db.query(queryStringCollections, userId)
+    const promiseUser = db.query(userQuery, userId)
+
+    Promise.all([promiseCollections, promiseUser])
       .then(data => {
         const templateVars = {
-          collections: data.rows,
+          collections: data[0].rows,
+          userInfo: data[1].rows[0],
           user: req.session.id
         };
         if (templateVars.user) {
@@ -94,14 +110,21 @@ module.exports = (db) => {
     ORDER BY collections.title;`
     const userId = [req.session.id];
 
+    const userQuery = `
+    SELECT *
+    FROM users
+    WHERE users.id = $1;`
+
     const promisePosts = db.query(queryStringPosts, keyword);
     const promiseCollections = db.query(queryStringCollections, userId);
+    const promiseUser = db.query(userQuery, userId);
 
-    Promise.all([promisePosts, promiseCollections])
+    Promise.all([promisePosts, promiseCollections, promiseUser])
       .then(data => {
         const templateVars = {
           posts: data[0].rows,
           collections: data[1].rows,
+          userInfo: data[2].rows[0],
           user: req.session.id
         };
         res.render("index", templateVars);
@@ -117,6 +140,7 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const queryString = `INSERT INTO posts (user_id, title, url, description)
     VALUES ($1, $2, $3, $4);`;
+
     const formInput = [req.session.id, req.body.title, req.body.url, req.body.description];
     db.query(queryString, formInput)
       .then(() => {
@@ -135,18 +159,20 @@ module.exports = (db) => {
     (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments,
     COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating,
     (SELECT value FROM ratings WHERE user_id = $1 AND posts.id = post_id) AS rated,
-    (SELECT id FROM likes WHERE user_id = $1 AND posts.id = post_id) AS liked
+    (SELECT id FROM likes WHERE user_id = $1 AND posts.id = post_id) AS liked,
+    (SELECT username FROM users WHERE posts.user_id = users.id) AS poster_username,
+    (SELECT icon FROM users WHERE posts.user_id = users.id) AS poster_icon
     FROM posts
     LEFT JOIN ratings ON posts.id = ratings.post_id
     LEFT JOIN likes ON posts.id = likes.user_id
     LEFT JOIN users ON users.id = posts.user_id
     WHERE posts.id = $2
-    GROUP BY posts.id
-    `;
+    GROUP BY posts.id;`;
     const valuesPost = [req.session.id, req.params.post_id];
 
-    const queryStringComments = `SELECT comments.id, comments.content, comments.posted_at
+    const queryStringComments = `SELECT comments.id, comments.user_id, users.icon as icon, users.username as username, comments.content, comments.posted_at
     FROM comments
+    JOIN users ON user_id = users.id
     WHERE post_id = $1
     ORDER BY comments.id DESC;`
     const valuesComments = [req.params.post_id];
@@ -154,19 +180,26 @@ module.exports = (db) => {
     const queryStringCollections = `SELECT collections.id, collections.title
     FROM collections
     JOIN users ON owner_id = users.id
-    WHERE owner_id = $1`
+    WHERE owner_id = $1;`
     const userId = [req.session.id];
+
+    const userQuery = `
+    SELECT *
+    FROM users
+    WHERE users.id = $1;`
 
     const promisePost = db.query(queryStringPost, valuesPost);
     const promiseComments = db.query(queryStringComments, valuesComments);
     const promiseCollections = db.query(queryStringCollections, userId);
+    const promiseUser = db.query(userQuery, userId)
 
-    Promise.all([promisePost, promiseComments, promiseCollections])
+    Promise.all([promisePost, promiseComments, promiseCollections, promiseUser])
       .then(data => {
         const templateVars = {
           post: data[0].rows,
           comments: data[1].rows,
           collections: data[2].rows,
+          userInfo: data[3].rows[0],
           user: req.session.id
         };
         res.render("show_post", templateVars);
