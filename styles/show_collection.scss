@@ -150,17 +150,18 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
   }
   footer {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-top: 5px;
     font-size: 14px;
     p {
       margin-bottom: 5px;
     }
     button {
+      align-self: center;
       background-color: #221F1E;
       border: none;
       img {
