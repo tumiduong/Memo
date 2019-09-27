@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
+  //display the collection page matching the collection id
   router.get('/:id', (req, res) => {
     const collectionQuery = `
     SELECT collections.*, COUNT(DISTINCT posts) as post_count, users.username as owner
@@ -51,6 +52,7 @@ module.exports = (db) => {
       })
   })
 
+  //retrieves information about a specific collection
   router.get('/api/:id', (req, res) => {
     const collectionQuery = `
     SELECT collections.*, COUNT(DISTINCT posts) as post_count, users.username as owner
@@ -92,6 +94,7 @@ module.exports = (db) => {
       })
   })
 
+  //route to create a new collection
   router.post('/', (req, res) => {
     const addCollectionQuery = `
     INSERT INTO collections (owner_id, title, description)
@@ -108,6 +111,7 @@ module.exports = (db) => {
        })
   })
 
+  //delete collection from db with matching id
   router.post('/delete/:id', (req, res) => {
     const deleteCollectionQuery = `
     DELETE FROM collections
@@ -124,6 +128,7 @@ module.exports = (db) => {
        })
   })
 
+  //get the information about the collections in the sidebar
   router.get('/sidebar/api/:id', (req, res) => {
     const collectionQuery = `
     SELECT id, title, description, created_at
@@ -142,6 +147,7 @@ module.exports = (db) => {
        })
   })
 
+  //update a post information when deleting it from a collection
   router.post('/edit/:id', (req, res) => {
     const editQuery = `
     UPDATE posts

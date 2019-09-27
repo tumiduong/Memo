@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
+  //information about the profile user, collection, post, likes and comments
   router.get('/api/:id', (req, res) => {
     const overviewQuery = `
     SELECT users.id, users.username, users.biography, users.icon, COUNT(DISTINCT comments) as nbComments, COUNT(DISTINCT collections) AS nbCollections, COUNT(DISTINCT posts) AS nbPosts, COUNT(DISTINCT likes) AS nbLikes
@@ -70,6 +71,7 @@ module.exports = (db) => {
       })
   })
 
+  //retrieve users's info, collections, posts, likes and comments
   router.get('/:id', (req, res) => {
     const overviewQuery = `
     SELECT users.id, users.username, users.biography, users.icon, COUNT(DISTINCT comments) as nbComments, COUNT(DISTINCT collections) AS nbCollections, COUNT(DISTINCT posts) AS nbPosts, COUNT(DISTINCT likes) AS nbLikes
@@ -147,6 +149,7 @@ module.exports = (db) => {
       })
   })
 
+  //display the page to edit the profile info of the user
   router.get('/edit/:id', (req, res) => {
     const userQuery = `
     SELECT *
@@ -186,6 +189,7 @@ module.exports = (db) => {
       })
   })
 
+  //update the database with the new user info
   router.post('/edit/:id', (req, res) => {
     const userUpdateQuery = `
     UPDATE users
