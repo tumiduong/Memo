@@ -8,10 +8,18 @@ const escape =  function(str) {
 
 //create comment
 const createComment = comment => {
-  let $comment =
-  `<div class='comments'>
-  <p class='user'><img src="${comment.icon}"> ${comment.username}</p>
-  <p class='user-comment'>${escape(comment.content)}</p></div>`;
+  let $comment =`
+    <div class='comments'>
+    <header>
+      <p class='user'><img class='user-icon' src="${comment.icon}"> ${comment.username} <span> - posted on ${comment.posted_at}</span></p>
+      <img class='option' src="https://i.imgur.com/uusvo5e.png">
+    </header>
+    <p class='user-comment'>${comment.content}</p>
+    <footer>
+      <img src="https://image.flaticon.com/icons/svg/2001/2001592.svg">
+      <p>ANSWER</p>
+    </footer>
+   </div>`;
   return $comment;
 }
 
