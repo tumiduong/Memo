@@ -19,6 +19,7 @@
     <script type="text/javascript" src="/scripts/footerLightBox.js"></script>
     <script type="text/javascript" src="/scripts/addPostBox.js"></script>
     <script type="text/javascript" src="/scripts/actions.js"></script>
+    <script type="text/javascript" src="/scripts/timestamp.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
   </head>
@@ -57,24 +58,32 @@
 
           <footer>
             <div class="bottom-post">
-              <form method="GET" action="/posts/<%= post.id %>"><input type="image" src="https://i.imgur.com/qiTIHcz.png"></form>
-
-              <div class="user-like" data-id="<%= post.id %>">
-                  <% if (post.liked) { %>
-                        <img class="liked-img" onclick="dislike(this)" src="https://i.imgur.com/diEl516.png">
-                      <% } else { %>
-                      <img class="like-img" onclick="like(this)" src="https://i.imgur.com/ay6oIRr.png" >
+              <div class="actions-btn">
+                <form method="GET" action="/posts/<%= post.id %>">
+                  <% if (post.nbcomments !== "0") { %>
+                    <input class="comment-btn" type="image" src="https://i.imgur.com/1w7PwjZ.png">
+                  <% } else { %>
+                    <input class="comment-btn" type="image" src="https://i.imgur.com/qiTIHcz.png">
                   <% } %>
-                  </div>
-              <form class="addPostButton" method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/S8HBBf2.png"></form>
-              <div class='collectionDropDown'>
-                  <select class="dropDown" data-post_id="<%= post.id %>">
-                      <option value="collections">collections</option>
-                    <% for (let collection of collections) { %>
-                      <option value="<%= collection.id %>"><%= collection.title %></option>
-                    <% } %>
-                  </select>
+                </form>
+                <div class="user-like" data-id="<%= post.id %>">
+                  <% if (post.liked) { %>
+                    <img class="liked-img" onclick="dislike(this)" src="https://i.imgur.com/diEl516.png">
+                  <% } else { %>
+                    <img class="like-img" onclick="like(this)" src="https://i.imgur.com/ay6oIRr.png" >
+                  <% } %>
+                </div>
+                <form class="addPostButton" method="GET" action="/posts/"><input type="image" src="https://i.imgur.com/S8HBBf2.png"></form>
+                <div class='collectionDropDown'>
+                    <select class="dropDown" data-post_id="<%= post.id %>">
+                        <option value="collections">collections</option>
+                      <% for (let collection of collections) { %>
+                        <option value="<%= collection.id %>"><%= collection.title %></option>
+                      <% } %>
+                    </select>
+                </div>
               </div>
+              <p>posted on <%= (post.posted_at).toDateString() %></p>
             </div>
           </footer>
         </div>
