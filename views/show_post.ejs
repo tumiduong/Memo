@@ -108,8 +108,16 @@
       <% if (comments[0]) { %>
         <% for (const comment of comments) { %>
       <div class='comments'>
-          <p class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username</p>
+          <header>
+            <p class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username <span> - posted on </span></p>
+            <img class='option' src="https://i.imgur.com/X35xCEj.png">
+          </header>
           <p class='user-comment'><%= comment.content %></p>
+          <footer>
+            <img src="https://i.imgur.com/oecenlD.png" >
+            <img src="https://i.imgur.com/UFraZ8s.png">
+            <p>REPLY</p>
+          </footer>
       </div>
         <% } %>
       <% } %>
