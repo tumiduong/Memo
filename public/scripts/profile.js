@@ -1,3 +1,4 @@
+//delete collection from collection list page of the profile layout
 const deleteCollection = (url, method, collection_id) => {
   $.ajax({url, method, data: collection_id})
     .then(collection_id => {
@@ -8,6 +9,7 @@ const deleteCollection = (url, method, collection_id) => {
     })
 }
 
+//animation to hide the different layout pages on the profile page
 $(() => {
   $('#collection-container').hide();
   $('#post-container').hide();
