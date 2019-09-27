@@ -3,14 +3,18 @@ header {
   margin: auto;
   width: 55%;
   margin-top: 90px;
+
   article {
     display: flex;
+
     h2 {
       margin-right: 15px;
     }
+
     a {
       outline: none;
       font-size: 13px;
+
       img {
         margin-top: 10px;
         height: 20px;
@@ -44,6 +48,7 @@ main {
   width: 70%;
   padding-left: 5%;
   margin-bottom: 0.5em;
+
   button {
     background-color: rgb(36, 34, 34);
     border: none;
@@ -51,6 +56,7 @@ main {
     outline: none;
     border-bottom: 2px solid rgb(36, 34, 34);
   }
+
   button:hover {
     color:white;
   }
@@ -85,7 +91,8 @@ main {
     justify-content: space-between;
     border-bottom: 1px solid rgb(101, 101, 101);
     height: 70%;
-    img{
+
+    img {
       height: 70px;
       width: 70px;
     }
@@ -96,6 +103,7 @@ main {
     flex-direction: column;
     align-items: flex-end;
     margin-right: 1em;
+
     p {
       color: darkgrey;
     }
@@ -105,11 +113,13 @@ main {
     display: flex;
     background-color: #353230;
     height: 30%;
+
     img {
       width: 20px;
       height: 20px;
       margin-right: 1em;
     }
+
     button {
       color: darkgrey;
       background-color:#353230;
@@ -117,6 +127,7 @@ main {
       border: none;
       outline: none;
     }
+
     button:hover {
       color: white;
     }
@@ -132,19 +143,23 @@ main {
   margin: auto;
   margin-top: 20px;
   margin-bottom: 30px;
+
   .column-title {
     display: flex;
     justify-content: space-around;
     border-bottom: 0.5px solid rgb(101, 101, 101);
+
     div {
       width: 8%;
       display: flex;
       justify-content: center;
       margin-right: 60px;
+
       p {
         font-size: 14px;
         color: darkgrey;
       }
+
       img {
         width: 20px;
         height: 20px;
@@ -156,16 +171,19 @@ main {
     align-items: center;
     justify-content: space-around;
     border-bottom: 0.5px solid rgb(101, 101, 101);
+
     div {
       width: 20%;
       display: flex;
       justify-content: flex-start;
       align-items: center;
+
       img {
         width: 0px;
         height: 0px;
       }
     }
+
     a {
       color: white;
       font-size: 14px;
@@ -180,12 +198,14 @@ main {
       margin-bottom: 15px;
       margin-top: 15px;
     }
+    
     button {
       background-color: #221F1E;
       border: none;
       outline: none;
       color: darkgrey;
     }
+
     button:hover {
       color: white;
     }
@@ -193,9 +213,11 @@ main {
 
   .collection-post:hover {
     background-color:rgb(60, 55, 54);
+
     button {
       background-color: rgb(60, 55, 54);
     }
+
     img {
       width: 12px;
       height: 12px;
@@ -216,11 +238,13 @@ main {
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
+
   .profilePost {
     width: 100%;
     background-color: #353230;
     padding: 1em;
     margin-top: 20px;
+
     header {
       display: flex;
       justify-content: space-between;
@@ -229,26 +253,31 @@ main {
       margin-top: 0px;
       border-bottom: 0.5px solid rgb(101, 101, 101);
       height: 30px;
+
       a {
         display: flex;
         align-items: center;
         font-size: 14px;
         color: white;
         text-decoration: none;
+
         img {
           margin-left: 5px;
           width: 13px;
           height: 13px;
         }
       }
+
       a:hover {
         font-family: 'Nunito', sans-serif;
         font-size: 14px;
       }
     }
+
     div {
       font-size: 11px;
       margin-top: 10px;
+
       a {
         display: block;
         color: rgb(210, 162, 72);
@@ -258,11 +287,13 @@ main {
         text-overflow: ellipsis;
       }
     }
+
     footer {
       display: flex;
       flex-direction: column;
       margin-top: 5px;
       font-size: 12px;
+
       img {
         align-self: center;
         height: 23px;
@@ -270,6 +301,7 @@ main {
       }
     }
   }
+
   .profilePost:hover {
     border: 0.5px solid rgb(101, 101, 101);
   }
@@ -282,11 +314,13 @@ main {
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
+
   .likedPost {
     width: 100%;
     background-color: #353230;
     padding: 1em;
     margin-top: 20px;
+
     header {
       display: flex;
       justify-content: space-between;
@@ -295,26 +329,31 @@ main {
       margin-top: 0px;
       border-bottom: 0.5px solid rgb(101, 101, 101);
       height: 30px;
+
       a {
         display: flex;
         align-items: center;
         font-size: 14px;
         color: white;
         text-decoration: none;
+
         img {
           margin-left: 5px;
           width: 13px;
           height: 13px;
         }
       }
+
       a:hover {
         font-family: 'Nunito', sans-serif;
         font-size: 14px;
       }
     }
+
     div {
       font-size: 11px;
       margin-top: 10px;
+
       a {
         display: block;
         color: rgb(72, 134, 210);
@@ -324,11 +363,13 @@ main {
         text-overflow: ellipsis;
       }
     }
+
     footer {
       display: flex;
       flex-direction: column;
       margin-top: 5px;
       font-size: 12px;
+
       img {
         align-self: center;
         height: 25px;
@@ -336,6 +377,7 @@ main {
       }
     }
   }
+
   .likedPost:hover {
     border: 0.5px solid rgb(101, 101, 101);
   }
@@ -348,12 +390,14 @@ main {
   margin-bottom: 30px;
   display: flex;
   flex-flow: row wrap;
+
   .commentPost {
     width: 45%;
     background-color: #353230;
     padding: 1em;
     margin-top: 20px;
     margin-right: 30px;
+
     header {
       display: flex;
       justify-content: space-between;
@@ -363,20 +407,24 @@ main {
       border-bottom: 0.5px solid rgb(101, 101, 101);
       height: 30px;
     }
+
     div {
       margin-top: 5px;
       font-size: 13px;
     }
+
     footer {
       display: flex;
       flex-direction: column;
       font-size: 12px;
       color: darkgrey;
+
       a {
         color: lightgrey;
         border-bottom: 1px solid lightgrey;
         text-decoration: none;
       }
+
       img {
         align-self: center;
         height: 22px;
@@ -384,6 +432,7 @@ main {
       }
     }
   }
+
   .commentPost:hover {
     border: 0.5px solid rgb(101, 101, 101);
   }
@@ -399,6 +448,7 @@ main {
   -webkit-transition-property: transform;
   transition-property: transform;
 }
+
 .hvr-growing:hover, .hvr-grow:focus, .hvr-grow:active {
   -webkit-transform: scale(1.06);
   transform: scale(1.06);
