@@ -39,6 +39,11 @@ module.exports = (db) => {
     JOIN users on posts.user_id = users.id
     WHERE comments.user_id = $1;`
 
+    const userQuery = `
+    SELECT *
+    FROM users
+    WHERE users.id = $1;`
+
     const queryParams = [req.session.id]
 
     const overview = db.query(overviewQuery, queryParams)
@@ -46,14 +51,17 @@ module.exports = (db) => {
     const posts = db.query(postQuery, queryParams)
     const likes = db.query(likeQuery, queryParams)
     const comments = db.query(commentQuery, queryParams)
-    Promise.all([overview, collections, posts, likes, comments])
+    const userInfo = db.query(userQuery, queryParams)
+
+    Promise.all([overview, collections, posts, likes, comments, userInfo])
       .then(values => {
         let overall = {
           overview: values[0].rows[0],
           collections: values[1].rows,
           posts: values[2].rows,
           likes: values[3].rows,
-          comments: values[4].rows
+          comments: values[4].rows,
+          userInfo: values[5].rows[0]
         }
         res.json(overall)
       })
@@ -100,6 +108,11 @@ module.exports = (db) => {
     JOIN users on posts.user_id = users.id
     WHERE comments.user_id = $1;`
 
+    const userQuery = `
+    SELECT *
+    FROM users
+    WHERE users.id = $1;`
+
     const queryParams = [req.session.id]
 
     const overview = db.query(overviewQuery, queryParams)
@@ -107,7 +120,9 @@ module.exports = (db) => {
     const posts = db.query(postQuery, queryParams)
     const likes = db.query(likeQuery, queryParams)
     const comments = db.query(commentQuery, queryParams)
-    Promise.all([overview, collections, posts, likes, comments])
+    const userInfo = db.query(userQuery, queryParams)
+
+    Promise.all([overview, collections, posts, likes, comments, userInfo])
       .then(values => {
         const overall = {
           overview: values[0].rows[0],
@@ -115,6 +130,7 @@ module.exports = (db) => {
           posts: values[2].rows,
           likes: values[3].rows,
           comments: values[4].rows,
+          userInfo: values[5].rows[0],
           user: req.session.id
         }
         if (overall.user === parseInt(req.params.id)) {
@@ -141,15 +157,23 @@ module.exports = (db) => {
     GROUP BY collections.id
     ORDER BY collections.title;`
 
+    const userQuery2 = `
+    SELECT *
+    FROM users
+    WHERE users.id = $1;`
+
     const queryParams = [req.params.id];
 
     const user = db.query(userQuery, queryParams)
     const collections = db.query(collectionsQuery, queryParams)
-    Promise.all([user, collections])
+    const userInfo = db.query(userQuery2, queryParams)
+
+    Promise.all([user, collections, userInfo])
     .then(values => {
       const overall = {
          user: values[0].rows[0],
          collections: values[1].rows,
+         userInfo: values[2].rows[0],
          userId: req.session.id
       }
       res.render('profile_edit', overall)
