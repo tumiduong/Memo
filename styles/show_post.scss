@@ -68,12 +68,17 @@
     padding-top: 6px;
     padding-bottom: 6px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 
     span {
       padding: 1px 0px;
       font-size: 17px;
       margin-right: 4px;
+    }
+
+    .timestamp {
+      font-size: 12px;
     }
 
     .star {
