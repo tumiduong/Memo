@@ -10,7 +10,7 @@ const escape =  function(str) {
 const createComment = comment => {
   let $comment =
   `<div class='comments'>
-  <p class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username</p>
+  <p class='user'><img src="${comment.icon}"> ${comment.username}</p>
   <p class='user-comment'>${escape(comment.content)}</p></div>`;
   return $comment;
 }

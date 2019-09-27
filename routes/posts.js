@@ -145,8 +145,9 @@ module.exports = (db) => {
     `;
     const valuesPost = [req.session.id, req.params.post_id];
 
-    const queryStringComments = `SELECT comments.id, comments.content, comments.posted_at
+    const queryStringComments = `SELECT comments.id, comments.user_id, users.icon as icon, users.username as username, comments.content, comments.posted_at
     FROM comments
+    JOIN users ON user_id = users.id
     WHERE post_id = $1
     ORDER BY comments.id DESC;`
     const valuesComments = [req.params.post_id];
