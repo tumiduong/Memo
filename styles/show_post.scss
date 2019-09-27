@@ -58,28 +58,6 @@
     border-bottom: 1px solid rgb(101, 101, 101);
   }
 
-  a {
-    width: 50%;
-    font-size: 10px;
-  }
-
-  footer {
-    padding-top: 6px;
-    padding-bottom: 6px;
-    display: flex;
-    align-items: center;
-
-    span {
-      padding: 1px 0px;
-      font-size: 17px;
-      margin-right: 4px;
-    }
-
-    .star {
-      font-size: 17px;
-    }
-  }
-
   a:link {
     color: #007F7F;
     display: block;
@@ -98,6 +76,23 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  footer {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    display: flex;
+    align-items: center;
+
+    span {
+      padding: 1px 0px;
+      font-size: 17px;
+      margin-right: 4px;
+    }
+
+    .star {
+      font-size: 17px;
+    }
   }
 
   .rate-post {
@@ -178,6 +173,8 @@
     width: 20px;
     height: auto;
     margin-right: 5px;
+    border-radius: 50px;
+    border: 1px solid darkgray;
   }
 
   .user-comment {
@@ -206,8 +203,8 @@
 .comments:hover {
   background-color: #2e2b29;
   header .option {
-    height: 15px;
-    width: 15px;
+    height: 30px;
+    width: 30px;
   }
 }
 

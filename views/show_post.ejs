@@ -109,14 +109,13 @@
         <% for (const comment of comments) { %>
       <div class='comments'>
           <header>
-            <p class='user'><img src="https://i.imgur.com/saXHsyd.png"> Username<span> - posted on</span></p>
-            <img class='option' src="https://i.imgur.com/X35xCEj.png">
+            <p class='user'><img class='user-icon' src="<%= comment.icon %>""> <%= comment.username %> <span> - posted on</span></p>
+            <img class='option' src="https://i.imgur.com/uusvo5e.png">
           </header>
           <p class='user-comment'><%= comment.content %></p>
           <footer>
-            <img src="https://i.imgur.com/oecenlD.png" >
-            <img src="https://i.imgur.com/UFraZ8s.png">
-            <p>REPLY</p>
+            <img src="https://image.flaticon.com/icons/svg/2001/2001592.svg">
+            <p>ANSWER</p>
           </footer>
       </div>
         <% } %>

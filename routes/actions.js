@@ -79,8 +79,11 @@ module.exports = (db) => {
   });
 
   router.get('/comment/api/:post_id', (req, res) => {
-    const queryString = `SELECT * FROM comments
-    WHERE post_id = $1;`
+    const queryString = `SELECT comments.id, comments.user_id, users.icon as icon, users.username as username, comments.content, comments.posted_at
+    FROM comments
+    JOIN users ON user_id = users.id
+    WHERE post_id = $1
+    ORDER BY comments.id;`
     const values = [req.params.post_id]
     db.query(queryString, values)
       .then(data => {
