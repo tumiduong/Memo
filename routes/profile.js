@@ -92,21 +92,24 @@ module.exports = (db) => {
     SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at
     FROM posts
     WHERE user_id = $1
-    GROUP BY posts.id;`
+    GROUP BY posts.id
+    ORDER BY posts.posted_at DESC;`
 
     const likeQuery = `
     SELECT posts.id, posts.title, posts.url, posts.description, posts.posted_at
     FROM likes
     JOIN posts ON post_id = posts.id
     WHERE likes.user_id = $1
-    GROUP BY posts.id;`
+    GROUP BY posts.id
+    ORDER BY posts.posted_at DESC;`
 
     const commentQuery = `
     SELECT comments.id, comments.post_id as post_id, posts.title, users.username, comments.content, comments.posted_at
     FROM comments
     JOIN posts on posts.id = comments.post_id
     JOIN users on posts.user_id = users.id
-    WHERE comments.user_id = $1;`
+    WHERE comments.user_id = $1
+    ORDER BY comments.posted_at DESC;`
 
     const userQuery = `
     SELECT *
