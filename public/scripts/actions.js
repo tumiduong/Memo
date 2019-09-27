@@ -1,12 +1,12 @@
-//comments
-//only text in comments
+// COMMENTS
+// Only text in comments
 const escape =  function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-}
+};
 
-//create comment
+// Create a comment
 const createComment = comment => {
   let $comment =`
     <div class='comments'>
@@ -21,25 +21,27 @@ const createComment = comment => {
     </footer>
    </div>`;
   return $comment;
-}
+};
 
-//render comment
+// Cender a comment
 const renderNewComment = comment => {
   const $comment = createComment(comment);
   $('.all-comments').prepend($comment);
-}
+};
 
-//comment load
+// Load a comment
 const commentLoad = (method, url, cb) => {
   $.ajax({
     url,
     method
   })
-    .then(comments => { cb(comments[comments.length - 1]) })
-    .fail(error => console.log(error))
-}
+    .then(comments => {
+      cb(comments[comments.length - 1]);
+    })
+    .fail(error => console.log(error));
+};
 
-//likes
+// LIKES
 const $likeImg =
   `<img class="like-img" onclick="like(this)" src="https://i.imgur.com/ay6oIRr.png" data-id="<%= post.id %>" >`;
 const $likedImg =
@@ -54,8 +56,8 @@ const like = function(element) {
       div.innerHTML = $likedImg;
     })
     .fail(error => {
-      res.json({ error: error.message })
-    })
+      res.json({ error: error.message });
+    });
 };
 
 const dislike = function(element) {
@@ -68,11 +70,11 @@ const dislike = function(element) {
   })
   .fail(error => {
     res.json({ error: error.message })
-  })
+  });
 };
 
-//doc.ready
-$( () => {
+// Document ready
+$(() => {
   $('.new-comment').on("submit", (event) => {
     event.preventDefault();
     const post_id = $(event.target).find('input[name="post_id"]').val();

@@ -48,7 +48,7 @@
         <% } %>
           <p><%= post[0].description %></p>
         <footer>
-
+          <div class="stars">
           <% if (post[0].rated) { %>
             <% if (post[0].rated === 1) { %>
               <span class="star">★</span>
@@ -90,9 +90,13 @@
               <button type="submit" class="star-rating" name="rating" value="3">☆</button>
               <button type="submit" class="star-rating" name="rating" value="2">☆</button>
               <button type="submit" class="star-rating" name="rating" value="1">☆</button>
-            </form>
+            </form></div>
           <% } %>
           </div>
+          <span class="post-info">
+            <span class='user'><img class='user-icon' src="<%= post[0].poster_icon %>""> <%= post[0].poster_username %></span>
+            <span class="time-posted"> - <%= (post[0].posted_at).toDateString() %> at <%= (post[0].posted_at).toLocaleTimeString() %></span>
+          </span>
         </footer>
       </div>
 
@@ -109,7 +113,7 @@
         <% for (const comment of comments) { %>
       <div class='comments'>
           <header>
-            <p class='user'><img class='user-icon' src="<%= comment.icon %>""> <%= comment.username %> <span> - posted on <%= comment.posted_at.toDateString() %> </span></p>
+            <p class='user'><img class='user-icon' src="<%= comment.icon %>""> <%= comment.username %> <span> - posted on <%= comment.posted_at.toDateString() %> at <%= comment.posted_at.toLocaleTimeString() %></span></p>
             <img class='option' src="https://i.imgur.com/uusvo5e.png">
           </header>
           <p class='user-comment'><%= comment.content %></p>

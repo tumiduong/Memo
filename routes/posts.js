@@ -159,14 +159,15 @@ module.exports = (db) => {
     (SELECT COUNT(DISTINCT comments) FROM comments WHERE posts.id = post_id) as nbComments,
     COUNT(DISTINCT ratings) AS nbRratings, ROUND(AVG(value), 1) AS avgRating,
     (SELECT value FROM ratings WHERE user_id = $1 AND posts.id = post_id) AS rated,
-    (SELECT id FROM likes WHERE user_id = $1 AND posts.id = post_id) AS liked
+    (SELECT id FROM likes WHERE user_id = $1 AND posts.id = post_id) AS liked,
+    (SELECT username FROM users WHERE posts.user_id = users.id) AS poster_username,
+    (SELECT icon FROM users WHERE posts.user_id = users.id) AS poster_icon
     FROM posts
     LEFT JOIN ratings ON posts.id = ratings.post_id
     LEFT JOIN likes ON posts.id = likes.user_id
     LEFT JOIN users ON users.id = posts.user_id
     WHERE posts.id = $2
-    GROUP BY posts.id
-    `;
+    GROUP BY posts.id;`;
     const valuesPost = [req.session.id, req.params.post_id];
 
     const queryStringComments = `SELECT comments.id, comments.user_id, users.icon as icon, users.username as username, comments.content, comments.posted_at
