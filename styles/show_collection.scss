@@ -4,6 +4,7 @@
   margin: auto;
   width: 55%;
   margin-top: 90px;
+
   p {
     color: darkgrey;
     margin-bottom: 13px;
@@ -42,15 +43,19 @@
 #titleDiv {
   width: 75%;
   margin-bottom: 15px;
+
   div {
     display: flex;
   }
+
   p {
     font-size: 14px;
   }
+
   .titleDiv-footer {
     font-size: 12px;
     color: darkgray;
+
     a {
       color: white;
       border-bottom: 1px solid white;
@@ -80,6 +85,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
   #filterBar {
     background-color:#221F1E;
     border: none;
@@ -88,9 +94,11 @@
     color: darkgrey;
     font-size: 14px;
   }
+
   #filterBar:hover {
     color: white;
   }
+
   #filterBar:focus {
     outline: none;
     background-color: rgb(60, 55, 54);
@@ -108,30 +116,36 @@
   background-color: #221F1E;
   padding: 1em;
   border-top: 0.5px solid rgb(101, 101, 101);
+
   header {
     display: flex;
     justify-content: space-between;
     font-size: 13px;
     width: 100%;
     height: 30px;
+
     .title {
       color: white;
       font-size: 15px;
       text-decoration: none;
       overflow: visible;
     }
+
     .title:hover {
       font-weight: bold;
       font-size: 14px;
     }
+
     div {
       display: flex;
       align-items: center;
       margin-top: 0px;
+
       p {
         font-size: 15px;
         margin-bottom: 0px;
       }
+
       img {
         height: 20px;
         width: 20px;
@@ -139,9 +153,11 @@
       }
     }
   }
+
   div {
     font-size: 11px;
     margin-top: 10px;
+
     a {
       display: block;
       color: rgb(210, 162, 72);
@@ -157,13 +173,16 @@
     flex-direction: column;
     margin-top: 5px;
     font-size: 14px;
+
     p {
       margin-bottom: 5px;
     }
+
     button {
       align-self: center;
       background-color: #221F1E;
       border: none;
+
       img {
         margin-top: 10px;
         width: 0px;
@@ -175,13 +194,16 @@
 
 .collection-post:hover {
   background-color: rgb(60, 55, 54);
+
   button {
     background-color: rgb(60, 55, 54);
   }
+
   footer img {
     width: 15px;
     height: 15px;
   }
+
   footer button:hover img {
     content: url(https://image.flaticon.com/icons/svg/1632/1632708.svg)
   }
@@ -197,6 +219,7 @@
   -webkit-transition-property: transform;
   transition-property: transform;
 }
+
 .hvr-growing:hover, .hvr-grow:focus, .hvr-grow:active {
   -webkit-transform: scale(1.01);
   transform: scale(1.01);
