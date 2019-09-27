@@ -48,7 +48,7 @@ const $likedImg =
   `<img class="liked-img" onclick="dislike(this)" src="https://i.imgur.com/diEl516.png" data-id="<%= post.id %>">`;
 
 const like = function(element) {
-  const div = element.closest(".user-like")
+  const div = element.closest(".user-like");
   const post_id = $(event.target).closest(".user-like").data('id');
   $.post(`/actions/like/api/${post_id}`)
     .then(() => {
@@ -61,16 +61,16 @@ const like = function(element) {
 };
 
 const dislike = function(element) {
-  const div = element.closest(".user-like")
+  const div = element.closest(".user-like");
   const post_id = $(event.target).closest(".user-like").data('id');
   $.post(`/actions/like/api/${post_id}/delete`)
-  .then(() => {
-    div.innerHTML = '';
-    div.innerHTML = $likeImg;
-  })
-  .fail(error => {
-    res.json({ error: error.message })
-  });
+    .then(() => {
+      div.innerHTML = '';
+      div.innerHTML = $likeImg;
+    })
+    .fail(error => {
+      res.json({ error: error.message })
+    });
 };
 
 // Document ready
@@ -85,15 +85,15 @@ $(() => {
         url: `/actions/comment/api/${post_id}`,
         data: { content: $('#comment').val() }
       })
-        .then(response => {
+        .then(() => {
           commentLoad('GET', `/actions/comment/api/${post_id}`, renderNewComment);
           $('.new-comment')[0].reset();
         })
         .fail(error => res.json({ error: error.message }))
-      } else {
-        console.log("comment empty");
-      }
-    })
+    } else {
+      console.log("comment empty");
+    }
+  });
 
   $('.star-rating').on("click", (event) => {
     event.preventDefault();
@@ -105,45 +105,44 @@ $(() => {
       url: `/actions/rating/api/${post_id}`,
       data: {rating: rateValue}
     })
-      .then((data) => {
+      .then(() => {
         if (rateValue === 1) {
           $('.rate-post').replaceWith(`
             <span class="star">★</span>
             <span>☆</span>
             <span>☆</span>
             <span>☆</span>
-            <span>☆</span>`)
+            <span>☆</span>`);
         } else if (rateValue === 2) {
           $('.rate-post').replaceWith(`
           <span class="star">★</span>
           <span class="star">★</span>
           <span>☆</span>
           <span>☆</span>
-          <span>☆</span>`)
+          <span>☆</span>`);
         } else if (rateValue === 3) {
           $('.rate-post').replaceWith(`
             <span class="star">★</span>
             <span class="star">★</span>
             <span class="star">★</span>
             <span>☆</span>
-            <span>☆</span>`)
+            <span>☆</span>`);
         } else if (rateValue === 4) {
           $('.rate-post').replaceWith(`
             <span class="star">★</span>
             <span class="star">★</span>
             <span class="star">★</span>
             <span class="star">★</span>
-            <span>☆</span>`)
+            <span>☆</span>`);
         } else if (rateValue === 5) {
           $('.rate-post').replaceWith(`
             <span class="star">★</span>
             <span class="star">★</span>
             <span class="star">★</span>
             <span class="star">★</span>
-            <span class="star">★</span>`)
+            <span class="star">★</span>`);
         }
       })
-    .fail(error => res.json({ error: error.message }))
-  })
-
-}) //end of doc ready
+      .fail(error => res.json({ error: error.message }));
+  });
+});
