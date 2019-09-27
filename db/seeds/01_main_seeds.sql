@@ -1,5 +1,5 @@
 INSERT INTO users (username, password, email, biography, icon)
-VALUES ('alex_jones', '12345', 'alexjones@gmail.com', 'I am a med student at the McGill University', 'https://image.flaticon.com/icons/svg/145/145846.svg');
+VALUES ('Bob', '12345', 'bob@gmail.com', 'I am a med student at the McGill University', 'https://image.flaticon.com/icons/svg/145/145846.svg');
 INSERT INTO users (username, password, email, biography, icon)
 VALUES ('maria_ferdinand', '12345', 'mariaferdinand@gmail.com', 'I am a software developer for Google', 'https://image.flaticon.com/icons/svg/145/145844.svg');
 INSERT INTO users (username, password, email, biography, icon)
