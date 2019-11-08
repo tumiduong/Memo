@@ -3,6 +3,8 @@ Memo
 
 Make learning easier with Memo! A site that lets you explore all your educational interests, sorting resourceful posts into collections. Using PostgreSQL, Express, AJAX, and more.
 
+Group project from Lighthouse Labs done with Julien Atanassian, Theo Malaper, and Julie Duong.
+
 ## Screenshots
 ### Main Page
 !["main page"](https://raw.githubusercontent.com/JCyan90/Memo/master/docs/main-page.png)
